@@ -3,13 +3,13 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const EslintPlugin = require('eslint-webpack-plugin');
 
-const isProduction = process.env.NODE_ENV == "production";
+const isProd = process.env.NODE_ENV === 'production';
+const isDev = !isProd;
 
-const stylesHandler = isProduction
-  ? MiniCssExtractPlugin.loader
-  : "style-loader";
+const eslintPlugin = isDev => isDev ? [] : [new EslintPlugin({ extensions: 'ts' })];
 
-const config = {
+
+module.exports = {
   entry: "./src/index.ts",
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -29,7 +29,8 @@ const config = {
       filename: "index.html",
       template: "src/index.html",
     }),
-    new EslintPlugin({ extensions: 'ts' }),
+    new MiniCssExtractPlugin(),
+    ...eslintPlugin(isDev)
   ],
   module: {
     rules: [
@@ -40,11 +41,7 @@ const config = {
       },
       {
         test: /\.s[ac]ss$/i,
-        use: [stylesHandler, "css-loader", "postcss-loader", "sass-loader"],
-      },
-      {
-        test: /\.css$/i,
-        use: [stylesHandler, "css-loader", "postcss-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader"],
       },
       {
         test: /\.(eot|ttf|woff|woff2)$/i,
@@ -65,15 +62,4 @@ const config = {
   resolve: {
     extensions: [".ts", ".js"],
   },
-};
-
-module.exports = () => {
-  if (isProduction) {
-    config.mode = "production";
-
-    config.plugins.push(new MiniCssExtractPlugin());
-  } else {
-    config.mode = "development";
-  }
-  return config;
 };

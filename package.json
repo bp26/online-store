@@ -2,12 +2,12 @@
   "name": "online-store",
   "version": "1.0.0",
   "description": "online-store",
-  "main": "index.ts",
+  "main": "index.js",
   "scripts": {
     "build": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
-    "start": "webpack serve",
+    "start": "webpack serve --mode=development --node-env=development",
     "prepare": "husky install",
     "lint": "pretty-quick --staged && lint-staged"
   },
