@@ -4,7 +4,6 @@
     "noImplicitAny": true,
     "strict": true,
     "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
     "sourceMap": true,
     "lib": ["es6", "dom"]
   },
