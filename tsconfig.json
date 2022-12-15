@@ -1,15 +1,13 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "strict": true,
     "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
     "sourceMap": true,
-    "lib": [
-      "es6",
-      "dom"
-  ],
+    "lib": ["es6", "dom"]
   },
   "include": ["./src/"],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules"]
 }
