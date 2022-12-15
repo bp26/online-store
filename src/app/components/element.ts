@@ -1,15 +1,10 @@
 export class Element {
   elem: HTMLElement;
-  constructor(parent: HTMLElement, tag = 'div', className?: string, textContent?: string) {
+  constructor(parent: HTMLElement, tag = 'div', className: string, textContent = '') {
     const elem = document.createElement(tag);
 
-    if (className) {
-      elem.className = className;
-    }
-
-    if (textContent) {
-      elem.textContent = textContent;
-    }
+    elem.className = className;
+    elem.textContent = textContent;
 
     parent.append(elem);
     this.elem = elem;
