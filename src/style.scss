@@ -1,4 +1,7 @@
 @import 'normalize.css';
+@import './scss/header/header.scss';
+@import './scss/main/main.scss';
+@import './scss/footer/footer.scss';
 
 * {
   box-sizing: border-box;
@@ -13,4 +16,10 @@ body {
 
 .wrapper {
   height: 100%;
+  margin: 0 auto;
+  max-width: 1600px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 15px;
 }
