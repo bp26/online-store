@@ -1,5 +1,5 @@
 import { ProductsData } from '../../types/types';
-import products from '../../data/products.json';
+import products from '../../../assets/data/products';
 
 export class Model {
   data: ProductsData;
