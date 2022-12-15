@@ -19,7 +19,7 @@ module.exports = {
   devServer: {
     port: 8080,
     open: true,
-    hot: true,
+    hot: false,
     compress: true,
     historyApiFallback: true,
   },
@@ -29,7 +29,7 @@ module.exports = {
       filename: "index.html",
       template: "src/index.html",
     }),
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin (),
     ...eslintPlugin(isDev)
   ],
   module: {
