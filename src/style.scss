@@ -1,9 +1,9 @@
 @import 'normalize.css';
-@import './scss/utils/mixins.scss';
-@import './scss/utils/variables.scss';
-@import './scss/header/header.scss';
-@import './scss/main/main.scss';
-@import './scss/footer/footer.scss';
+@import './scss/utils/mixins';
+@import './scss/utils/variables';
+@import './scss/header/header';
+@import './scss/main/main';
+@import './scss/footer/footer';
 
 * {
   box-sizing: border-box;

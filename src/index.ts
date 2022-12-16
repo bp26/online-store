@@ -1,4 +1,5 @@
 import { View } from './app/components/views/view';
+import './style.scss'
 
 const root = document.querySelector('main');
 if (!(root instanceof HTMLElement)) {

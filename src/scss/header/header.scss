@@ -1,11 +1,9 @@
 .header {
   height: 80px;
-  border: 1px solid #000;
+  border: 1px solid $border-color-base;
 
   &__wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flex-position-base-justify-beetwen;
     padding: 0 10px;
     height: 100%;
   }

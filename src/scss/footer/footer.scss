@@ -1,20 +1,16 @@
 .footer {
   height: 70px;
-  border: 1px solid #000;
+  border: 1px solid $border-color-base;
 
   &__wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex-position-base;
     height: 100%;
     padding: 0 10px;
   }
 }
 
 .info {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @include flex-position-base-justify-beetwen;
   width: 200px;
   margin-left: auto;
 }
@@ -48,10 +44,10 @@
   height: 50px;
   background-image: url('../../assets/svg/rs_school_js.svg');
   @include back-image;
-  filter: drop-shadow(2px 4px 6px black);
+  filter: drop-shadow(2px 4px 6px $border-color-base);
 
   &:hover {
-    filter: drop-shadow(2px 4px 6px black) contrast(0.8);
+    filter: drop-shadow(2px 4px 6px $border-color-base) contrast(0.8);
     transition: ease 0.3s all;
   }
 }
