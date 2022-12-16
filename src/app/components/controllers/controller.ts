@@ -17,7 +17,8 @@ export class Controller {
 
   handleProductsCallback(action: ProductsAction, id: number): void {
     if (action === ProductsAction.add) {
-      console.log(id);
+      this.model.cart.toggleProduct(id);
+      console.log(this.model.cart.getCartList());
     } else if (action === ProductsAction.details) {
       this.view.mountDetailsPage(id);
     }
