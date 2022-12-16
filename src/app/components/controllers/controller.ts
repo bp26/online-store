@@ -7,7 +7,7 @@ export class Controller {
     this.model = new Model();
   }
 
-  handleProductsData(): ProductsData {
+  handleProductsInit(): ProductsData {
     return this.model.getData();
   }
 }

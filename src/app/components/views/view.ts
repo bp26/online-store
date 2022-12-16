@@ -12,7 +12,7 @@ export class View {
 
   mountProductsPage(): void {
     this.root.innerHTML = '';
-    const products = new ProductsView(this.root, this.controller.handleProductsData());
+    const products = new ProductsView(this.root, this.controller.handleProductsInit());
   }
 
   mountCartPage(): void {
