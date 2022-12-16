@@ -8,7 +8,23 @@
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
     "start": "webpack serve --mode=development --node-env=development",
-    "lint": "pretty-quick --staged"
+    "lint": "pretty-quick --staged && lint-staged"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{html,css,less,scss,ejs}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "repository": {
     "type": "git",
@@ -33,6 +49,8 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-webpack-plugin": "^3.2.0",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^4.3.8",
+    "lint-staged": "^11.1.2",
     "mini-css-extract-plugin": "^2.6.1",
     "postcss": "^8.4.19",
     "postcss-loader": "^7.0.2",
