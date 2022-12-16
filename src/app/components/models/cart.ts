@@ -7,11 +7,10 @@ export class Cart {
   }
 
   toggleProduct(id: number): void {
-    const idKey = id + '';
-    if (this.list[idKey] !== undefined) {
-      delete this.list[idKey];
+    if (this.list[id] !== undefined) {
+      delete this.list[id];
     } else {
-      this.list[idKey] = 1;
+      this.list[id] = 1;
     }
   }
 
@@ -19,11 +18,11 @@ export class Cart {
     return this.list;
   }
 
-  incrementProduct(id: string) {
+  incrementProduct(id: number) {
     this.list[id] += 1;
   }
 
-  decrementProduct(id: string) {
+  decrementProduct(id: number) {
     if (this.list[id] === 1) {
       delete this.list[id];
     } else {
