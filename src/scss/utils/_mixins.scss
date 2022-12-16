@@ -1,0 +1,19 @@
+@mixin back-image {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  transition: ease 0.3s all;
+}
+
+@mixin flex-position-base {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-position-base-justify-beetwen {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+

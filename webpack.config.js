@@ -19,7 +19,7 @@ module.exports = {
   devServer: {
     port: 8080,
     open: true,
-    hot: true,
+    hot: false,
     compress: true,
     historyApiFallback: true,
   },
@@ -41,7 +41,18 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader"],
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader",
+          "resolve-url-loader",
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: true,
+            }
+          }
+        ],
       },
       {
         test: /\.(eot|ttf|woff|woff2)$/i,
