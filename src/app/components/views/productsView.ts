@@ -36,7 +36,6 @@ export class ProductsView extends Element {
         throw new Error(`${e} is not an HTMLElement`);
       }
       if (!e.target.classList.contains('product-card__button')) {
-        console.log(e.target);
         callback(ProductsAction.details, product.id);
       }
     };
