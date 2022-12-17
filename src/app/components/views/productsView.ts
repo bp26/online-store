@@ -29,6 +29,7 @@ export class ProductsView extends Element {
     if (!(card instanceof HTMLElement)) {
       throw new Error(`${card} is not an HTMLElement`);
     }
+    card.style.backgroundImage = `url(${product.thumbnail})`;
 
     card.onclick = (e) => {
       if (!(e.target instanceof HTMLElement)) {
@@ -45,12 +46,6 @@ export class ProductsView extends Element {
       throw new Error(`${name} is not an HTMLElement`);
     }
     name.textContent = product.title;
-
-    const content = clone.querySelector('.product-card__content');
-    if (!(content instanceof HTMLElement)) {
-      throw new Error(`${content} is not an HTMLElement`);
-    }
-    content.style.backgroundImage = product.thumbnail;
 
     const info = clone.querySelector('.product-card__info-list');
     if (!(info instanceof HTMLElement)) {
