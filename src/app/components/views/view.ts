@@ -6,20 +6,21 @@ export class View {
   readonly controller: Controller;
   constructor(root: HTMLElement) {
     this.root = root;
-    this.controller = new Controller();
+    this.controller = new Controller(this);
     this.mountProductsPage();
   }
 
   mountProductsPage(): void {
     this.root.innerHTML = '';
-    const products = new ProductsView(this.root, this.controller.handleProductsData());
+    const productsCallback = this.controller.handleProductsCallback.bind(this.controller);
+    const products = new ProductsView(this.root, this.controller.handleProductsInit(), productsCallback);
   }
 
   mountCartPage(): void {
     this.root.innerHTML = '';
   }
 
-  mountDetailsPage(): void {
+  mountDetailsPage(id: number): void {
     this.root.innerHTML = '';
   }
 }
