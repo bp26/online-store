@@ -1,5 +1,9 @@
 import { Controller } from '../controllers/controller';
 import { ProductsView } from './productsView';
+import { CartView } from '../views/cartView'
+
+
+
 
 export class View {
   readonly root: HTMLElement;
@@ -8,6 +12,7 @@ export class View {
     this.root = root;
     this.controller = new Controller();
     this.mountProductsPage();
+
   }
 
   mountProductsPage(): void {
@@ -17,6 +22,7 @@ export class View {
 
   mountCartPage(): void {
     this.root.innerHTML = '';
+    const cart = new CartView(this.root)
   }
 
   mountDetailsPage(): void {
