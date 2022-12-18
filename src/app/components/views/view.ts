@@ -23,7 +23,7 @@ export class View {
   mountCartPage(): void {
     this.root.innerHTML = '';
     this.disabledBtnCart()
-    const cart = new CartView(this.root, this.controller.model.cart)
+    const cart = new CartView(this.root, this.controller)
   }
 
   mountDetailsPage(id: number): void {
@@ -31,11 +31,11 @@ export class View {
   }
 
   disabledBtnCart(): void {
-    if (this.controller.model.openCart) {
-      this.controller.model.openCart = false
+    const openCart = this.controller.toggleBtnCart()
+    if (openCart) {
+      this.buttonCart.disabled = true
+    } else {
       this.buttonCart.disabled = false
     }
-    this.controller.model.openCart = true
-    this.buttonCart.disabled = true
   }
 }

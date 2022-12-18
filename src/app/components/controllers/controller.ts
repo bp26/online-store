@@ -1,5 +1,6 @@
 import { Model } from '../models/model';
-import { ProductsData } from '../../types/types';
+import { CartList, ProductsData } from '../../types/types';
+import { IProduct } from '../../types/interfaces';
 import { View } from '../views/view';
 import { ProductsAction } from '../../types/enums';
 
@@ -15,6 +16,14 @@ export class Controller {
     return this.model.getData();
   }
 
+  searchDataCart() {
+
+  }
+
+  toggleBtnCart(): Boolean {
+    return this.model.toggleOpenCart()
+  }
+
   handleProductsCallback(action: ProductsAction, id: number): void {
     if (action === ProductsAction.add) {
       this.model.cart.toggleProduct(id);
@@ -22,5 +31,9 @@ export class Controller {
     } else if (action === ProductsAction.details) {
       this.view.mountDetailsPage(id);
     }
+  }
+
+  getDataCart(): IProduct[] {
+    return this.model.getDataCart()
   }
 }
