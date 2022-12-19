@@ -1,6 +1,8 @@
 import { Element } from '../element';
 import { Controller } from '../controllers/controller'
-import { CartProductCard } from './cartProductCard'
+import { CartProductCard } from './cartComponents/cartProductCard'
+import { CartHeaderContent } from './cartComponents/cartHeader'
+import { CartSummaryContent } from './cartComponents/cartSummary'
 import { IProduct } from '../../types/interfaces';
 
 export class CartView extends Element {
@@ -13,8 +15,12 @@ export class CartView extends Element {
 
   drawCart() {
     const arrayProductCart: IProduct[] = this.controller.getDataCart()
-    const ul = new Element(this.elem, 'ul', 'cart-menu')
+    const mainContentCart = new Element(this.elem, 'section', 'cart-content')
+    const summaryBlock = new Element(this.elem, 'section', 'cart__content-summary')
+    const headerContent = new CartHeaderContent(mainContentCart.elem)
+    const ul = new Element(mainContentCart.elem, 'ul', 'cart-menu')
     const productCardContent = new CartProductCard(ul.elem, arrayProductCart)
+    const summaryContent = new CartSummaryContent(summaryBlock.elem)
   }
 }
 

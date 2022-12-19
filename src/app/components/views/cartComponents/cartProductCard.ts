@@ -1,5 +1,5 @@
-import { Element } from '../element';
-import { IProduct } from '../../types/interfaces';
+import { Element } from '../../element';
+import { IProduct } from '../../../types/interfaces';
 
 export class CartProductCard {
   constructor(node: HTMLElement, arrayProductCart: IProduct[] ) {
