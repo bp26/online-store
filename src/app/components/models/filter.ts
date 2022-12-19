@@ -18,27 +18,27 @@ export class Filter {
   private setListOptions(data: ProductsData, filteredData: ProductsData, filterName: ListFilters): ListOption {
     const fullOptions = data.reduce((acc: ListOption, product: IProduct) => {
       const filter = product[filterName];
-      if (acc.filter === undefined) {
-        acc.filter = {
+      if (acc[filter] === undefined) {
+        acc[filter] = {
           current: 0,
           full: 1,
         };
       } else {
-        acc.filter.full += 1;
+        acc[filter].full += 1;
       }
       return acc;
     }, {});
     return filteredData.reduce((acc: ListOption, product: IProduct) => {
       const filter = product[filterName];
-      acc.filter.current += 1;
+      acc[filter].current += 1;
       return acc;
     }, fullOptions);
   }
 
   private setCountOptions(filteredData: ProductsData, filterName: CountFilters): CountOption {
     return {
-      min: filteredData.reduce((min, current) => (current[filterName] < min ? current[filterName] : min), 0),
-      max: filteredData.reduce((max, current) => (current[filterName] > max ? current[filterName] : max), 0),
+      min: Math.min(...filteredData.map((product) => product[filterName])),
+      max: Math.max(...filteredData.map((product) => product[filterName])),
     };
   }
 }
