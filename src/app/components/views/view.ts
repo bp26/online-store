@@ -1,6 +1,6 @@
 import { Controller } from '../controllers/controller';
 import { ProductsView } from './productsView';
-import { FiltersView } from './filtersView';
+import { FiltersView } from './filters/filtersView';
 
 export class View {
   readonly root: HTMLElement;
@@ -14,7 +14,7 @@ export class View {
   mountProductsPage(): void {
     this.root.innerHTML = '';
     const productsCallback = this.controller.handleProductsCallback.bind(this.controller);
-    const filters = new FiltersView(this.root);
+    const filters = new FiltersView(this.root, this.controller.handleFiltersInit());
     const products = new ProductsView(this.root, this.controller.handleProductsInit(), productsCallback);
   }
 
