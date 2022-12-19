@@ -1,7 +1,7 @@
 import { Element } from '../element';
 import { ProductsData } from '../../types/types';
 import { IProduct } from '../../types/interfaces';
-import { infoList } from '../../constants/constants';
+import { infoList } from '../../utils/constants';
 import { ProductsCallback } from '../../types/types';
 import { ProductsAction } from '../../types/enums';
 import { CardButtonTitles } from '../../types/enums';
