@@ -1,5 +1,6 @@
 @import './cartSummary.scss';
 @import './cartHeader.scss';
+@import './cartProduct.scss';
 
 .cart-page {
   display: flex;
@@ -11,8 +12,4 @@
   display: flex;
   flex-direction: column;
   width: 70%;
-}
-
-.cart-itemProduct {
-
 }
