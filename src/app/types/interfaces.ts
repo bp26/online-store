@@ -1,3 +1,6 @@
+import { ListOption } from './types';
+import { CountOption } from './types';
+
 export interface IProduct {
   id: number;
   title: string;
@@ -10,4 +13,11 @@ export interface IProduct {
   category: string;
   thumbnail: string;
   images: string[];
+}
+
+export interface IFilterOptions {
+  category: ListOption;
+  brand: ListOption;
+  price: CountOption;
+  stock: CountOption;
 }
