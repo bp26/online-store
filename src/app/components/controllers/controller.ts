@@ -2,6 +2,7 @@ import { Model } from '../models/model';
 import { ProductsData } from '../../types/types';
 import { View } from '../views/view';
 import { ProductsAction } from '../../types/enums';
+import { IFilterOptions } from '../../types/interfaces';
 
 export class Controller {
   readonly model: Model;
@@ -13,6 +14,10 @@ export class Controller {
 
   handleProductsInit(): ProductsData {
     return this.model.getData();
+  }
+
+  handleFiltersInit(): IFilterOptions {
+    return this.model.getFilterOptions();
   }
 
   handleProductsCallback(action: ProductsAction, id: number): void {
