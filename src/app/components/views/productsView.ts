@@ -52,10 +52,7 @@ export class ProductsView extends Element {
     }
 
     infoList.forEach((item) => {
-      const li = document.createElement('li');
-      li.className = `product-card__${item}`;
-      li.textContent = `${item}: ${product[item as keyof IProduct]}`;
-      info.append(li);
+      const li = new Element(info, 'li', `product-card__${item}`, `${item}: ${product[item as keyof IProduct]}`);
     });
 
     const addButton = clone.querySelector('.product-card__button');
