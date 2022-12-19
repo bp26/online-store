@@ -13,6 +13,6 @@ export class CartSummaryContent {
     const inputSummary = new Element(node, 'input', 'summary-input')
     inputSummary.elem.setAttribute('type', 'text')
     const buttonSummary = new Element(node, 'button', 'summary-button')
-    const buttonSpanSummary = new Element(buttonSummary.elem, 'span', 'summary-button', 'BUY NOW')
+    const buttonSpanSummary = new Element(buttonSummary.elem, 'span', 'summary-button__span', 'BUY NOW')
   }
 }

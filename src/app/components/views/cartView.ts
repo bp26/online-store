@@ -16,10 +16,9 @@ export class CartView extends Element {
   drawCart() {
     const arrayProductCart: IProduct[] = this.controller.getDataCart()
     const mainContentCart = new Element(this.elem, 'section', 'cart-content')
-    const summaryBlock = new Element(this.elem, 'section', 'cart__content-summary')
+    const summaryBlock = new Element(this.elem, 'section', 'cart-summary')
     const headerContent = new CartHeaderContent(mainContentCart.elem)
-    const ul = new Element(mainContentCart.elem, 'ul', 'cart-menu')
-    const productCardContent = new CartProductCard(ul.elem, arrayProductCart)
+    const productCardContent = new CartProductCard(mainContentCart.elem, arrayProductCart)
     const summaryContent = new CartSummaryContent(summaryBlock.elem)
   }
 }

@@ -1,0 +1,18 @@
+@import './cartSummary.scss';
+@import './cartHeader.scss';
+
+.cart-page {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.cart-content {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.cart-itemProduct {
+
+}
