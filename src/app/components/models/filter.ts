@@ -4,8 +4,22 @@ import { ListFilters } from '../../types/types';
 import { CountFilters } from '../../types/types';
 import { ListOption } from '../../types/types';
 import { CountOption } from '../../types/types';
+import { IFilters } from '../../types/interfaces';
 
 export class Filter {
+  private filters: IFilters;
+  constructor() {
+    this.filters = this.initFilters();
+  }
+
+  public setListFilter(filterName: ListFilters, filter: string): void {
+    if (this.filters[filterName].includes(filter)) {
+      this.filters[filterName].splice(this.filters[filterName].indexOf(filter), 1);
+    } else {
+      this.filters[filterName].push(filter);
+    }
+  }
+
   public setFilterOptions(data: ProductsData, filteredData: ProductsData) {
     return {
       category: this.setListOptions(data, filteredData, 'category'),
@@ -13,6 +27,10 @@ export class Filter {
       price: this.setCountOptions(filteredData, 'price'),
       stock: this.setCountOptions(filteredData, 'stock'),
     };
+  }
+
+  public resetFilters(): void {
+    this.filters = this.initFilters();
   }
 
   private setListOptions(data: ProductsData, filteredData: ProductsData, filterName: ListFilters): ListOption {
@@ -39,6 +57,21 @@ export class Filter {
     return {
       min: Math.min(...filteredData.map((product) => product[filterName])),
       max: Math.max(...filteredData.map((product) => product[filterName])),
+    };
+  }
+
+  private initFilters(): IFilters {
+    return {
+      category: [],
+      brand: [],
+      price: {
+        min: 0,
+        max: 0,
+      },
+      stock: {
+        min: 0,
+        max: 0,
+      },
     };
   }
 }
