@@ -24,9 +24,9 @@ export class Controller {
     return this.model.toggleOpenCart()
   }
 
-  handleProductsCallback(action: ProductsAction, id: number): void {
+  handleProductsCallback(action: ProductsAction, id: number, price: number): void {
     if (action === ProductsAction.add) {
-      this.model.cart.toggleProduct(id);
+      this.model.productCart(id, price);
       console.log(this.model.cart.getCartList());
     } else if (action === ProductsAction.details) {
       this.view.mountDetailsPage(id);

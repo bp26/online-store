@@ -7,8 +7,7 @@ import { Cart } from './cart';
 export class Model {
   readonly data: ProductsData;
   readonly cart: Cart;
-  private openCart: Boolean;
-
+  private openCart: boolean;
   constructor() {
     this.data = products;
     this.cart = new Cart();
@@ -17,6 +16,10 @@ export class Model {
 
   getData(): ProductsData {
     return this.data;
+  }
+
+  productCart(id: number, price: number) {
+    this.cart.toggleProduct(id, price)
   }
 
   toggleOpenCart(): Boolean {
@@ -29,7 +32,7 @@ export class Model {
   getDataCart(): IProduct[] {
     const dataCart = this.cart.getCartList()
     const dataCartKeys: string[] = Object.keys(dataCart)
-    const arrayProduct:IProduct[] = []
+    const arrayProduct: IProduct[] = []
     for (let i = 0; i < dataCartKeys.length; i += 1) {
       arrayProduct.push(binarySearch(products, +dataCartKeys[i]))
     }
