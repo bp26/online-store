@@ -21,3 +21,10 @@ export interface IFilterOptions {
   price: CountOption;
   stock: CountOption;
 }
+
+export interface IFilters {
+  category: string[];
+  brand: string[];
+  price: CountOption;
+  stock: CountOption;
+}
