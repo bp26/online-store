@@ -33,4 +33,17 @@ export class Controller {
         break;
     }
   }
+
+  public handleFiltersCallback(action: FiltersAction, filter?: string | CountOption): void {
+    switch (action) {
+      case FiltersAction.category:
+        break;
+      case FiltersAction.brand:
+        break;
+      case FiltersAction.price:
+        break;
+      case FiltersAction.stock:
+        break;
+    }
+  }
 }
