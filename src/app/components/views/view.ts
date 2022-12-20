@@ -11,18 +11,18 @@ export class View {
     this.mountProductsPage();
   }
 
-  mountProductsPage(): void {
+  public mountProductsPage(): void {
     this.root.innerHTML = '';
     const productsCallback = this.controller.handleProductsCallback.bind(this.controller);
     const filters = new FiltersView(this.root, this.controller.handleFiltersInit());
     const products = new ProductsView(this.root, this.controller.handleProductsInit(), productsCallback);
   }
 
-  mountCartPage(): void {
+  public mountCartPage(): void {
     this.root.innerHTML = '';
   }
 
-  mountDetailsPage(id: number): void {
+  public mountDetailsPage(id: number): void {
     this.root.innerHTML = '';
   }
 }
