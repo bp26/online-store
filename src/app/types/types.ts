@@ -1,9 +1,11 @@
 import { IProduct } from './interfaces';
 import { ProductsAction } from './enums';
+import { FiltersAction } from './enums';
 
 export type ProductsData = IProduct[];
 
 export type ProductsCallback = (action: ProductsAction, id: number) => void;
+export type FiltersCallback = (action: FiltersAction, filter?: string | CountOption) => void;
 
 export type CartList = {
   [key: string]: number;
