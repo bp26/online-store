@@ -18,7 +18,11 @@ export class Model {
     return this.data;
   }
 
-  productCart(id: number, price: number) {
+  getSummaryData(): number[] {
+    return this.cart.getSummaryData()
+  }
+
+  productCart(id: number, price: number): void {
     this.cart.toggleProduct(id, price)
   }
 

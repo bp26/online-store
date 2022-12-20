@@ -1,9 +1,11 @@
 import { Element } from '../../element';
 import { IProduct } from '../../../types/interfaces';
+import { btnCountCart } from '../../../types/types'
 
 export class CartProductCard {
-  constructor(node: HTMLElement, arrayProductCart: IProduct[] ) {
+  constructor(node: HTMLElement, arrayProductCart: IProduct[], btnNeg: btnCountCart, btnPos: btnCountCart) {
     const ul = new Element(node, 'ul', 'item-product')
+
     for (let i = 0; i < arrayProductCart.length; i += 1) {
       const li = new Element(ul.elem, 'li', 'list-product')
       const countProduct = new Element(li.elem, 'p', 'count-product', `${i + 1}`)
@@ -22,8 +24,14 @@ export class CartProductCard {
       const stockProduct = new Element(blockAmountProducts.elem, 'p', 'stock', `Stock: ${arrayProductCart[i].stock}`)
       const blockCounterProduct = new Element(blockAmountProducts.elem, 'div', 'block-counter')
       const buttonNeg = new Element(blockCounterProduct.elem, 'button', 'button-count', '-')
+      buttonNeg.elem.onclick = (): void => {
+        btnNeg()
+      }
       const counterStocks = new Element(blockCounterProduct.elem, 'p', 'count-prod', '1')
       const buttonPos = new Element(blockCounterProduct.elem, 'button', 'button-count', '+')
+      buttonPos.elem.onclick = () => {
+        btnPos()
+      }
       const priceProduct = new Element(blockAmountProducts.elem, 'p', 'price', `$${arrayProductCart[i].price}`)
     }
   }

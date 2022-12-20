@@ -16,8 +16,8 @@ export class Controller {
     return this.model.getData();
   }
 
-  searchDataCart() {
-
+  getSummaryData(): number[] {
+    return this.model.getSummaryData()
   }
 
   toggleBtnCart(): Boolean {

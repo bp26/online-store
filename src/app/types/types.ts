@@ -8,3 +8,5 @@ export type ProductsCallback = (action: ProductsAction, id: number, price: numbe
 export type CartList = {
   [key: string]: number;
 };
+
+export type btnCountCart = () => void

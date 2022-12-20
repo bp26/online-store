@@ -23,11 +23,16 @@ export class View {
   mountCartPage(): void {
     this.root.innerHTML = '';
     this.disabledBtnCart()
-    const cart = new CartView(this.root, this.controller)
+    const arrSummaryData = this.getSummaryData()
+    const cart = new CartView(this.root, this.controller, arrSummaryData, this.btnNeg, this.btnPos)
   }
 
   mountDetailsPage(id: number): void {
     this.root.innerHTML = '';
+  }
+
+  getSummaryData(): number[] {
+    return this.controller.getSummaryData()
   }
 
   disabledBtnCart(): void {
@@ -37,5 +42,13 @@ export class View {
     } else {
       this.buttonCart.disabled = false
     }
+  }
+
+  btnNeg(): void {
+    console.log('ad')
+  }
+
+  btnPos(): void {
+    console.log('paradise')
   }
 }

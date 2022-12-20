@@ -46,6 +46,20 @@ export class Cart {
     }
   }
 
+  toggleUpAmountProduct(): void {
+    this.countProductCart += 1
+    this.sumProductCart += 1
+  }
+
+  toggleDownAmountProduct(): void {
+    this.countProductCart -= 1
+    this.sumProductCart -= 1
+  }
+
+  getSummaryData(): number[] {
+    return [this.countProductCart, this.sumProductCart]
+  }
+
   getCartList(): CartList {
     return this.list;
   }
