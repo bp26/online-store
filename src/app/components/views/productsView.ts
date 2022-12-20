@@ -14,7 +14,7 @@ export class ProductsView extends Element {
     });
   }
 
-  drawProduct(product: IProduct, callback: ProductsCallback): DocumentFragment {
+  private drawProduct(product: IProduct, callback: ProductsCallback): DocumentFragment {
     const temp = document.querySelector('#temp-product-card');
     if (!(temp instanceof HTMLTemplateElement)) {
       throw new Error(`${temp} is not an HTMLTemplateElement`);
