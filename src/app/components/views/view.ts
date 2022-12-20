@@ -13,8 +13,10 @@ export class View {
 
   public mountProductsPage(): void {
     this.root.innerHTML = '';
+    const filtersCallback = this.controller.handleFiltersCallback.bind(this.controller);
+    const filters = new FiltersView(this.root, this.controller.handleFiltersInit(), filtersCallback);
+
     const productsCallback = this.controller.handleProductsCallback.bind(this.controller);
-    const filters = new FiltersView(this.root, this.controller.handleFiltersInit());
     const products = new ProductsView(this.root, this.controller.handleProductsInit(), productsCallback);
   }
 
