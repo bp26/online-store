@@ -45,16 +45,22 @@ export class Filter {
     }
   }
 
-  private setListFilter(filterName: ListFilterNames, filter: string): void {
-    if (this.filters[filterName].includes(filter)) {
-      this.filters[filterName].splice(this.filters[filterName].indexOf(filter), 1);
+  private setListFilter(filterName: ListFilterNames, filterValue: string): void {
+    const filter = this.filters[filterName];
+    if (filter.includes(filterValue)) {
+      filter.splice(filter.indexOf(filterValue), 1);
     } else {
-      this.filters[filterName].push(filter);
+      filter.push(filterValue);
     }
   }
 
-  private setCountFilter(filterName: CountFilterNames, filter: [number, number]): void {
-    console.log(filterName, filter);
+  private setCountFilter(filterName: CountFilterNames, filterValue: [number, number]): void {
+    const sortedFilter = filterValue.sort();
+    this.filters[filterName] = {
+      min: sortedFilter[0],
+      max: sortedFilter[1],
+      isActive: true,
+    };
   }
 
   public setFilterOptions(data: ProductsData, filteredData: ProductsData) {
@@ -88,9 +94,18 @@ export class Filter {
   }
 
   private setCountOptions(filteredData: ProductsData, filterName: CountFilterNames): CountOptions {
-    return {
-      min: Math.min(...filteredData.map((product) => product[filterName])),
-      max: Math.max(...filteredData.map((product) => product[filterName])),
-    };
+    const filter = this.filters[filterName];
+    if (filter.isActive) {
+      filter.isActive = false;
+      return {
+        min: filter.min,
+        max: filter.max,
+      };
+    } else {
+      return {
+        min: Math.min(...filteredData.map((product) => product[filterName])),
+        max: Math.max(...filteredData.map((product) => product[filterName])),
+      };
+    }
   }
 }
