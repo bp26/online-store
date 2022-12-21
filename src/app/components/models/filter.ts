@@ -23,11 +23,30 @@ export class Filter {
     };
   }
 
+  public filterData(data: ProductsData): ProductsData {
+    const categoryFilter = (product: IProduct) => this.filterList(product, 'category');
+    const brandFilter = (product: IProduct) => this.filterList(product, 'brand');
+    const priceFilter = (product: IProduct) => this.filterCount(product, 'price');
+    const stockFilter = (product: IProduct) => this.filterCount(product, 'stock');
+    const filterArray = [categoryFilter, brandFilter, priceFilter, stockFilter];
+    return filterArray.reduce((data, filterFunc) => data.filter(filterFunc), data);
+  }
+
+  private filterList(product: IProduct, filterName: ListFilterNames): boolean {
+    const filter = this.filters[filterName];
+    return filter.length !== 0 ? filter.includes(product[filterName]) : true;
+  }
+
+  private filterCount(product: IProduct, filterName: CountFilterNames): boolean {
+    const filter = this.filters[filterName];
+    return filter !== null ? product[filterName] >= filter.min && product[filterName] <= filter.max : true;
+  }
+
   public resetFilters(): void {
     this.filters = this.initFilters();
   }
 
-  public setFilter(filtersData: FiltersData) {
+  public setFilter(filtersData: FiltersData): void {
     const { type, filter } = filtersData;
     switch (type) {
       case FiltersType.category:
@@ -95,7 +114,7 @@ export class Filter {
 
   private setCountOptions(filteredData: ProductsData, filterName: CountFilterNames): CountOptions {
     const filter = this.filters[filterName];
-    if (filter.isActive) {
+    if (filter && filter.isActive) {
       filter.isActive = false;
       return {
         min: filter.min,
