@@ -25,6 +25,6 @@ export interface IFilterOptions {
 export interface IFilters {
   category: string[];
   brand: string[];
-  price: CountOption;
-  stock: CountOption;
+  price: CountOption | null;
+  stock: CountOption | null;
 }

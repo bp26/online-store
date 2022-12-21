@@ -64,14 +64,8 @@ export class Filter {
     return {
       category: [],
       brand: [],
-      price: {
-        min: 0,
-        max: 0,
-      },
-      stock: {
-        min: 0,
-        max: 0,
-      },
+      price: null,
+      stock: null,
     };
   }
 }
