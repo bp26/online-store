@@ -1,6 +1,7 @@
 import { IProduct } from './interfaces';
 import { ProductsAction } from './enums';
 import { FiltersAction } from './enums';
+import { FiltersType } from './enums';
 
 export type ProductsData = IProduct[];
 
@@ -23,4 +24,9 @@ export type ListOptions = {
 export type CountOptions = {
   min: number;
   max: number;
+};
+
+export type FiltersData = {
+  type: FiltersType;
+  query: string;
 };
