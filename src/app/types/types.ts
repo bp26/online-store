@@ -5,7 +5,7 @@ import { FiltersAction } from './enums';
 export type ProductsData = IProduct[];
 
 export type ProductsCallback = (action: ProductsAction, id: number) => void;
-export type FiltersCallback = (action: FiltersAction, filter?: string | CountOption) => void;
+export type FiltersCallback = (action: FiltersAction, filter?: string | CountOptions) => void;
 
 export type CartList = {
   [key: string]: number;
@@ -14,13 +14,13 @@ export type CartList = {
 export type ListFilters = 'category' | 'brand';
 export type CountFilters = 'price' | 'stock';
 
-export type ListOption = {
+export type ListOptions = {
   [key: string]: {
     current: number;
     full: number;
   };
 };
-export type CountOption = {
+export type CountOptions = {
   min: number;
   max: number;
 };
