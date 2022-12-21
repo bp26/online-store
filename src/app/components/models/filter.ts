@@ -86,8 +86,8 @@ export class Filter {
     return {
       category: this.setListOptions(data, filteredData, 'category'),
       brand: this.setListOptions(data, filteredData, 'brand'),
-      price: this.setCountOptions(filteredData, 'price'),
-      stock: this.setCountOptions(filteredData, 'stock'),
+      price: this.setCountOptions(data, filteredData, 'price'),
+      stock: this.setCountOptions(data, filteredData, 'stock'),
     };
   }
 
@@ -112,7 +112,7 @@ export class Filter {
     }, fullOptions);
   }
 
-  private setCountOptions(filteredData: ProductsData, filterName: CountFilterNames): CountOptions {
+  private setCountOptions(data: ProductsData, filteredData: ProductsData, filterName: CountFilterNames): CountOptions {
     const filter = this.filters[filterName];
     if (filter && filter.isActive) {
       filter.isActive = false;

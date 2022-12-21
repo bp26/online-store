@@ -2,7 +2,7 @@ import { ProductsData } from '../../types/types';
 import products from '../../../assets/data/products';
 import { Cart } from './cart';
 import { Filter } from './filter';
-import { IFilterOptions } from '../../types/interfaces';
+import { IProductsPageData } from '../../types/interfaces';
 
 export class Model {
   readonly data: ProductsData;
@@ -15,11 +15,17 @@ export class Model {
     this.filter = new Filter();
   }
 
-  public getData(): ProductsData {
+  private getData(): ProductsData {
     return this.data;
   }
 
-  public getFilterOptions(): IFilterOptions {
-    return this.filter.setFilterOptions(this.getData(), this.getData());
+  public getProductsPageData(): IProductsPageData {
+    const initialData = this.getData();
+    const transData = this.filter.filterData(initialData);
+    const filterOptions = this.filter.setFilterOptions(initialData, transData);
+    return {
+      data: transData,
+      filterOptions: filterOptions,
+    };
   }
 }
