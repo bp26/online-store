@@ -1,5 +1,6 @@
-import { ListOption } from './types';
-import { CountOption } from './types';
+import { CountOptions } from './types';
+import { ListOptions } from './types';
+import { CountFilter } from './types';
 
 export interface IProduct {
   id: number;
@@ -16,15 +17,15 @@ export interface IProduct {
 }
 
 export interface IFilterOptions {
-  category: ListOption;
-  brand: ListOption;
-  price: CountOption;
-  stock: CountOption;
+  category: ListOptions;
+  brand: ListOptions;
+  price: CountOptions;
+  stock: CountOptions;
 }
 
 export interface IFilters {
   category: string[];
   brand: string[];
-  price: CountOption | null;
-  stock: CountOption | null;
+  price: CountFilter | null;
+  stock: CountFilter | null;
 }
