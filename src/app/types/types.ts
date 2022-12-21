@@ -12,8 +12,8 @@ export type CartList = {
   [key: string]: number;
 };
 
-export type ListFilters = 'category' | 'brand';
-export type CountFilters = 'price' | 'stock';
+export type ListFilterNames = 'category' | 'brand';
+export type CountFilterNames = 'price' | 'stock';
 
 export type ListOptions = {
   [key: string]: {

@@ -1,7 +1,7 @@
 import { ProductsData } from '../../types/types';
 import { IProduct } from '../../types/interfaces';
-import { ListFilters } from '../../types/types';
-import { CountFilters } from '../../types/types';
+import { ListFilterNames } from '../../types/types';
+import { CountFilterNames } from '../../types/types';
 import { ListOptions } from '../../types/types';
 import { CountOptions } from '../../types/types';
 import { IFilters } from '../../types/interfaces';
@@ -45,7 +45,7 @@ export class Filter {
     }
   }
 
-  private setListFilter(filterName: ListFilters, filter: string): void {
+  private setListFilter(filterName: ListFilterNames, filter: string): void {
     if (this.filters[filterName].includes(filter)) {
       this.filters[filterName].splice(this.filters[filterName].indexOf(filter), 1);
     } else {
@@ -53,7 +53,7 @@ export class Filter {
     }
   }
 
-  private setCountFilter(filterName: CountFilters, filter: [number, number]): void {
+  private setCountFilter(filterName: CountFilterNames, filter: [number, number]): void {
     console.log(filterName, filter);
   }
 
@@ -66,7 +66,7 @@ export class Filter {
     };
   }
 
-  private setListOptions(data: ProductsData, filteredData: ProductsData, filterName: ListFilters): ListOptions {
+  private setListOptions(data: ProductsData, filteredData: ProductsData, filterName: ListFilterNames): ListOptions {
     const fullOptions = data.reduce((acc: ListOptions, product: IProduct) => {
       const filter = product[filterName];
       if (acc[filter] === undefined) {
@@ -87,7 +87,7 @@ export class Filter {
     }, fullOptions);
   }
 
-  private setCountOptions(filteredData: ProductsData, filterName: CountFilters): CountOptions {
+  private setCountOptions(filteredData: ProductsData, filterName: CountFilterNames): CountOptions {
     return {
       min: Math.min(...filteredData.map((product) => product[filterName])),
       max: Math.max(...filteredData.map((product) => product[filterName])),

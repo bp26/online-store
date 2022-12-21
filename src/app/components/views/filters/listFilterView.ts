@@ -1,12 +1,12 @@
 import { Element } from '../../element';
 import { ListOptions } from '../../../types/types';
-import { ListFilters } from '../../../types/types';
+import { ListFilterNames } from '../../../types/types';
 import { FiltersAction } from '../../../types/enums';
 import { FiltersCallback } from '../../../types/types';
 import { FiltersType } from '../../../types/enums';
 
 export class ListFiltersView extends Element {
-  constructor(parent: HTMLElement, filterName: ListFilters, filterOptions: ListOptions, callback: FiltersCallback) {
+  constructor(parent: HTMLElement, filterName: ListFilterNames, filterOptions: ListOptions, callback: FiltersCallback) {
     super(parent, 'div', 'filters');
     const container = new Element(this.elem, 'div', `filters-${filterName}`);
 
