@@ -4,12 +4,16 @@ export enum ProductsAction {
 }
 
 export enum FiltersAction {
+  filter,
+  reset,
+  copy,
+}
+
+export enum FiltersType {
   category,
   brand,
   price,
   stock,
-  reset,
-  copy,
 }
 
 export enum CardButtonTitles {
