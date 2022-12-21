@@ -3,8 +3,8 @@ import { ProductsData } from '../../types/types';
 import { View } from '../views/view';
 import { ProductsAction } from '../../types/enums';
 import { FiltersAction } from '../../types/enums';
-import { IFilterOptions } from '../../types/interfaces';
 import { FiltersData } from '../../types/types';
+import { IProductsPageData } from '../../types/interfaces';
 
 export class Controller {
   readonly model: Model;
@@ -14,12 +14,8 @@ export class Controller {
     this.model = new Model();
   }
 
-  public handleProductsInit(): ProductsData {
-    return this.model.getData();
-  }
-
-  public handleFiltersInit(): IFilterOptions {
-    return this.model.getFilterOptions();
+  public handleProductsPageInit(): IProductsPageData {
+    return this.model.getProductsPageData();
   }
 
   public handleProductsCallback(action: ProductsAction, id: number): void {
