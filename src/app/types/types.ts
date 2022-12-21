@@ -29,5 +29,5 @@ export type CountOptions = {
 
 export type FiltersData = {
   type: FiltersType;
-  filter: string | CountOptions;
+  filter: string | [number, number];
 };

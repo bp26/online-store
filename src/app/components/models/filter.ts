@@ -53,7 +53,7 @@ export class Filter {
     }
   }
 
-  private setCountFilter(filterName: CountFilters, filter: CountOptions): void {
+  private setCountFilter(filterName: CountFilters, filter: [number, number]): void {
     console.log(filterName, filter);
   }
 
