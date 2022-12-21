@@ -73,7 +73,7 @@ export class Filter {
         acc[filter] = {
           current: 0,
           full: 1,
-          isActive: this.filters[filterName].includes(filter) ? true : false,
+          isChecked: this.filters[filterName].includes(filter) ? true : false,
         };
       } else {
         acc[filter].full += 1;

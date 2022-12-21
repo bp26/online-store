@@ -21,7 +21,7 @@ export class ListFiltersView extends Element {
 
       const input = new Element(option.elem, 'input', `filters-${filterName}__checkbox`);
       input.elem.setAttribute('type', 'checkbox');
-      (input.elem as HTMLInputElement).checked = filterOptions[filterOption].isActive;
+      (input.elem as HTMLInputElement).checked = filterOptions[filterOption].isChecked;
       input.elem.setAttribute('id', `${filterOption}`);
       input.elem.oninput = () => {
         callback(FiltersAction.filter, { type: FiltersType[filterName], filter: filterOption });

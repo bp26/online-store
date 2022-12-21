@@ -19,7 +19,7 @@ export type ListOptions = {
   [key: string]: {
     current: number;
     full: number;
-    isActive: boolean;
+    isChecked: boolean;
   };
 };
 export type CountOptions = {
