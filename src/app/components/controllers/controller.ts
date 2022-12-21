@@ -24,6 +24,10 @@ export class Controller {
     return this.model.toggleOpenCart()
   }
 
+  toggleCountProductCart(price: number, id: number, flag: boolean): void {
+    this.model.toggleCountProductCart(price, id, flag)
+  }
+
   handleProductsCallback(action: ProductsAction, id: number, price: number): void {
     if (action === ProductsAction.add) {
       this.model.productCart(id, price);

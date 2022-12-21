@@ -44,11 +44,11 @@ export class View {
     }
   }
 
-  btnNeg(): void {
-    console.log('ad')
+  btnNeg = (price: number, id: number): void => {
+    this.controller.toggleCountProductCart(price, id, false)
   }
 
-  btnPos(): void {
-    console.log('paradise')
+  btnPos = (price: number, id: number): void => {
+    this.controller.toggleCountProductCart(price, id, true)
   }
 }

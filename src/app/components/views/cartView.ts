@@ -9,8 +9,8 @@ import { btnCountCart } from '../../types/types'
 export class CartView extends Element {
   private controller: Controller
   private arraySummaryData: number[]
-  private btnNeg: () => void
-  private btnPos: () => void
+  private btnNeg: btnCountCart
+  private btnPos: btnCountCart
   constructor(parent: HTMLElement, controller: Controller, arraySummaryData: number[], btnNeg: btnCountCart, btnPos: btnCountCart) {
     super(parent, 'div', 'cart-page')
     this.controller = controller

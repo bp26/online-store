@@ -22,6 +22,11 @@ export class Model {
     return this.cart.getSummaryData()
   }
 
+  toggleCountProductCart(price: number, id: number, flag: boolean): void {
+    this.cart.amountProductCart(flag)
+    this.cart.summaProductCart(flag, price)
+  }
+
   productCart(id: number, price: number): void {
     this.cart.toggleProduct(id, price)
   }

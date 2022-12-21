@@ -9,4 +9,4 @@ export type CartList = {
   [key: string]: number;
 };
 
-export type btnCountCart = () => void
+export type btnCountCart = (price: number, id: number) => void

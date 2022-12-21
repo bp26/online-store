@@ -23,16 +23,59 @@ export class CartProductCard {
       const blockAmountProducts = new Element(li.elem, 'div', 'block-amount')
       const stockProduct = new Element(blockAmountProducts.elem, 'p', 'stock', `Stock: ${arrayProductCart[i].stock}`)
       const blockCounterProduct = new Element(blockAmountProducts.elem, 'div', 'block-counter')
-      const buttonNeg = new Element(blockCounterProduct.elem, 'button', 'button-count', '-')
-      buttonNeg.elem.onclick = (): void => {
-        btnNeg()
-      }
+      const buttonNegative = new Element(blockCounterProduct.elem, 'button', 'button-count', '-')
       const counterStocks = new Element(blockCounterProduct.elem, 'p', 'count-prod', '1')
-      const buttonPos = new Element(blockCounterProduct.elem, 'button', 'button-count', '+')
-      buttonPos.elem.onclick = () => {
-        btnPos()
-      }
+      const buttonPositive = new Element(blockCounterProduct.elem, 'button', 'button-count', '+')
       const priceProduct = new Element(blockAmountProducts.elem, 'p', 'price', `$${arrayProductCart[i].price}`)
+
+      const getPrice = this.closurePrice(arrayProductCart[i].price)
+      const getAmountProduct = this.closureAmountProduct()
+      let count = 0
+
+      buttonNegative.elem.onclick = (): void => {
+        count -= 1
+        if (count < -1) {
+          count += 1
+          return
+        }
+        btnNeg(arrayProductCart[i].price, arrayProductCart[i].id)
+        priceProduct.elem.textContent = `$${getPrice(false)}`
+        counterStocks.elem.textContent = `${getAmountProduct(false)}`
+      }
+
+      buttonPositive.elem.onclick = (): void => {
+        count += 1
+        if (count === arrayProductCart[i].stock) {
+          count -= 1
+          return
+        }
+        btnPos(arrayProductCart[i].price, arrayProductCart[i].id)
+        counterStocks.elem.textContent = `${getAmountProduct(true)}`
+        priceProduct.elem.textContent = `$${getPrice(true)}`
+      }
+    }
+  }
+
+  private closurePrice(price: number) {
+    let count = price
+    return function (flag: boolean) {
+      if (flag) {
+        return count += price
+      }
+      if (count) {
+        return count -= price
+      }
+      return count
+    }
+  }
+
+  private closureAmountProduct() {
+    let count = 1
+    return function (flag: boolean) {
+      if (flag) {
+        return count += 1
+      }
+      return count -= 1
     }
   }
 }
