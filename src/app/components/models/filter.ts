@@ -5,6 +5,8 @@ import { CountFilters } from '../../types/types';
 import { ListOptions } from '../../types/types';
 import { CountOptions } from '../../types/types';
 import { IFilters } from '../../types/interfaces';
+import { FiltersData } from '../../types/types';
+import { FiltersType } from '../../types/enums';
 
 export class Filter {
   private filters: IFilters;
@@ -12,12 +14,47 @@ export class Filter {
     this.filters = this.initFilters();
   }
 
-  public setListFilter(filterName: ListFilters, filter: string): void {
+  private initFilters(): IFilters {
+    return {
+      category: [],
+      brand: [],
+      price: null,
+      stock: null,
+    };
+  }
+
+  public resetFilters(): void {
+    this.filters = this.initFilters();
+  }
+
+  public setFilter(filtersData: FiltersData) {
+    const { type, filter } = filtersData;
+    switch (type) {
+      case FiltersType.category:
+        if (typeof filter === 'string') this.setListFilter('category', filter);
+        break;
+      case FiltersType.brand:
+        if (typeof filter === 'string') this.setListFilter('brand', filter);
+        break;
+      case FiltersType.price:
+        if (typeof filter !== 'string') this.setCountFilter('price', filter);
+        break;
+      case FiltersType.stock:
+        if (typeof filter !== 'string') this.setCountFilter('stock', filter);
+        break;
+    }
+  }
+
+  private setListFilter(filterName: ListFilters, filter: string): void {
     if (this.filters[filterName].includes(filter)) {
       this.filters[filterName].splice(this.filters[filterName].indexOf(filter), 1);
     } else {
       this.filters[filterName].push(filter);
     }
+  }
+
+  private setCountFilter(filterName: CountFilters, filter: CountOptions): void {
+    console.log(filterName, filter);
   }
 
   public setFilterOptions(data: ProductsData, filteredData: ProductsData) {
@@ -27,10 +64,6 @@ export class Filter {
       price: this.setCountOptions(filteredData, 'price'),
       stock: this.setCountOptions(filteredData, 'stock'),
     };
-  }
-
-  public resetFilters(): void {
-    this.filters = this.initFilters();
   }
 
   private setListOptions(data: ProductsData, filteredData: ProductsData, filterName: ListFilters): ListOptions {
@@ -57,15 +90,6 @@ export class Filter {
     return {
       min: Math.min(...filteredData.map((product) => product[filterName])),
       max: Math.max(...filteredData.map((product) => product[filterName])),
-    };
-  }
-
-  private initFilters(): IFilters {
-    return {
-      category: [],
-      brand: [],
-      price: null,
-      stock: null,
     };
   }
 }
