@@ -27,6 +27,8 @@ export type CountOptions = {
   max: number;
 };
 
+export type CountFilter = CountOptions & { isActive: boolean };
+
 export type FiltersData = {
   type: FiltersType;
   filter: string | [number, number];
