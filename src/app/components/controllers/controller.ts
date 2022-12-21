@@ -4,7 +4,7 @@ import { View } from '../views/view';
 import { ProductsAction } from '../../types/enums';
 import { FiltersAction } from '../../types/enums';
 import { IFilterOptions } from '../../types/interfaces';
-import { CountOption } from '../../types/types';
+import { FiltersData } from '../../types/types';
 
 export class Controller {
   readonly model: Model;
@@ -34,15 +34,13 @@ export class Controller {
     }
   }
 
-  public handleFiltersCallback(action: FiltersAction, filter?: string | CountOption): void {
+  public handleFiltersCallback(action: FiltersAction, filtersData?: FiltersData): void {
     switch (action) {
-      case FiltersAction.category:
+      case FiltersAction.filter:
         break;
-      case FiltersAction.brand:
+      case FiltersAction.reset:
         break;
-      case FiltersAction.price:
-        break;
-      case FiltersAction.stock:
+      case FiltersAction.copy:
         break;
     }
   }
