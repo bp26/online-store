@@ -1,6 +1,7 @@
 import { CountOptions } from './types';
 import { ListOptions } from './types';
 import { CountFilter } from './types';
+import { ProductsData } from './types';
 
 export interface IProduct {
   id: number;
@@ -28,4 +29,9 @@ export interface IFilters {
   brand: string[];
   price: CountFilter | null;
   stock: CountFilter | null;
+}
+
+export interface IProductsPageData {
+  data: ProductsData;
+  filterOptions: IFilterOptions;
 }
