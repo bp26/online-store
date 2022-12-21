@@ -37,8 +37,10 @@ export class Controller {
   public handleFiltersCallback(action: FiltersAction, filtersData?: FiltersData): void {
     switch (action) {
       case FiltersAction.filter:
+        if (filtersData) this.model.filter.setFilter(filtersData);
         break;
       case FiltersAction.reset:
+        this.model.filter.resetFilters();
         break;
       case FiltersAction.copy:
         break;
