@@ -41,7 +41,7 @@ export class Controller {
     switch (action) {
       case FiltersAction.filter:
         if (filtersData) this.model.filter.setFilter(filtersData);
-        if (this.view.productsPage) this.view.productsPage.updateOnFilter(this.handleProductsPageInit, this.handleProductsPageCallbacks);
+        if (this.view.productsPage) this.view.productsPage.updateOnFilter(this.handleProductsPageInit(), this.handleProductsPageCallbacks());
         break;
       case FiltersAction.reset:
         this.model.filter.resetFilters();
