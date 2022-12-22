@@ -64,15 +64,15 @@ export class Cart {
     return this.list;
   }
 
-  incrementProduct(id: number) {
-    this.list[id] += 1;
-  }
-
-  decrementProduct(id: number) {
-    if (this.list[id] === 1) {
-      delete this.list[id];
+  incOrDecProduct(id: number, flag: boolean) {
+    if (flag) {
+      this.list[id] += 1;
     } else {
-      this.list.id -= 1;
+      if (this.list[id] === 1) {
+        delete this.list[id];
+      } else {
+        this.list[id] -= 1;
+      }
     }
   }
 }

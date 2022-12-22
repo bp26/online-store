@@ -25,7 +25,7 @@ export class View {
     this.root.innerHTML = '';
     this.disabledBtnCart()
     const arrSummaryData = this.getSummaryData()
-    this.cart = new CartView(this.root, this.controller, arrSummaryData, this.btnNeg, this.btnPos)
+    this.cart = new CartView(this.root, this.controller, arrSummaryData, this.btnNeg, this.btnPos, this.destroyProductCart)
   }
 
   mountDetailsPage(id: number): void {
@@ -47,6 +47,11 @@ export class View {
 
   summaryContentCart(arg: number[]) {
     this.cart?.summaryContent(arg)
+  }
+
+  destroyProductCart = (price: number, id: number) => {
+    this.controller.toggleCountProductCart(price, id, false)
+    this.summaryContentCart(this.controller.getSummaryData())
   }
 
   btnNeg = (price: number, id: number): void => {

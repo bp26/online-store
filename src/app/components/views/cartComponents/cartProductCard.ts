@@ -1,9 +1,9 @@
 import { Element } from '../../element';
 import { IProduct } from '../../../types/interfaces';
-import { btnCountCart } from '../../../types/types'
+import { funcVoid } from '../../../types/types'
 
 export class CartProductCard {
-  constructor(node: HTMLElement, arrayProductCart: IProduct[], btnNeg: btnCountCart, btnPos: btnCountCart) {
+  constructor(node: HTMLElement, arrayProductCart: IProduct[], btnNeg: funcVoid, btnPos: funcVoid, destroyCart: funcVoid) {
     const ul = new Element(node, 'ul', 'item-product')
 
     for (let i = 0; i < arrayProductCart.length; i += 1) {
@@ -33,7 +33,9 @@ export class CartProductCard {
       let count = 1
 
       buttonNegative.elem.onclick = (): void => {
-        if (!count) {
+        if (count === 1) {
+          li.destroy()
+          destroyCart(arrayProductCart[i].price, arrayProductCart[i].id)
           return
         }
         count -= 1
