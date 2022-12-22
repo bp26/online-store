@@ -1,10 +1,10 @@
 import { Controller } from '../controllers/controller';
-import { ProductsView } from './productsView';
-import { FiltersView } from './filters/filtersView';
+import { ProductsPageView } from './productsPageView/productsPageView';
 
 export class View {
   readonly root: HTMLElement;
   readonly controller: Controller;
+  productsPage?: ProductsPageView;
   constructor(root: HTMLElement) {
     this.root = root;
     this.controller = new Controller(this);
@@ -13,13 +13,7 @@ export class View {
 
   public mountProductsPage(): void {
     this.root.innerHTML = '';
-    const { data, filterOptions } = this.controller.handleProductsPageInit();
-
-    const filtersCallback = this.controller.handleFiltersCallback.bind(this.controller);
-    const filters = new FiltersView(this.root, filterOptions, filtersCallback);
-
-    const productsCallback = this.controller.handleProductsCallback.bind(this.controller);
-    const products = new ProductsView(this.root, data, productsCallback);
+    this.productsPage = new ProductsPageView(this.root, this.controller.handleProductsPageInit(), this.controller.handleProductsPageCallbacks());
   }
 
   public mountCartPage(): void {
