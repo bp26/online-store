@@ -19,6 +19,7 @@ export class Model {
   }
 
   getSummaryData(): number[] {
+    this.cart.matrixCard(3)
     return this.cart.getSummaryData()
   }
 
@@ -26,7 +27,6 @@ export class Model {
     this.cart.amountProductCart(flag)
     this.cart.summaProductCart(flag, price)
     this.cart.incOrDecProduct(id, flag)
-    console.log(this.cart.list)
   }
 
   productCart(id: number, price: number): void {
