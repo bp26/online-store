@@ -18,7 +18,14 @@ export class Controller {
     return this.model.getProductsPageData();
   }
 
-  public handleProductsCallback(action: ProductsAction, id: number): void {
+  handleProductsPageCallbacks() {
+    return {
+      productsCallback: this.handleProductsCallback.bind(this),
+      filtersCallback: this.handleFiltersCallback.bind(this),
+    };
+  }
+
+  private handleProductsCallback(action: ProductsAction, id: number): void {
     switch (action) {
       case ProductsAction.add:
         this.model.cart.toggleProduct(id);
@@ -30,10 +37,11 @@ export class Controller {
     }
   }
 
-  public handleFiltersCallback(action: FiltersAction, filtersData?: FiltersData): void {
+  private handleFiltersCallback(action: FiltersAction, filtersData?: FiltersData): void {
     switch (action) {
       case FiltersAction.filter:
         if (filtersData) this.model.filter.setFilter(filtersData);
+        if (this.view.productsPage) this.view.productsPage.updateOnFilter(this.handleProductsPageInit, this.handleProductsPageCallbacks);
         break;
       case FiltersAction.reset:
         this.model.filter.resetFilters();
