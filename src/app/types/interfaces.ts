@@ -2,6 +2,8 @@ import { CountOptions } from './types';
 import { ListOptions } from './types';
 import { CountFilter } from './types';
 import { ProductsData } from './types';
+import { ProductsCallback } from './types';
+import { FiltersCallback } from './types';
 
 export interface IProduct {
   id: number;
@@ -34,4 +36,9 @@ export interface IFilters {
 export interface IProductsPageData {
   data: ProductsData;
   filterOptions: IFilterOptions;
+}
+
+export interface IProductsPageCallbacks {
+  productsCallback: ProductsCallback;
+  filtersCallback: FiltersCallback;
 }
