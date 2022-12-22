@@ -30,25 +30,24 @@ export class CartProductCard {
 
       const getPrice = this.closurePrice(arrayProductCart[i].price)
       const getAmountProduct = this.closureAmountProduct()
-      let count = 0
+      let count = 1
 
       buttonNegative.elem.onclick = (): void => {
-        count -= 1
-        if (count < -1) {
-          count += 1
+        if (!count) {
           return
         }
+        count -= 1
         btnNeg(arrayProductCart[i].price, arrayProductCart[i].id)
         priceProduct.elem.textContent = `$${getPrice(false)}`
         counterStocks.elem.textContent = `${getAmountProduct(false)}`
       }
 
       buttonPositive.elem.onclick = (): void => {
-        count += 1
         if (count === arrayProductCart[i].stock) {
-          count -= 1
           return
         }
+        count += 1
+        console.log(arrayProductCart[i].stock, count)
         btnPos(arrayProductCart[i].price, arrayProductCart[i].id)
         counterStocks.elem.textContent = `${getAmountProduct(true)}`
         priceProduct.elem.textContent = `$${getPrice(true)}`

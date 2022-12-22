@@ -6,6 +6,7 @@ export class View {
   readonly root: HTMLElement;
   readonly controller: Controller;
   private buttonCart: HTMLButtonElement;
+  private cart: CartView | undefined
   constructor(root: HTMLElement) {
     this.root = root;
     this.buttonCart = <HTMLButtonElement>document.querySelector('.cart')
@@ -24,7 +25,7 @@ export class View {
     this.root.innerHTML = '';
     this.disabledBtnCart()
     const arrSummaryData = this.getSummaryData()
-    const cart = new CartView(this.root, this.controller, arrSummaryData, this.btnNeg, this.btnPos)
+    this.cart = new CartView(this.root, this.controller, arrSummaryData, this.btnNeg, this.btnPos)
   }
 
   mountDetailsPage(id: number): void {
@@ -44,11 +45,17 @@ export class View {
     }
   }
 
+  summaryContentCart(arg: number[]) {
+    this.cart?.summaryContent(arg)
+  }
+
   btnNeg = (price: number, id: number): void => {
     this.controller.toggleCountProductCart(price, id, false)
+    this.summaryContentCart(this.controller.getSummaryData())
   }
 
   btnPos = (price: number, id: number): void => {
     this.controller.toggleCountProductCart(price, id, true)
+    this.summaryContentCart(this.controller.getSummaryData())
   }
 }
