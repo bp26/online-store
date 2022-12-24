@@ -1,5 +1,5 @@
 import { Model } from '../models/model';
-import { CartList, ProductsData } from '../../types/types';
+import { ProductsData } from '../../types/types';
 import { IProduct } from '../../types/interfaces';
 import { View } from '../views/view';
 import { ProductsAction } from '../../types/enums';
@@ -31,13 +31,16 @@ export class Controller {
   handleProductsCallback(action: ProductsAction, id: number, price: number): void {
     if (action === ProductsAction.add) {
       this.model.productCart(id, price);
-      console.log(this.model.cart.getCartList());
     } else if (action === ProductsAction.details) {
       this.view.mountDetailsPage(id);
     }
   }
 
-  getDataCart(): IProduct[] {
-    return this.model.getDataCart()
+  getCartList(id: number, price: number) {
+    return this.model.getCartList(id, price)
+  }
+
+  getMatrixCart(value: number): IProduct[][] {
+    return this.model.getMatrixCart(value)
   }
 }

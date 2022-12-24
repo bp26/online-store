@@ -1,4 +1,7 @@
 import { CartList } from '../../types/types';
+import { IProduct } from '../../types/interfaces';
+import { products } from '../../../assets/data/products';
+import { binarySearch } from '../../utils/binarySearch'
 
 export class Cart {
   readonly list: CartList;
@@ -6,7 +9,7 @@ export class Cart {
   private summProdContent: HTMLParagraphElement
   private countProductCart: number
   private sumProductCart: number
-  private matrix: string[][]
+  private matrix: IProduct[][]
   constructor() {
     this.countProdContent = <HTMLParagraphElement>document.querySelector('.cart-description-count')
     this.summProdContent = <HTMLParagraphElement>document.querySelector('.cart-description-summ')
@@ -52,13 +55,14 @@ export class Cart {
     return [this.countProductCart, this.sumProductCart]
   }
 
-  getCartList(): CartList {
-    return this.list;
+  getCartList(id: number, price: number): number {
+    return this.list[id];
   }
 
   incOrDecProduct(id: number, flag: boolean) {
     if (flag) {
       this.list[id] += 1;
+
     } else {
       if (this.list[id] === 1) {
         delete this.list[id];
@@ -68,17 +72,19 @@ export class Cart {
     }
   }
 
-  matrixCard(items: number): void {
+  matrixCard(items: number): IProduct[][] {
     this.matrix.length = 0
+    let count = 0
     const amountElCart = Object.keys(this.list)
     const amountArrPage = Math.ceil(amountElCart.length / items)
     for (let i = 0; i < amountArrPage; i += 1) {
-      this.matrix.push(new Array(items).fill(''))
-      for (let j = 0; j < items; j += 1) {
-        console.log(amountElCart, 'count')
-        this.matrix[i].splice(j, 1, amountElCart[0])
-        amountElCart.splice(0, 1)
+      this.matrix.push([])
+      for (let j = 0; j < items && amountElCart[count]; j += 1) {
+        const productObject = binarySearch(products, Number(amountElCart[count]))
+        this.matrix[i].push(productObject)
+        count += 1
       }
     }
+    return this.matrix
   }
 }

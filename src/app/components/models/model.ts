@@ -1,7 +1,6 @@
 import { ProductsData } from '../../types/types';
 import { IProduct } from '../../types/interfaces';
 import { products } from '../../../assets/data/products';
-import { binarySearch } from '../../utils/binarySearch'
 import { Cart } from './cart';
 
 export class Model {
@@ -19,7 +18,6 @@ export class Model {
   }
 
   getSummaryData(): number[] {
-    this.cart.matrixCard(3)
     return this.cart.getSummaryData()
   }
 
@@ -40,13 +38,11 @@ export class Model {
     return this.openCart = true
   }
 
-  getDataCart(): IProduct[] {
-    const dataCart = this.cart.getCartList()
-    const dataCartKeys: string[] = Object.keys(dataCart)
-    const arrayProduct: IProduct[] = []
-    for (let i = 0; i < dataCartKeys.length; i += 1) {
-      arrayProduct.push(binarySearch(products, +dataCartKeys[i]))
-    }
-    return arrayProduct
+  getCartList(id: number, price: number) {
+    return this.cart.getCartList(id, price)
+  }
+
+  getMatrixCart(value: number): IProduct[][] {
+    return this.cart.matrixCard(value)
   }
 }
