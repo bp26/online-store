@@ -9,8 +9,8 @@ export class CartProductCard {
   btnPos: funcVoid
   btnNeg: funcVoid
   getValueContentCart: () => number
-  getCartList: (id: number, price: number) => number
-  constructor(node: HTMLElement, arrayProductCart: IProduct[][], btnNeg: funcVoid, btnPos: funcVoid, destroyCart: funcVoid, getValueContentCart: () => number, getCartList: (id: number, price: number) => number) {
+  getCartList: (id: number) => number[]
+  constructor(node: HTMLElement, arrayProductCart: IProduct[][], btnNeg: funcVoid, btnPos: funcVoid, destroyCart: funcVoid, getValueContentCart: () => number, getCartList: (id: number) => number[]) {
     this.arrayProductCart = arrayProductCart
     this.destroyCart = destroyCart
     this.btnPos = btnPos
@@ -25,8 +25,10 @@ export class CartProductCard {
     console.log(this.arrayProductCart)
     for (let i = 0; i < value && this.arrayProductCart[0][i]; i += 1) {
       const id = this.arrayProductCart[0][i].id
-      const price = this.arrayProductCart[0][i].price
-      let count = this.getCartList(id, price)
+      const arrayCountOrPrice = this.getCartList(id)
+      let count = arrayCountOrPrice[0]
+      const price = arrayCountOrPrice[1]
+
       const li = new Element(this.ul.elem, 'li', 'list-product')
       const countProduct = new Element(li.elem, 'p', 'count-product', `${i + 1}`)
       const imageBlockProduct = new Element(li.elem, 'div', 'image-block')
@@ -46,10 +48,10 @@ export class CartProductCard {
       const buttonNegative = new Element(blockCounterProduct.elem, 'button', 'button-count', '-')
       const counterStocks = new Element(blockCounterProduct.elem, 'p', 'count-prod', `${count}`)
       const buttonPositive = new Element(blockCounterProduct.elem, 'button', 'button-count', '+')
-      const priceProduct = new Element(blockAmountProducts.elem, 'p', 'price', `$${this.arrayProductCart[0][i].price}`)
+      const priceProduct = new Element(blockAmountProducts.elem, 'p', 'price', `$${price}`)
 
 
-      const getPrice = this.closurePrice(this.arrayProductCart[0][i].price)
+      const getPrice = this.closurePrice(price, this.arrayProductCart[0][i].price)
       const getAmountProduct = this.closureAmountProduct(count)
 
       buttonNegative.elem.onclick = (): void => {
@@ -82,13 +84,13 @@ export class CartProductCard {
     this.drawContent(value)
   }
 
-  private closurePrice(price: number) {
+  private closurePrice(price: number, actualPrice: number) {
     let count = price
     return function (flag: boolean) {
       if (flag) {
-        return count += price
+        return count += actualPrice
       }
-      return count -= price
+      return count -= actualPrice
     }
   }
 
@@ -96,7 +98,6 @@ export class CartProductCard {
     let count = amount
     return function (flag: boolean) {
       if (flag) {
-        console.log(count)
         return count += 1
       }
       return count -= 1

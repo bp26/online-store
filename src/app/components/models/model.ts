@@ -24,7 +24,7 @@ export class Model {
   toggleCountProductCart(price: number, id: number, flag: boolean): void {
     this.cart.amountProductCart(flag)
     this.cart.summaProductCart(flag, price)
-    this.cart.incOrDecProduct(id, flag)
+    this.cart.incOrDecProduct(id, price, flag)
   }
 
   productCart(id: number, price: number): void {
@@ -38,8 +38,8 @@ export class Model {
     return this.openCart = true
   }
 
-  getCartList(id: number, price: number) {
-    return this.cart.getCartList(id, price)
+  getCartList(id: number) {
+    return this.cart.getCartList(id)
   }
 
   getMatrixCart(value: number): IProduct[][] {

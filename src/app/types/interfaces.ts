@@ -11,3 +11,13 @@ export interface IProduct {
   thumbnail: string;
   images: string[];
 }
+
+export interface ICartList {
+  [key: string]: IDescriptionCartList
+}
+
+interface IDescriptionCartList {
+  count: number,
+  price: number,
+}
+

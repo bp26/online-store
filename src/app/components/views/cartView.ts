@@ -15,10 +15,10 @@ export class CartView extends Element {
   private matrixCart: () => IProduct[][]
   private getValueInput: (value: number) => void
   private getValueContentCart: () => number
-  private getCartList: (id: number, price: number) => number
+  private getCartList: (id: number) => number[]
   private arrSummaryOrHeaderView: [CartSummaryContent, CartProductCard]
 
-  constructor(parent: HTMLElement, controller: Controller, arraySummaryData: number[], btnNeg: funcVoid, btnPos: funcVoid, destroyCart: funcVoid, matrixCart: () => IProduct[][], getValueInput: (value: number) => void, getValueContentCart: () => number, getCartList: (id: number, price: number) => number) {
+  constructor(parent: HTMLElement, controller: Controller, arraySummaryData: number[], btnNeg: funcVoid, btnPos: funcVoid, destroyCart: funcVoid, matrixCart: () => IProduct[][], getValueInput: (value: number) => void, getValueContentCart: () => number, getCartList: (id: number) => number[]) {
     super(parent, 'div', 'cart-page')
     this.controller = controller
     this.arraySummaryData = arraySummaryData

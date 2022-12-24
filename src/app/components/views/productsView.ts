@@ -72,7 +72,6 @@ export class ProductsView extends Element {
         addButton.textContent = CardButtonTitles.add;
       }
     };
-
     return clone;
   }
 }

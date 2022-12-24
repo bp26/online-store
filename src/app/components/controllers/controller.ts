@@ -31,13 +31,14 @@ export class Controller {
   handleProductsCallback(action: ProductsAction, id: number, price: number): void {
     if (action === ProductsAction.add) {
       this.model.productCart(id, price);
+      console.log(this.model.cart.list)
     } else if (action === ProductsAction.details) {
       this.view.mountDetailsPage(id);
     }
   }
 
-  getCartList(id: number, price: number) {
-    return this.model.getCartList(id, price)
+  getCartList(id: number) {
+    return this.model.getCartList(id)
   }
 
   getMatrixCart(value: number): IProduct[][] {

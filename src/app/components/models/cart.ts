@@ -1,10 +1,9 @@
-import { CartList } from '../../types/types';
-import { IProduct } from '../../types/interfaces';
+import { IProduct, ICartList } from '../../types/interfaces';
 import { products } from '../../../assets/data/products';
 import { binarySearch } from '../../utils/binarySearch'
 
 export class Cart {
-  readonly list: CartList;
+  readonly list: ICartList;
   private countProdContent: HTMLParagraphElement
   private summProdContent: HTMLParagraphElement
   private countProductCart: number
@@ -27,7 +26,10 @@ export class Cart {
     } else {
       this.amountProductCart(true)
       this.summaProductCart(true, price)
-      this.list[id] = 1;
+      this.list[id] = {
+        count: 1,
+        price: price
+      };
     }
   }
 
@@ -55,19 +57,23 @@ export class Cart {
     return [this.countProductCart, this.sumProductCart]
   }
 
-  getCartList(id: number, price: number): number {
-    return this.list[id];
+  getCartList(id: number): number[] {
+    const count = this.list[id].count
+    const price = this.list[id].price
+    return [count, price]
   }
 
-  incOrDecProduct(id: number, flag: boolean) {
+  incOrDecProduct(id: number, price: number, flag: boolean) {
     if (flag) {
-      this.list[id] += 1;
+      this.list[id].count += 1;
+      this.list[id].price += price
 
     } else {
-      if (this.list[id] === 1) {
+      if (this.list[id].count === 1) {
         delete this.list[id];
       } else {
-        this.list[id] -= 1;
+        this.list[id].count -= 1;
+        this.list[id].price -= price
       }
     }
   }

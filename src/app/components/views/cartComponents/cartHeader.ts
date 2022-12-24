@@ -17,12 +17,21 @@ export class CartHeaderContent {
     const inputElem = <HTMLInputElement>inputCountProduct.elem
     const inputValue = Number(inputElem.value)
     getValueInput(inputValue)
+
     inputCountProduct.elem.oninput = () => {
       const inputValue = Number(inputElem.value)
       if (inputValue) {
         getValueInput(inputValue)
         updateCartContent(inputValue)
       }
+    }
+
+    pageBtnRight.elem.onclick = () => {
+
+    }
+
+    pageBtnLeft.elem.onclick = () => {
+
     }
   }
 }

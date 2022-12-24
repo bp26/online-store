@@ -71,8 +71,8 @@ export class View {
     return this.inputValue
   }
 
-  getCartList = (id: number, price: number) => {
-    return this.controller.getCartList(id, price)
+  getCartList = (id: number) => {
+    return this.controller.getCartList(id)
   }
 
   destroyProductCart = (price: number, id: number) => {
