@@ -30,7 +30,7 @@ export class View {
     this.root.innerHTML = '';
     this.disabledBtnCart()
     const arrSummaryData = this.getSummaryData()
-    this.cart = new CartView(this.root, this.controller, arrSummaryData, this.btnNeg, this.btnPos, this.destroyProductCart, this.matrixCart, this.getValueInput, this.getValueContentCart, this.getCartList)
+    this.cart = new CartView(this.root, this.controller, arrSummaryData, this.btnNeg, this.btnPos, this.destroyProductCart, this.matrixCart, this.getValueInput, this.getValueContentCart, this.getCartList, this.btnPagination, this.getPaginationHead, this.paginationHeadValue, this.inputUpdatePaginationHead)
   }
 
   mountDetailsPage(id: number): void {
@@ -55,23 +55,28 @@ export class View {
   }
 
   matrixCart = (): IProduct[][] => {
+    const dataMatrix: IProduct[][] = this.controller.getMatrixCart(this.inputValue)
+    this.dataMatrix = dataMatrix
     if (this.dataMatrix) {
       return this.dataMatrix
     }
     throw new Error ('Array dataMatrix is null')
   }
 
-  getValueInput = (value: number): void =>  {
-    const dataMatrix: IProduct[][] = this.controller.getMatrixCart(value)
+  getValueInput = (value: number): IProduct[][] =>  {
     this.inputValue = value
-    this.dataMatrix = dataMatrix
+    this.matrixCart()
+    if (this.dataMatrix) {
+      return this.dataMatrix
+    }
+    throw new Error ('Array dataMatrix is null')
   }
 
   getValueContentCart = () => {
     return this.inputValue
   }
 
-  getCartList = (id: number) => {
+  getCartList = (id: number): number[] => {
     return this.controller.getCartList(id)
   }
 
@@ -79,6 +84,14 @@ export class View {
     this.controller.toggleCountProductCart(price, id, false)
     this.controller.getMatrixCart(this.inputValue)
     this.summaryContentCart(this.controller.getSummaryData())
+  }
+
+  paginationHeadValue = (head: number) => {
+    const toggle = this.controller.paginationHeadValue(head)
+    if (!toggle) {
+      this.cart?.countHeaderUpdate()
+    }
+    return this.controller.getPaginationHead()
   }
 
   btnNeg = (price: number, id: number): void => {
@@ -89,5 +102,22 @@ export class View {
   btnPos = (price: number, id: number): void => {
     this.controller.toggleCountProductCart(price, id, true)
     this.summaryContentCart(this.controller.getSummaryData())
+  }
+
+  btnPagination = (flag: boolean): number => {
+    this.togglePaginationHead(flag)
+    return this.getPaginationHead()
+  }
+
+  togglePaginationHead(flag: boolean): void {
+    this.controller.togglePaginationHead(flag)
+  }
+
+  getPaginationHead = (): number => {
+    return this.controller.getPaginationHead()
+  }
+
+  inputUpdatePaginationHead = () => {
+    this.controller.inputUpdatePaginationHead()
   }
 }

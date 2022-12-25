@@ -31,7 +31,6 @@ export class Controller {
   handleProductsCallback(action: ProductsAction, id: number, price: number): void {
     if (action === ProductsAction.add) {
       this.model.productCart(id, price);
-      console.log(this.model.cart.list)
     } else if (action === ProductsAction.details) {
       this.view.mountDetailsPage(id);
     }
@@ -43,5 +42,21 @@ export class Controller {
 
   getMatrixCart(value: number): IProduct[][] {
     return this.model.getMatrixCart(value)
+  }
+
+  togglePaginationHead(flag: boolean): void {
+    this.model.togglePaginationHead(flag)
+  }
+
+  getPaginationHead(): number {
+    return this.model.getPaginationHead()
+  }
+
+  paginationHeadValue(head: number) {
+    return this.model.paginationHeadValue(head)
+  }
+
+  inputUpdatePaginationHead() {
+    this.model.inputUpdatePaginationHead()
   }
 }

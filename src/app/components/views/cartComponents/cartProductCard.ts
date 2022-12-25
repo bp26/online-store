@@ -5,26 +5,30 @@ import { funcVoid } from '../../../types/types'
 export class CartProductCard {
   ul: Element
   arrayProductCart: IProduct[][]
-  destroyCart: funcVoid
-  btnPos: funcVoid
-  btnNeg: funcVoid
-  getValueContentCart: () => number
-  getCartList: (id: number) => number[]
-  constructor(node: HTMLElement, arrayProductCart: IProduct[][], btnNeg: funcVoid, btnPos: funcVoid, destroyCart: funcVoid, getValueContentCart: () => number, getCartList: (id: number) => number[]) {
+  private destroyCart: funcVoid
+  private btnPos: funcVoid
+  private btnNeg: funcVoid
+  private getValueContentCart: () => number
+  private getCartList: (id: number) => number[]
+  private paginationHeadValue: (head: number) => number
+  private countHeaderUpdate: (count: number) => void
+  constructor(node: HTMLElement, arrayProductCart: IProduct[][], btnNeg: funcVoid, btnPos: funcVoid, destroyCart: funcVoid, getValueContentCart: () => number, getCartList: (id: number) => number[], getPaginationHead: () => number,  paginationHeadValue: (head: number) => number, countHeaderUpdate: (count: number) => void) {
     this.arrayProductCart = arrayProductCart
     this.destroyCart = destroyCart
     this.btnPos = btnPos
     this.btnNeg = btnNeg
     this.getCartList = getCartList
     this.getValueContentCart = getValueContentCart
+    this.paginationHeadValue =  paginationHeadValue
+    this.countHeaderUpdate = countHeaderUpdate
     this.ul = new Element(node, 'ul', 'item-product')
-    this.drawContent(this.getValueContentCart())
+    this.drawContent(this.getValueContentCart(), getPaginationHead())
   }
 
-  private drawContent(value: number) {
-    console.log(this.arrayProductCart)
-    for (let i = 0; i < value && this.arrayProductCart[0][i]; i += 1) {
-      const id = this.arrayProductCart[0][i].id
+  private drawContent(value: number, head: number) {
+    for (let i = 0; i < value && this.arrayProductCart[head][i]; i += 1) {
+
+      const id = this.arrayProductCart[head][i].id
       const arrayCountOrPrice = this.getCartList(id)
       let count = arrayCountOrPrice[0]
       const price = arrayCountOrPrice[1]
@@ -33,17 +37,17 @@ export class CartProductCard {
       const countProduct = new Element(li.elem, 'p', 'count-product', `${i + 1}`)
       const imageBlockProduct = new Element(li.elem, 'div', 'image-block')
       const imageProduct = new Element(imageBlockProduct.elem, 'img', 'images-product')
-      imageProduct.elem.setAttribute('src', `${this.arrayProductCart[0][i].images[0]}`)
-      imageProduct.elem.setAttribute('alt', `${this.arrayProductCart[0][i].title}`)
+      imageProduct.elem.setAttribute('src', `${this.arrayProductCart[head][i].images[0]}`)
+      imageProduct.elem.setAttribute('alt', `${this.arrayProductCart[head][i].title}`)
       const descriptionBlockProduct = new Element(li.elem, 'div', 'block-base')
-      const nameProduct = new Element(descriptionBlockProduct.elem, 'p', 'product-title', `${this.arrayProductCart[0][i].title}`)
+      const nameProduct = new Element(descriptionBlockProduct.elem, 'p', 'product-title', `${this.arrayProductCart[head][i].title}`)
       const descrBlock = new Element(descriptionBlockProduct.elem, 'div', 'block-description')
-      const descriptionProduct = new Element(descrBlock.elem, 'p', 'product-description',`${this.arrayProductCart[0][i].description}`)
+      const descriptionProduct = new Element(descrBlock.elem, 'p', 'product-description',`${this.arrayProductCart[head][i].description}`)
       const blockRatAndDisc = new Element(descrBlock.elem, 'div', 'block-data')
-      const ratingProduct = new Element(blockRatAndDisc.elem, 'p', 'product-rating', `Rating: ${this.arrayProductCart[0][i].rating}`)
-      const discountProduct = new Element(blockRatAndDisc.elem, 'p', 'product-discount', `Discount: ${this.arrayProductCart[0][i].discountPercentage}%`)
+      const ratingProduct = new Element(blockRatAndDisc.elem, 'p', 'product-rating', `Rating: ${this.arrayProductCart[head][i].rating}`)
+      const discountProduct = new Element(blockRatAndDisc.elem, 'p', 'product-discount', `Discount: ${this.arrayProductCart[head][i].discountPercentage}%`)
       const blockAmountProducts = new Element(li.elem, 'div', 'block-amount')
-      const stockProduct = new Element(blockAmountProducts.elem, 'p', 'stock', `Stock: ${this.arrayProductCart[0][i].stock}`)
+      const stockProduct = new Element(blockAmountProducts.elem, 'p', 'stock', `Stock: ${this.arrayProductCart[head][i].stock}`)
       const blockCounterProduct = new Element(blockAmountProducts.elem, 'div', 'block-counter')
       const buttonNegative = new Element(blockCounterProduct.elem, 'button', 'button-count', '-')
       const counterStocks = new Element(blockCounterProduct.elem, 'p', 'count-prod', `${count}`)
@@ -51,37 +55,38 @@ export class CartProductCard {
       const priceProduct = new Element(blockAmountProducts.elem, 'p', 'price', `$${price}`)
 
 
-      const getPrice = this.closurePrice(price, this.arrayProductCart[0][i].price)
+      const getPrice = this.closurePrice(price, this.arrayProductCart[head][i].price)
       const getAmountProduct = this.closureAmountProduct(count)
 
       buttonNegative.elem.onclick = (): void => {
         if (count === 1) {
           li.destroy()
-          this.destroyCart(this.arrayProductCart[0][i].price, this.arrayProductCart[0][i].id)
-          this.updateCart(this.getValueContentCart())
+          this.destroyCart(this.arrayProductCart[head][i].price, this.arrayProductCart[head][i].id)
+          const headUpdate = this.paginationHeadValue(head)
+          this.updateCart(this.getValueContentCart(), headUpdate)
           return
         }
         count -= 1
-        this.btnNeg(this.arrayProductCart[0][i].price, this.arrayProductCart[0][i].id)
+        this.btnNeg(this.arrayProductCart[head][i].price, this.arrayProductCart[head][i].id)
         priceProduct.elem.textContent = `$${getPrice(false)}`
         counterStocks.elem.textContent = `${getAmountProduct(false)}`
       }
 
       buttonPositive.elem.onclick = (): void => {
-        if (count === this.arrayProductCart[0][i].stock) {
+        if (count === this.arrayProductCart[head][i].stock) {
           return
         }
         count += 1
-        this.btnPos(this.arrayProductCart[0][i].price, this.arrayProductCart[0][i].id)
+        this.btnPos(this.arrayProductCart[head][i].price, this.arrayProductCart[head][i].id)
         counterStocks.elem.textContent = `${getAmountProduct(true)}`
         priceProduct.elem.textContent = `$${getPrice(true)}`
       }
     }
   }
 
-  public updateCart(value: number) {
+  public updateCart(value: number, head: number) {
     this.ul.elem.innerHTML = ''
-    this.drawContent(value)
+    this.drawContent(value, head)
   }
 
   private closurePrice(price: number, actualPrice: number) {

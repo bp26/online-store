@@ -21,6 +21,22 @@ export class Model {
     return this.cart.getSummaryData()
   }
 
+  togglePaginationHead(flag: boolean): void {
+    this.cart.togglePaginationHead(flag)
+  }
+
+  getPaginationHead(): number {
+    return this.cart.getPaginationHead()
+  }
+
+  paginationHeadValue(head: number) {
+    return this.cart.paginationHeadValue(head)
+  }
+
+  inputUpdatePaginationHead() {
+    this.cart.inputUpdatePaginationHead()
+  }
+
   toggleCountProductCart(price: number, id: number, flag: boolean): void {
     this.cart.amountProductCart(flag)
     this.cart.summaProductCart(flag, price)
