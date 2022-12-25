@@ -20,8 +20,8 @@ export class Controller {
     return this.model.getSummaryData()
   }
 
-  toggleBtnCart(): Boolean {
-    return this.model.toggleOpenCart()
+  toggleBtnCart(flag: boolean): boolean {
+    return this.model.toggleOpenCart(flag)
   }
 
   toggleCountProductCart(price: number, id: number, flag: boolean): void {

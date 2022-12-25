@@ -20,9 +20,10 @@ export class CartView extends Element {
   private getPaginationHead: () => number
   private paginationHeadValue: (head: number) => number
   private inputUpdatePaginationHead: () => void
+  private mountDetailsPage: (id: number) => void
   private arrSummaryOrHeaderView: [CartSummaryContent, CartHeaderContent, CartProductCard]
 
-  constructor(parent: HTMLElement, controller: Controller, arraySummaryData: number[], btnNeg: funcVoid, btnPos: funcVoid, destroyCart: funcVoid, matrixCart: () => IProduct[][], getValueInput: (value: number) => IProduct[][], getValueContentCart: () => number, getCartList: (id: number) => number[], btnPagination: (flag: boolean) => number, getPaginationHead: () => number,  paginationHeadValue: (head: number) => number, inputUpdatePaginationHead: () => void) {
+  constructor(parent: HTMLElement, controller: Controller, arraySummaryData: number[], btnNeg: funcVoid, btnPos: funcVoid, destroyCart: funcVoid, matrixCart: () => IProduct[][], getValueInput: (value: number) => IProduct[][], getValueContentCart: () => number, getCartList: (id: number) => number[], btnPagination: (flag: boolean) => number, getPaginationHead: () => number,  paginationHeadValue: (head: number) => number, inputUpdatePaginationHead: () => void, mountDetailsPage: (id: number) => void) {
     super(parent, 'div', 'cart-page')
     this.controller = controller
     this.arraySummaryData = arraySummaryData
@@ -37,6 +38,7 @@ export class CartView extends Element {
     this.getPaginationHead = getPaginationHead
     this.paginationHeadValue =  paginationHeadValue
     this.inputUpdatePaginationHead = inputUpdatePaginationHead
+    this.mountDetailsPage = mountDetailsPage
     this.arrSummaryOrHeaderView =  this.drawCart()
   }
 
@@ -44,7 +46,7 @@ export class CartView extends Element {
     const mainContentCart = new Element(this.elem, 'section', 'cart-content')
     const summaryBlock = new Element(this.elem, 'section', 'cart-summary')
     const headerContent = new CartHeaderContent(mainContentCart.elem, this.getValueInput, this.updateCartContent, this.btnPagination, this.inputUpdateHeaderCount, this.inputUpdatePaginationHead)
-    const productCardContent = new CartProductCard(mainContentCart.elem, this.matrixCart(), this.btnNeg, this.btnPos, this.destroyCart, this.getValueContentCart, this.getCartList,  this.getPaginationHead, this.paginationHeadValue, this.countHeaderUpdate)
+    const productCardContent = new CartProductCard(mainContentCart.elem, this.matrixCart(), this.btnNeg, this.btnPos, this.destroyCart, this.getValueContentCart, this.getCartList,  this.getPaginationHead, this.paginationHeadValue, this.countHeaderUpdate, this.mountDetailsPage)
     const summaryContent = new CartSummaryContent(summaryBlock.elem, this.arraySummaryData)
     return [summaryContent, headerContent, productCardContent]
   }

@@ -26,7 +26,7 @@ export class CartHeaderContent {
     const pageBtnRight = new Element(blockPagination.elem, 'button', 'block-pagination__btn-right', '>')
 
     inputCountProduct.elem.onkeydown = (event) => {
-      return !(/^[Ee - +-]$/.test(event.key))
+        return !(/^[Ee - +-]$/.test(event.key))
     }
 
     inputCountProduct.elem.oninput = () => {

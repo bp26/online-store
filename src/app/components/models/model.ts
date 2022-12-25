@@ -47,11 +47,11 @@ export class Model {
     this.cart.toggleProduct(id, price)
   }
 
-  toggleOpenCart(): Boolean {
-    if (this.openCart) {
-     return this.openCart = false
+  toggleOpenCart(flag: boolean): boolean {
+    if (flag) {
+     return this.openCart = true
     }
-    return this.openCart = true
+    return this.openCart = false
   }
 
   getCartList(id: number) {

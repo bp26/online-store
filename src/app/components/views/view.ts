@@ -7,6 +7,7 @@ export class View {
   readonly root: HTMLElement;
   readonly controller: Controller;
   private buttonCart: HTMLButtonElement;
+  private pageMain: HTMLHeadElement
   private inputValue: number;
   private cart: CartView | undefined
   private dataMatrix: IProduct[][] | undefined
@@ -15,6 +16,8 @@ export class View {
     this.dataMatrix;
     this.inputValue = 0
     this.buttonCart = <HTMLButtonElement>document.querySelector('.cart')
+    this.pageMain = <HTMLHeadElement>document.querySelector('.shop-name')
+    this.pageMain.onclick = () => this.travelMainPage()
     this.buttonCart.onclick = () => this.mountCartPage()
     this.controller = new Controller(this);
     this.mountProductsPage();
@@ -22,27 +25,33 @@ export class View {
 
   mountProductsPage(): void {
     this.root.innerHTML = '';
+    this.disabledBtnCart(false)
     const productsCallback = this.controller.handleProductsCallback.bind(this.controller);
     const products = new ProductsView(this.root, this.controller.handleProductsInit(), productsCallback);
   }
 
   mountCartPage(): void {
     this.root.innerHTML = '';
-    this.disabledBtnCart()
+    this.disabledBtnCart(true)
     const arrSummaryData = this.getSummaryData()
-    this.cart = new CartView(this.root, this.controller, arrSummaryData, this.btnNeg, this.btnPos, this.destroyProductCart, this.matrixCart, this.getValueInput, this.getValueContentCart, this.getCartList, this.btnPagination, this.getPaginationHead, this.paginationHeadValue, this.inputUpdatePaginationHead)
+    this.cart = new CartView(this.root, this.controller, arrSummaryData, this.btnNeg, this.btnPos, this.destroyProductCart, this.matrixCart, this.getValueInput, this.getValueContentCart, this.getCartList, this.btnPagination, this.getPaginationHead, this.paginationHeadValue, this.inputUpdatePaginationHead, this.mountDetailsPage)
   }
 
-  mountDetailsPage(id: number): void {
+  mountDetailsPage = (id: number): void => {
     this.root.innerHTML = '';
+    this.disabledBtnCart(false)
+  }
+
+  travelMainPage() {
+    this.mountProductsPage()
   }
 
   getSummaryData(): number[] {
     return this.controller.getSummaryData()
   }
 
-  disabledBtnCart(): void {
-    const openCart = this.controller.toggleBtnCart()
+  disabledBtnCart(flag: boolean): void {
+    const openCart = this.controller.toggleBtnCart(flag)
     if (openCart) {
       this.buttonCart.disabled = true
     } else {

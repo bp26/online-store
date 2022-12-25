@@ -12,7 +12,8 @@ export class CartProductCard {
   private getCartList: (id: number) => number[]
   private paginationHeadValue: (head: number) => number
   private countHeaderUpdate: (count: number) => void
-  constructor(node: HTMLElement, arrayProductCart: IProduct[][], btnNeg: funcVoid, btnPos: funcVoid, destroyCart: funcVoid, getValueContentCart: () => number, getCartList: (id: number) => number[], getPaginationHead: () => number,  paginationHeadValue: (head: number) => number, countHeaderUpdate: (count: number) => void) {
+  private mountDetailsPage: (id: number) => void
+  constructor(node: HTMLElement, arrayProductCart: IProduct[][], btnNeg: funcVoid, btnPos: funcVoid, destroyCart: funcVoid, getValueContentCart: () => number, getCartList: (id: number) => number[], getPaginationHead: () => number,  paginationHeadValue: (head: number) => number, countHeaderUpdate: (count: number) => void, mountDetailsPage: (id: number) => void) {
     this.arrayProductCart = arrayProductCart
     this.destroyCart = destroyCart
     this.btnPos = btnPos
@@ -21,13 +22,13 @@ export class CartProductCard {
     this.getValueContentCart = getValueContentCart
     this.paginationHeadValue =  paginationHeadValue
     this.countHeaderUpdate = countHeaderUpdate
+    this.mountDetailsPage = mountDetailsPage
     this.ul = new Element(node, 'ul', 'item-product')
     this.drawContent(this.getValueContentCart(), getPaginationHead())
   }
 
   private drawContent(value: number, head: number) {
     for (let i = 0; i < value && this.arrayProductCart[head][i]; i += 1) {
-
       const id = this.arrayProductCart[head][i].id
       const arrayCountOrPrice = this.getCartList(id)
       let count = arrayCountOrPrice[0]
@@ -40,6 +41,9 @@ export class CartProductCard {
       imageProduct.elem.setAttribute('src', `${this.arrayProductCart[head][i].images[0]}`)
       imageProduct.elem.setAttribute('alt', `${this.arrayProductCart[head][i].title}`)
       const descriptionBlockProduct = new Element(li.elem, 'div', 'block-base')
+      descriptionBlockProduct.elem.onclick = () => {
+        this.mountDetailsPage(this.arrayProductCart[head][i].id)
+      }
       const nameProduct = new Element(descriptionBlockProduct.elem, 'p', 'product-title', `${this.arrayProductCart[head][i].title}`)
       const descrBlock = new Element(descriptionBlockProduct.elem, 'div', 'block-description')
       const descriptionProduct = new Element(descrBlock.elem, 'p', 'product-description',`${this.arrayProductCart[head][i].description}`)
