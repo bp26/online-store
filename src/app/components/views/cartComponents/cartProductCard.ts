@@ -11,9 +11,9 @@ export class CartProductCard {
   private getValueContentCart: () => number
   private getCartList: (id: number) => number[]
   private paginationHeadValue: (head: number) => number
-  private countHeaderUpdate: (count: number) => void
   private mountDetailsPage: (id: number) => void
-  constructor(node: HTMLElement, arrayProductCart: IProduct[][], btnNeg: funcVoid, btnPos: funcVoid, destroyCart: funcVoid, getValueContentCart: () => number, getCartList: (id: number) => number[], getPaginationHead: () => number,  paginationHeadValue: (head: number) => number, countHeaderUpdate: (count: number) => void, mountDetailsPage: (id: number) => void) {
+  private drawEmptyCart: () => void
+  constructor(node: HTMLElement, arrayProductCart: IProduct[][], btnNeg: funcVoid, btnPos: funcVoid, destroyCart: funcVoid, getValueContentCart: () => number, getCartList: (id: number) => number[], getPaginationHead: () => number,  paginationHeadValue: (head: number) => number, mountDetailsPage: (id: number) => void, drawEmptyCart: () => void) {
     this.arrayProductCart = arrayProductCart
     this.destroyCart = destroyCart
     this.btnPos = btnPos
@@ -21,13 +21,17 @@ export class CartProductCard {
     this.getCartList = getCartList
     this.getValueContentCart = getValueContentCart
     this.paginationHeadValue =  paginationHeadValue
-    this.countHeaderUpdate = countHeaderUpdate
     this.mountDetailsPage = mountDetailsPage
+    this.drawEmptyCart = drawEmptyCart
     this.ul = new Element(node, 'ul', 'item-product')
     this.drawContent(this.getValueContentCart(), getPaginationHead())
   }
 
   private drawContent(value: number, head: number) {
+    if (this.arrayProductCart.length === 0) {
+      this.drawEmptyCart()
+      return
+    }
     for (let i = 0; i < value && this.arrayProductCart[head][i]; i += 1) {
       const id = this.arrayProductCart[head][i].id
       const arrayCountOrPrice = this.getCartList(id)

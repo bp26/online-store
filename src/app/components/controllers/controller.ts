@@ -52,11 +52,27 @@ export class Controller {
     return this.model.getPaginationHead()
   }
 
+  getPaginationPagesCount(): number {
+    return this.model.getPaginationPagesCount()
+  }
+
+  setPaginationPagesCount(count: number): void {
+    this.model.setPaginationPagesCount(count)
+  }
+
   paginationHeadValue(head: number) {
     return this.model.paginationHeadValue(head)
   }
 
   inputUpdatePaginationHead() {
     this.model.inputUpdatePaginationHead()
+  }
+
+  setPaginationInputValue(count: number): void {
+    this.model.setPaginationInputValue(count)
+  }
+
+  getPaginationInputValue(): number {
+    return this.model.getPaginationInputValue()
   }
 }

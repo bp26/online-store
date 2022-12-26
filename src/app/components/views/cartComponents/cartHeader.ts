@@ -2,20 +2,20 @@ import { Element } from '../../element';
 import { IProduct } from '../../../types/interfaces';
 
 export class CartHeaderContent {
-  private dataMatrix: IProduct[][]
+  public dataMatrix: IProduct[][]
   private paginationHead: number
   private count: number
   private pageNumber: Element
-  constructor(node: HTMLElement, getValueInput: (value: number) => IProduct[][], updateCartContent: (value: number, head: number) => void, btnPagination: (flag: boolean) => number, inputUpdateHeaderCount: () => void, inputUpdatePaginationHead: () => void) {
-    this.paginationHead = 0
-    this.count = 1
+  constructor(node: HTMLElement, getValueInput: (value: number) => IProduct[][], updateCartContent: (value: number, head: number) => void, btnPagination: (flag: boolean) => number, inputUpdateHeaderCount: () => void, inputUpdatePaginationHead: () => void, getPaginationPagesCount: () => number, setPaginationPagesCount: (count: number) => void, getPaginationHead: () => number, setPaginationInputValue: (value: number) => void, getPaginationInputValue: () => number) {
+    this.paginationHead = getPaginationHead()
+    this.count = getPaginationPagesCount()
     const headerCart = new Element(node, 'div', 'cart-header')
     const titleContent = new Element(headerCart.elem, 'p', 'cart-header__title', 'Products in Cart')
     const blockItemProduct = new Element(headerCart.elem, 'div', 'block-item')
     const itemProduct = new Element(blockItemProduct.elem, 'p', 'block-item__item', 'ITEMS:')
     const inputCountProduct = new Element(blockItemProduct.elem, 'input', 'block-item__input')
     inputCountProduct.elem.setAttribute('type', 'number')
-    inputCountProduct.elem.setAttribute('value', '3')
+    inputCountProduct.elem.setAttribute('value', `${getPaginationInputValue()}`)
     const inputElem = <HTMLInputElement>inputCountProduct.elem
     const inputValue = Number(inputElem.value)
     this.dataMatrix = getValueInput(inputValue)
@@ -37,6 +37,8 @@ export class CartHeaderContent {
         inputUpdatePaginationHead()
         this.paginationHead = 0
         updateCartContent(inputValue, this.paginationHead)
+        setPaginationPagesCount(this.count)
+        setPaginationInputValue(inputValue)
       }
     }
 
@@ -49,6 +51,7 @@ export class CartHeaderContent {
       this.paginationHead = btnPagination(true)
       this.pageNumber.elem.textContent = `${this.count}`
       updateCartContent(inputValue, this.paginationHead)
+      setPaginationPagesCount(this.count)
     }
 
     pageBtnLeft.elem.onclick = () => {
@@ -60,6 +63,7 @@ export class CartHeaderContent {
       this.paginationHead = btnPagination(false)
       this.pageNumber.elem.textContent = `${this.count}`
       updateCartContent(inputValue, this.paginationHead)
+      setPaginationPagesCount(this.count)
     }
   }
 

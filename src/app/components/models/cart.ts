@@ -10,6 +10,8 @@ export class Cart {
   private sumProductCart: number
   private matrix: IProduct[][]
   private paginationHead: number
+  private paginationPagesCount: number
+  private paginationInputValue: number
   constructor() {
     this.countProdContent = <HTMLParagraphElement>document.querySelector('.cart-description-count')
     this.summProdContent = <HTMLParagraphElement>document.querySelector('.cart-description-summ')
@@ -17,14 +19,14 @@ export class Cart {
     this.countProductCart = 0
     this.sumProductCart = 0
     this.paginationHead = 0
+    this.paginationPagesCount = 1
+    this.paginationInputValue = 3
     this.matrix = []
   }
 
   paginationHeadValue(head: number): boolean {
     if (!this.matrix[head]) {
-      if (this.paginationHead === 0) {
-        console.log('dddd')
-      } else {
+      if (this.paginationHead !== 0) {
         this.paginationHead -= 1
         return false
       }
@@ -34,6 +36,14 @@ export class Cart {
 
   inputUpdatePaginationHead(): void {
     this.paginationHead = 0
+  }
+
+  setPaginationInputValue(count: number): void {
+    this.paginationInputValue = count
+  }
+
+  getPaginationInputValue(): number {
+    return this.paginationInputValue
   }
 
   togglePaginationHead(flag: boolean): void {
@@ -46,6 +56,14 @@ export class Cart {
 
   getPaginationHead(): number {
     return this.paginationHead
+  }
+
+  getPaginationPagesCount(): number {
+    return this.paginationPagesCount
+  }
+
+  setPaginationPagesCount(count: number): void {
+    this.paginationPagesCount = count
   }
 
   toggleProduct(id: number, price: number): void {

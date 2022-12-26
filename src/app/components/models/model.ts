@@ -29,6 +29,22 @@ export class Model {
     return this.cart.getPaginationHead()
   }
 
+  getPaginationPagesCount(): number {
+    return this.cart.getPaginationPagesCount()
+  }
+
+  setPaginationPagesCount(count: number): void {
+    this.cart.setPaginationPagesCount(count)
+  }
+
+  setPaginationInputValue(count: number): void {
+    this.cart.setPaginationInputValue(count)
+  }
+
+  getPaginationInputValue(): number {
+    return this.cart.getPaginationInputValue()
+  }
+
   paginationHeadValue(head: number) {
     return this.cart.paginationHeadValue(head)
   }

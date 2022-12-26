@@ -17,7 +17,7 @@ export class View {
     this.inputValue = 0
     this.buttonCart = <HTMLButtonElement>document.querySelector('.cart')
     this.pageMain = <HTMLHeadElement>document.querySelector('.shop-name')
-    this.pageMain.onclick = () => this.travelMainPage()
+    this.pageMain.onclick = () => this.mountProductsPage()
     this.buttonCart.onclick = () => this.mountCartPage()
     this.controller = new Controller(this);
     this.mountProductsPage();
@@ -34,16 +34,12 @@ export class View {
     this.root.innerHTML = '';
     this.disabledBtnCart(true)
     const arrSummaryData = this.getSummaryData()
-    this.cart = new CartView(this.root, this.controller, arrSummaryData, this.btnNeg, this.btnPos, this.destroyProductCart, this.matrixCart, this.getValueInput, this.getValueContentCart, this.getCartList, this.btnPagination, this.getPaginationHead, this.paginationHeadValue, this.inputUpdatePaginationHead, this.mountDetailsPage)
+    this.cart = new CartView(this.root, arrSummaryData, this.btnNeg, this.btnPos, this.destroyProductCart, this.matrixCart, this.getValueInput, this.getValueContentCart, this.getCartList, this.btnPagination, this.getPaginationHead, this.paginationHeadValue, this.inputUpdatePaginationHead, this.mountDetailsPage, this.getPaginationPagesCount, this.setPaginationPagesCount, this.setPaginationInputValue, this.getPaginationInputValue)
   }
 
   mountDetailsPage = (id: number): void => {
     this.root.innerHTML = '';
     this.disabledBtnCart(false)
-  }
-
-  travelMainPage() {
-    this.mountProductsPage()
   }
 
   getSummaryData(): number[] {
@@ -128,5 +124,21 @@ export class View {
 
   inputUpdatePaginationHead = () => {
     this.controller.inputUpdatePaginationHead()
+  }
+
+  getPaginationPagesCount = (): number => {
+    return this.controller.getPaginationPagesCount()
+  }
+
+  setPaginationPagesCount = (count: number): void => {
+    this.controller.setPaginationPagesCount(count)
+  }
+
+  setPaginationInputValue = (count: number): void => {
+    this.controller.setPaginationInputValue(count)
+  }
+
+  getPaginationInputValue = (): number => {
+    return this.controller.getPaginationInputValue()
   }
 }
