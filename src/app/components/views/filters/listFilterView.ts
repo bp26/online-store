@@ -6,6 +6,7 @@ import { FiltersCallback } from '../../../types/types';
 import { FiltersType } from '../../../types/enums';
 
 export class ListFiltersView extends Element {
+  list: Element;
   constructor(parent: HTMLElement, filterName: ListFilterNames, filterOptions: ListOptions, callback: FiltersCallback) {
     super(parent, 'div', 'filters');
     const container = new Element(this.elem, 'div', `filters-${filterName}`);
@@ -14,10 +15,14 @@ export class ListFiltersView extends Element {
     const name = new Element(upperWrapper.elem, 'span', `filters-${filterName}__name`, `${filterName}`);
 
     const bottomWrapper = new Element(container.elem, 'div', `filters-${filterName}__bottom-wrapper`);
-    const list = new Element(bottomWrapper.elem, 'ul', `fiters-${filterName}__list`);
+    this.list = new Element(bottomWrapper.elem, 'ul', `fiters-${filterName}__list`);
 
+    this.renderOptions(filterName, filterOptions, callback);
+  }
+
+  public renderOptions(filterName: ListFilterNames, filterOptions: ListOptions, callback: FiltersCallback) {
     for (const filterOption in filterOptions) {
-      const option = new Element(list.elem, 'li', `filters-${filterName}__option`);
+      const option = new Element(this.list.elem, 'li', `filters-${filterName}__option`);
 
       const input = new Element(option.elem, 'input', `filters-${filterName}__checkbox`);
       input.elem.setAttribute('type', 'checkbox');
