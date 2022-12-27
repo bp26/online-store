@@ -1,1 +1,1 @@
-export const infoList: string[] = ['category', 'brand', 'price', 'discount', 'rating', 'stock'];
+export const infoList: string[] = ['category', 'brand', 'price', 'discount', 'rating', 'stock']

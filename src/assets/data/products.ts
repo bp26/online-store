@@ -1,4 +1,4 @@
-import { ProductsData } from '../../app/types/types';
+import { ProductsData } from '../../app/types/types'
 
 export const products: ProductsData = [
   {
@@ -1792,4 +1792,4 @@ export const products: ProductsData = [
       'https://i.dummyjson.com/data/products/100/thumbnail.jpg',
     ],
   },
-];
+]

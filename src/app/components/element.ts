@@ -1,17 +1,17 @@
 export class Element {
-  elem: HTMLElement;
+  elem: HTMLElement
   constructor(parent: HTMLElement, tag: string, className: string, textContent = '') {
-    const elem = document.createElement(tag);
+    const elem = document.createElement(tag)
 
-    elem.className = className;
-    elem.textContent = textContent;
+    elem.className = className
+    elem.textContent = textContent
 
-    parent.append(elem);
+    parent.append(elem)
 
-    this.elem = elem;
+    this.elem = elem
   }
 
   destroy() {
-    this.elem.remove();
+    this.elem.remove()
   }
 }

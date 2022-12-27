@@ -11,12 +11,11 @@
     "pretty": "pretty-quick --staged && lint-staged",
     "lint": "eslint \"src/**/*.{ts,tsx,js,jsx}\"",
     "lintfix": "npm run lint -- --fix",
-    "pre": "prettier --write \"src/**/*.{js,jsx,scss,css,json}\""
+    "pre": "prettier --write \"src/**/*.{ts,scss,css,json}\""
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm run start"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
