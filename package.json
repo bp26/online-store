@@ -8,7 +8,7 @@
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
     "start": "webpack serve --mode=development --node-env=development",
-    "lint": "eslint \"src/**/*.{ts,tsx}\" && lint-staged",
+    "lint": "pretty-quick --staged && lint-staged",
     "lintfix": "npm run lint -- --fix",
     "pre": "prettier --write \"src/**/*.{ts,tsx,scss,css,json}\""
   },
