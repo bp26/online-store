@@ -17,15 +17,15 @@ export class Controller {
   }
 
   getSummaryData(): number[] {
-    return this.model.getSummaryData()
+    return this.model.getSummaryData();
   }
 
   toggleBtnCart(flag: boolean): boolean {
-    return this.model.toggleOpenCart(flag)
+    return this.model.toggleOpenCart(flag);
   }
 
   toggleCountProductCart(price: number, id: number, flag: boolean): void {
-    this.model.toggleCountProductCart(price, id, flag)
+    this.model.toggleCountProductCart(price, id, flag);
   }
 
   handleProductsCallback(action: ProductsAction, id: number, price: number): void {
@@ -37,42 +37,42 @@ export class Controller {
   }
 
   getCartList(id: number) {
-    return this.model.getCartList(id)
+    return this.model.getCartList(id);
   }
 
   getMatrixCart(value: number): IProduct[][] {
-    return this.model.getMatrixCart(value)
+    return this.model.getMatrixCart(value);
   }
 
   togglePaginationHead(flag: boolean): void {
-    this.model.togglePaginationHead(flag)
+    this.model.togglePaginationHead(flag);
   }
 
   getPaginationHead(): number {
-    return this.model.getPaginationHead()
+    return this.model.getPaginationHead();
   }
 
   getPaginationPagesCount(): number {
-    return this.model.getPaginationPagesCount()
+    return this.model.getPaginationPagesCount();
   }
 
   setPaginationPagesCount(count: number): void {
-    this.model.setPaginationPagesCount(count)
+    this.model.setPaginationPagesCount(count);
   }
 
   paginationHeadValue(head: number) {
-    return this.model.paginationHeadValue(head)
+    return this.model.paginationHeadValue(head);
   }
 
   inputUpdatePaginationHead() {
-    this.model.inputUpdatePaginationHead()
+    this.model.inputUpdatePaginationHead();
   }
 
   setPaginationInputValue(count: number): void {
-    this.model.setPaginationInputValue(count)
+    this.model.setPaginationInputValue(count);
   }
 
   getPaginationInputValue(): number {
-    return this.model.getPaginationInputValue()
+    return this.model.getPaginationInputValue();
   }
 }

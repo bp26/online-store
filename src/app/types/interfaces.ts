@@ -13,11 +13,10 @@ export interface IProduct {
 }
 
 export interface ICartList {
-  [key: string]: IDescriptionCartList
+  [key: string]: IDescriptionCartList;
 }
 
 interface IDescriptionCartList {
-  count: number,
-  price: number,
+  count: number;
+  price: number;
 }
-

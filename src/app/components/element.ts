@@ -1,5 +1,5 @@
 export class Element {
-  elem: HTMLElement
+  elem: HTMLElement;
   constructor(parent: HTMLElement, tag: string, className: string, textContent = '') {
     const elem = document.createElement(tag);
 
