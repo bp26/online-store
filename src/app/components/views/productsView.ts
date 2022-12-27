@@ -9,6 +9,11 @@ import { CardButtonTitles } from '../../types/enums';
 export class ProductsView extends Element {
   constructor(parent: HTMLElement, data: ProductsData, callback: ProductsCallback) {
     super(parent, 'div', 'products');
+    this.renderProducts(data, callback);
+  }
+
+  public renderProducts(data: ProductsData, callback: ProductsCallback): void {
+    this.elem.innerHTML = '';
     data.forEach((product) => {
       this.elem.append(this.drawProduct(product, callback));
     });
