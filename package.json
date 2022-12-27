@@ -8,13 +8,13 @@
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
     "start": "webpack serve --mode=development --node-env=development",
-    "lint": "pretty-quick --staged && lint-staged",
-    "lintfix": "npm run lint -- --fix",
+    "lint": "eslint \"src/**/*.{ts,tsx}\" && lint-staged",
+    "lintfix": "npm run lint -- --fix && pretty-quick --staged && lint-staged",
     "pre": "prettier --write \"src/**/*.{ts,tsx,scss,css,json}\""
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "pretty-quick --staged"
     }
   },
   "lint-staged": {
