@@ -22,14 +22,20 @@ export type ListOptions = {
     isChecked: boolean;
   };
 };
-export type CountOptions = {
+
+export type CountFilter = {
   min: number;
   max: number;
+  isActive: boolean;
 };
 
-export type CountFilter = CountOptions & { isActive: boolean };
+export type CountOptions = CountFilter & {
+  start: number;
+  end: number;
+  isEmpty: boolean;
+};
 
 export type FiltersData = {
   type: FiltersType;
-  filter: string | [number, number];
+  filter: string | [string, string];
 };
