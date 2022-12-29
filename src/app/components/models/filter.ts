@@ -73,8 +73,8 @@ export class Filter {
     }
   }
 
-  private setCountFilter(filterName: CountFilterNames, filterValue: [number, number]): void {
-    const sortedFilter = filterValue.sort();
+  private setCountFilter(filterName: CountFilterNames, filterValue: [string, string]): void {
+    const sortedFilter = filterValue.map((value) => +value).sort((a, b) => a - b);
     this.filters[filterName] = {
       min: sortedFilter[0],
       max: sortedFilter[1],
@@ -114,16 +114,34 @@ export class Filter {
 
   private setCountOptions(data: ProductsData, filteredData: ProductsData, filterName: CountFilterNames): CountOptions {
     const filter = this.filters[filterName];
-    if (filter && filter.isActive) {
+
+    const start = Math.min(...data.map((product) => product[filterName]));
+    const end = Math.max(...data.map((product) => product[filterName]));
+
+    const min = filter ? filter.min : start;
+    const max = filter ? filter.max : end;
+
+    const isActive = filter && filter.isActive;
+    const isEmpty = filteredData.length === 0 ? true : false;
+
+    if (isActive) {
       filter.isActive = false;
       return {
-        min: filter.min,
-        max: filter.max,
+        start: start,
+        end: end,
+        min: min,
+        max: max,
+        isActive: true,
+        isEmpty: isEmpty,
       };
     } else {
       return {
-        min: Math.min(...filteredData.map((product) => product[filterName])),
-        max: Math.max(...filteredData.map((product) => product[filterName])),
+        start: start,
+        end: end,
+        min: isEmpty ? min : Math.min(...filteredData.map((product) => product[filterName])),
+        max: isEmpty ? max : Math.max(...filteredData.map((product) => product[filterName])),
+        isActive: false,
+        isEmpty: isEmpty,
       };
     }
   }
