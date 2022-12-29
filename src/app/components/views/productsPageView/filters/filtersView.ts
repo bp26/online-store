@@ -3,6 +3,7 @@ import { IFilterOptions } from '../../../../types/interfaces';
 import { ListFilterView } from './listFilterView';
 import { CountFilterView } from './countFilterView';
 import { FiltersCallback } from '../../../../types/types';
+import { FiltersAction } from '../../../../types/enums';
 
 export class FiltersView extends Element {
   private categoryFilter: ListFilterView;
@@ -12,6 +13,10 @@ export class FiltersView extends Element {
   constructor(parent: HTMLElement, options: IFilterOptions, callback: FiltersCallback) {
     super(parent, 'div', 'filters');
     const { category, brand, price, stock } = options;
+
+    const resetButton = new Element(this.elem, 'button', 'filters__button', 'Reset');
+    resetButton.elem.onclick = () => callback(FiltersAction.reset);
+
     this.categoryFilter = new ListFilterView(this.elem, 'category', category, callback);
     this.brandFilter = new ListFilterView(this.elem, 'brand', brand, callback);
     this.priceFilter = new CountFilterView(this.elem, 'price', price, callback);

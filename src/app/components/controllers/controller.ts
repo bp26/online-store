@@ -45,6 +45,7 @@ export class Controller {
         break;
       case FiltersAction.reset:
         this.model.filter.resetFilters();
+        if (this.view.productsPage) this.view.productsPage.updateOnFilter(this.handleProductsPageInit(), this.handleProductsPageCallbacks());
         break;
       case FiltersAction.copy:
         break;
