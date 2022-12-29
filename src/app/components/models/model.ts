@@ -101,4 +101,12 @@ export class Model {
   getNameDiscount(name: string): boolean {
     return this.cart.getNameDiscount(name)
   }
+
+  calculateProcent(): number {
+    return this.cart.calculateProcent()
+  }
+
+  setDiscountProcent(flag: boolean, discount: number): void {
+    this.cart.setDiscountProcent(flag, discount)
+  }
 }

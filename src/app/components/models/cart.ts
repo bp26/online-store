@@ -15,14 +15,14 @@ export class Cart {
   private paginationHead: number
   private paginationPagesCount: number
   private paginationInputValue: number
-  private valueDiscount: string[]
-  private discount: number
+  private nameDiscount: string[]
+  private discountProcent: number
   private discountListItem: number
   constructor() {
     this.countProdContent = <HTMLParagraphElement>document.querySelector('.cart-description-count')
     this.summProdContent = <HTMLParagraphElement>document.querySelector('.cart-description-summ')
-    this.valueDiscount = []
-    this.discount = 0
+    this.nameDiscount = []
+    this.discountProcent = 0
     this.discountListItem = 0
 
     const CartList = localStorageGuard(localStorageCart.CART_LIST)
@@ -188,21 +188,35 @@ export class Cart {
     }
   }
 
+  setDiscountProcent(flag: boolean, discount: number): void {
+    if (flag) {
+      this.discountProcent += discount
+    } else {
+      this.discountProcent -= discount
+    }
+  }
+
   getDiscountListItem(): number {
     return this.discountListItem
   }
 
   setNameDiscount(name: string): void {
-    this.valueDiscount.push(name)
+    this.nameDiscount.push(name)
   }
 
   deleteNameDiscount(name: string): void {
-    const indexName = this.valueDiscount.indexOf(name)
-    this.valueDiscount.splice(indexName, 1)
+    const indexName = this.nameDiscount.indexOf(name)
+    this.nameDiscount.splice(indexName, 1)
   }
 
   getNameDiscount(name: string): boolean {
-    const searchName = this.valueDiscount.includes(name)
+    const searchName = this.nameDiscount.includes(name)
     return searchName
+  }
+
+  calculateProcent(): number {
+    const procent = (this.sumProductCart / 100) * this.discountProcent
+    const result = this.sumProductCart - procent
+    return result
   }
 }

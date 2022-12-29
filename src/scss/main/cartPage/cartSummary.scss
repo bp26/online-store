@@ -21,11 +21,15 @@
 
 .summary-total {
   display: flex;
+  flex-direction: column;
 
   &__title {
   }
 
   &__count {
+    &_cross-out {
+      text-decoration: line-through;
+    }
   }
 
   &-discount {

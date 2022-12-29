@@ -99,4 +99,12 @@ export class Controller {
   getNameDiscount(name: string): boolean {
     return this.model.getNameDiscount(name)
   }
+
+  calculateProcent(): number {
+    return this.model.calculateProcent()
+  }
+
+  setDiscountProcent(flag: boolean, discount: number): void {
+    this.model.setDiscountProcent(flag, discount)
+  }
 }

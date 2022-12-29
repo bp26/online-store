@@ -3,19 +3,24 @@ import { Element } from '../../element'
 export class CartSummaryContent {
   private countTotal: Element
   private countProduct: Element
-  private countDuscountTotal: Element
+  private countDiscountTotal: Element | null
   private discountBlockPrice: Element
   private stringDiscount: Element | null
   private blockInputorTable: Element
   private rootTableDiscount: Element | null
   private ulDiscount: Element | null
+  private valueInput: HTMLInputElement
+  private blockTotalSummary: Element
+  private arrayData: number[]
   private setDiscountListItem: (flag: boolean) => void
   private getDiscountListItem: () => number
   private setNameDiscount: (name: string) => void
   private getNameDiscount: (name: string) => boolean
   private deleteNameDiscount: (name: string) => void
   private validationInputSummary: (value: string) => string[] | false
-  private valueInput: HTMLInputElement
+  private calculateProcent: () => number
+  private setDiscountProcent: (flag: boolean, discount: number) => void
+
   constructor(
     node: HTMLElement,
     arrayData: number[],
@@ -24,29 +29,30 @@ export class CartSummaryContent {
     getDiscountListItem: () => number,
     setNameDiscount: (name: string) => void,
     getNameDiscount: (name: string) => boolean,
-    deleteNameDiscount: (name: string) => void
+    deleteNameDiscount: (name: string) => void,
+    calculateProcent: () => number,
+    setDiscountProcent: (flag: boolean, discount: number) => void
   ) {
+    this.arrayData = arrayData
     this.setDiscountListItem = setDiscountListItem
     this.getDiscountListItem = getDiscountListItem
     this.setNameDiscount = setNameDiscount
     this.getNameDiscount = getNameDiscount
     this.deleteNameDiscount = deleteNameDiscount
     this.validationInputSummary = validationInputSummary
+    this.calculateProcent = calculateProcent
+    this.setDiscountProcent = setDiscountProcent
     this.rootTableDiscount = null
     this.stringDiscount = null
     this.ulDiscount = null
+    this.countDiscountTotal = null
     const headerSummary = new Element(node, 'div', 'summary-head')
     const titleSummaryIgnor = new Element(headerSummary.elem, 'p', 'summary-head__title', 'Summary')
     const blockProductSummary = new Element(node, 'div', 'summary-product')
-    const titleProductIgnor = new Element(blockProductSummary.elem, 'p', 'summary-product__title', 'Products:')
-    this.countProduct = new Element(blockProductSummary.elem, 'p', 'summary-product__count', `${arrayData[0]}`)
+    this.countProduct = new Element(blockProductSummary.elem, 'p', 'summary-product__count', `Products: ${arrayData[0]}`)
     const blockTotalorDiscont = new Element(node, 'div', 'summary-total-block')
-    const blockTotalSummary = new Element(blockTotalorDiscont.elem, 'div', 'summary-total')
-    const titleTotalIgnor = new Element(blockTotalSummary.elem, 'p', 'summary-total__title', 'Total:')
-    this.countTotal = new Element(blockTotalSummary.elem, 'p', 'summary-total__count', `${arrayData[1]}`)
-    const blockTotalDiscountSummary = new Element(blockTotalorDiscont.elem, 'div', 'summary-total-discount')
-    const titleTotalDiscountIgnor = new Element(blockTotalDiscountSummary.elem, 'p', 'summary-total-discount__title', 'Total:')
-    this.countDuscountTotal = new Element(blockTotalDiscountSummary.elem, 'p', 'summary-total-discount__count', `${arrayData[1]}`)
+    this.blockTotalSummary = new Element(blockTotalorDiscont.elem, 'div', 'summary-total')
+    this.countTotal = new Element(this.blockTotalSummary.elem, 'p', 'summary-total__count', `Total: ${arrayData[1]}`)
     this.blockInputorTable = new Element(node, 'div', 'summary-block-input')
     const inputSummary = new Element(this.blockInputorTable.elem, 'input', 'summary-input')
     this.valueInput = <HTMLInputElement>inputSummary.elem
@@ -62,8 +68,13 @@ export class CartSummaryContent {
   }
 
   toggleContent(arrayData: number[]): void {
-    this.countTotal.elem.textContent = `${arrayData[1]}`
-    this.countProduct.elem.textContent = `${arrayData[0]}`
+    this.arrayData = arrayData
+    this.countTotal.elem.textContent = `Total: ${arrayData[1]}`
+    this.countProduct.elem.textContent = `Products: ${arrayData[0]}`
+    if (this.countDiscountTotal) {
+      const result = this.calculateProcent()
+      this.countDiscountTotal.elem.textContent = `Total: ${result}`
+    }
   }
 
   drawDiscountString(name: string, discount: string): void {
@@ -74,8 +85,9 @@ export class CartSummaryContent {
       const blockButton = new Element(this.stringDiscount.elem, 'button', 'block-discount__button')
       const blockButtonSpanIgnor = new Element(blockButton.elem, 'span', 'button-span', 'ADD')
       blockButton.elem.onclick = () => {
-        const valueDiscIgnor = Number(discount)
+        const valueDisc = Number(discount)
         this.setNameDiscount(name)
+        this.setDiscountProcent(true, valueDisc)
         this.drawTableBlock(name, discount)
         this.setDiscountListItem(true)
         blockButton.destroy()
@@ -89,9 +101,15 @@ export class CartSummaryContent {
       this.rootTableDiscount = new Element(this.blockInputorTable.elem, 'div', 'block-table', '', false)
       const titleBlockIgnor = new Element(this.rootTableDiscount.elem, 'p', 'block-table__title', 'Applied codes')
       this.ulDiscount = new Element(this.rootTableDiscount.elem, 'ul', 'block-table__list')
+      this.countTotal.elem.classList.add('summary-total__count_cross-out')
       this.drawItemTableBlock(name, discount, this.ulDiscount.elem, this.rootTableDiscount)
+      this.drawDiscountPrice()
     } else {
       this.drawItemTableBlock(name, discount)
+      if (this.countDiscountTotal) {
+        const result = this.calculateProcent()
+        this.countDiscountTotal.elem.textContent = `Total: ${result}`
+      }
     }
   }
 
@@ -101,8 +119,14 @@ export class CartSummaryContent {
     const button = new Element(li.elem, 'button', 'discount-item__button')
     const buttonSpanIgnor = new Element(button.elem, 'span', 'discount-item__button-span', 'DROP')
     button.elem.onclick = () => {
+      const valueDisc = Number(discount)
+      this.setDiscountProcent(false, valueDisc)
       this.setDiscountListItem(false)
       this.deleteNameDiscount(name)
+      if (this.countDiscountTotal) {
+        const result = this.calculateProcent()
+        this.countDiscountTotal.elem.textContent = `Total: ${result}`
+      }
       if (this.stringDiscount) {
         this.stringDiscount.destroy()
         this.examinationInput(this.valueInput.value)
@@ -111,9 +135,16 @@ export class CartSummaryContent {
       if (amountList) {
         li.destroy()
       } else {
+        this.countDiscountTotal?.destroy()
+        this.countTotal.elem.classList.remove('summary-total__count_cross-out')
         root.destroy()
       }
     }
+  }
+
+  drawDiscountPrice() {
+    const result = this.calculateProcent()
+    this.countDiscountTotal = new Element(this.blockTotalSummary.elem, 'p', 'summary-total-discount__count', `Total: ${result}`)
   }
 
   examinationInput(value: string) {

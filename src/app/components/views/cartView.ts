@@ -28,6 +28,8 @@ export class CartView extends Element {
   private setNameDiscount: (name: string) => void
   private getNameDiscount: (name: string) => boolean
   private deleteNameDiscount: (name: string) => void
+  private calculateProcent: () => number
+  private setDiscountProcent: (flag: boolean, discount: number) => void
   private arrSummaryOrHeaderView: [CartSummaryContent, CartHeaderContent, CartProductCard] | []
 
   constructor(
@@ -53,7 +55,9 @@ export class CartView extends Element {
     getDiscountListItem: () => number,
     setNameDiscount: (name: string) => void,
     getNameDiscount: (name: string) => boolean,
-    deleteNameDiscount: (name: string) => void
+    deleteNameDiscount: (name: string) => void,
+    calculateProcent: () => number,
+    setDiscountProcent: (flag: boolean, discount: number) => void
   ) {
     super(parent, 'div', 'cart-page')
     this.arraySummaryData = arraySummaryData
@@ -79,6 +83,8 @@ export class CartView extends Element {
     this.setNameDiscount = setNameDiscount
     this.getNameDiscount = getNameDiscount
     this.deleteNameDiscount = deleteNameDiscount
+    this.calculateProcent = calculateProcent
+    this.setDiscountProcent = setDiscountProcent
     if (this.arraySummaryData[0] === 0) {
       this.drawEmptyCart()
     } else {
@@ -124,7 +130,9 @@ export class CartView extends Element {
       this.getDiscountListItem,
       this.setNameDiscount,
       this.getNameDiscount,
-      this.deleteNameDiscount
+      this.deleteNameDiscount,
+      this.calculateProcent,
+      this.setDiscountProcent
     )
     this.arrSummaryOrHeaderView = [summaryContent, headerContent, productCardContent]
   }

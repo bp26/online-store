@@ -57,7 +57,9 @@ export class View {
       this.getDiscountListItem,
       this.setNameDiscount,
       this.getNameDiscount,
-      this.deleteNameDiscount
+      this.deleteNameDiscount,
+      this.calculateProcent,
+      this.setDiscountProcent
     )
   }
 
@@ -188,5 +190,13 @@ export class View {
 
   deleteNameDiscount = (name: string): void => {
     this.controller.deleteNameDiscount(name)
+  }
+
+  calculateProcent = (): number => {
+    return this.controller.calculateProcent()
+  }
+
+  setDiscountProcent = (flag: boolean, discount: number): void => {
+    this.controller.setDiscountProcent(flag, discount)
   }
 }
