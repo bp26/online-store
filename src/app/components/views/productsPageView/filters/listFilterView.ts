@@ -8,7 +8,7 @@ import { FiltersType } from '../../../../types/enums';
 export class ListFilterView extends Element {
   private list: Element;
   constructor(parent: HTMLElement, filterName: ListFilterNames, filterOptions: ListOptions, callback: FiltersCallback) {
-    super(parent, 'div', `filters-${filterName}`);
+    super(parent, 'div', `filters-list filters-${filterName}`);
 
     const upperWrapper = new Element(this.elem, 'div', `filter-${filterName}__upper-wrapper`);
     const name = new Element(upperWrapper.elem, 'span', `filters-${filterName}__name`, `${filterName}`);

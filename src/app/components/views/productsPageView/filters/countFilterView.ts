@@ -14,7 +14,7 @@ export class CountFilterView extends Element {
   private maxValue: Element;
 
   constructor(parent: HTMLElement, filterName: CountFilterNames, options: CountOptions, callback: FiltersCallback) {
-    super(parent, 'div', `filters-${filterName}`);
+    super(parent, 'div', `filters-count filters-${filterName}`);
 
     const valuesContainer = new Element(this.elem, 'div', `filters-${filterName}__values-container`);
     this.emptyValue = new Element(valuesContainer.elem, 'p', `filters-${filterName}__empty-value`, 'NOT FOUND');
