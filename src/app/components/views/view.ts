@@ -52,7 +52,12 @@ export class View {
       this.setPaginationPagesCount,
       this.setPaginationInputValue,
       this.getPaginationInputValue,
-      this.validationInputSummary
+      this.validationInputSummary,
+      this.setDiscountListItem,
+      this.getDiscountListItem,
+      this.setNameDiscount,
+      this.getNameDiscount,
+      this.deleteNameDiscount
     )
   }
 
@@ -163,5 +168,25 @@ export class View {
 
   validationInputSummary = (value: string): string[] | false => {
     return this.controller.validationInputSummary(value)
+  }
+
+  setDiscountListItem = (flag: boolean): void => {
+    this.controller.setDiscountListItem(flag)
+  }
+
+  getDiscountListItem = (): number => {
+    return this.controller.getDiscountListItem()
+  }
+
+  setNameDiscount = (name: string): void => {
+    this.controller.setNameDiscount(name)
+  }
+
+  getNameDiscount = (name: string): boolean => {
+    return this.controller.getNameDiscount(name)
+  }
+
+  deleteNameDiscount = (name: string): void => {
+    this.controller.deleteNameDiscount(name)
   }
 }

@@ -44,3 +44,14 @@
 .block-discount {
   display: flex;
 }
+
+.block-table {
+  border: solid 1px $border-color-base;
+  &__title {
+    text-align: center;
+  }
+}
+
+.discount-item {
+  display: flex;
+}

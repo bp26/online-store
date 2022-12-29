@@ -79,4 +79,24 @@ export class Controller {
   validationInputSummary = (value: string): string[] | false => {
     return this.model.validationInputSummary(value)
   }
+
+  setDiscountListItem(flag: boolean): void {
+    this.model.setDiscountListItem(flag)
+  }
+
+  getDiscountListItem(): number {
+    return this.model.getDiscountListItem()
+  }
+
+  setNameDiscount(name: string): void {
+    this.model.setNameDiscount(name)
+  }
+
+  deleteNameDiscount(name: string): void {
+    this.model.deleteNameDiscount(name)
+  }
+
+  getNameDiscount(name: string): boolean {
+    return this.model.getNameDiscount(name)
+  }
 }

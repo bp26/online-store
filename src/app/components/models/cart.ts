@@ -17,11 +17,13 @@ export class Cart {
   private paginationInputValue: number
   private valueDiscount: string[]
   private discount: number
+  private discountListItem: number
   constructor() {
     this.countProdContent = <HTMLParagraphElement>document.querySelector('.cart-description-count')
     this.summProdContent = <HTMLParagraphElement>document.querySelector('.cart-description-summ')
-    this.valueDiscount = ['RS', 'EPM']
+    this.valueDiscount = []
     this.discount = 0
+    this.discountListItem = 0
 
     const CartList = localStorageGuard(localStorageCart.CART_LIST)
     const CountProductCart = localStorageGuard(localStorageCart.COUNT_PRODUCT_CART)
@@ -168,7 +170,7 @@ export class Cart {
     return this.matrix
   }
 
-  validationInputSummary = (value: string) => {
+  validationInputSummary(value: string) {
     if (/^rs$/i.test(value)) {
       return [discountsObj[0].name, discountsObj[0].value]
     }
@@ -176,5 +178,31 @@ export class Cart {
       return [discountsObj[1].name, discountsObj[1].value]
     }
     return false
+  }
+
+  setDiscountListItem(flag: boolean): void {
+    if (flag) {
+      this.discountListItem += 1
+    } else {
+      this.discountListItem -= 1
+    }
+  }
+
+  getDiscountListItem(): number {
+    return this.discountListItem
+  }
+
+  setNameDiscount(name: string): void {
+    this.valueDiscount.push(name)
+  }
+
+  deleteNameDiscount(name: string): void {
+    const indexName = this.valueDiscount.indexOf(name)
+    this.valueDiscount.splice(indexName, 1)
+  }
+
+  getNameDiscount(name: string): boolean {
+    const searchName = this.valueDiscount.includes(name)
+    return searchName
   }
 }

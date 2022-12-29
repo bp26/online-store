@@ -23,6 +23,11 @@ export class CartView extends Element {
   private setPaginationInputValue: (value: number) => void
   private getPaginationInputValue: () => number
   private validationInputSummary: (value: string) => string[] | false
+  private setDiscountListItem: (flag: boolean) => void
+  private getDiscountListItem: () => number
+  private setNameDiscount: (name: string) => void
+  private getNameDiscount: (name: string) => boolean
+  private deleteNameDiscount: (name: string) => void
   private arrSummaryOrHeaderView: [CartSummaryContent, CartHeaderContent, CartProductCard] | []
 
   constructor(
@@ -43,7 +48,12 @@ export class CartView extends Element {
     setPaginationPagesCount: (count: number) => void,
     setPaginationInputValue: (value: number) => void,
     getPaginationInputValue: () => number,
-    validationInputSummary: (value: string) => string[] | false
+    validationInputSummary: (value: string) => string[] | false,
+    setDiscountListItem: (flag: boolean) => void,
+    getDiscountListItem: () => number,
+    setNameDiscount: (name: string) => void,
+    getNameDiscount: (name: string) => boolean,
+    deleteNameDiscount: (name: string) => void
   ) {
     super(parent, 'div', 'cart-page')
     this.arraySummaryData = arraySummaryData
@@ -64,6 +74,11 @@ export class CartView extends Element {
     this.setPaginationInputValue = setPaginationInputValue
     this.getPaginationInputValue = getPaginationInputValue
     this.validationInputSummary = validationInputSummary
+    this.setDiscountListItem = setDiscountListItem
+    this.getDiscountListItem = getDiscountListItem
+    this.setNameDiscount = setNameDiscount
+    this.getNameDiscount = getNameDiscount
+    this.deleteNameDiscount = deleteNameDiscount
     if (this.arraySummaryData[0] === 0) {
       this.drawEmptyCart()
     } else {
@@ -101,7 +116,16 @@ export class CartView extends Element {
       this.mountDetailsPage,
       this.drawEmptyCart
     )
-    const summaryContent = new CartSummaryContent(summaryBlock.elem, this.arraySummaryData, this.validationInputSummary)
+    const summaryContent = new CartSummaryContent(
+      summaryBlock.elem,
+      this.arraySummaryData,
+      this.validationInputSummary,
+      this.setDiscountListItem,
+      this.getDiscountListItem,
+      this.setNameDiscount,
+      this.getNameDiscount,
+      this.deleteNameDiscount
+    )
     this.arrSummaryOrHeaderView = [summaryContent, headerContent, productCardContent]
   }
 
