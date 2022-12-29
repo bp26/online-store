@@ -5,8 +5,8 @@ import { IProductsPageData } from '../../../types/interfaces';
 import { IProductsPageCallbacks } from '../../../types/interfaces';
 
 export class ProductsPageView extends Element {
-  filters: FiltersView;
-  products: ProductsView;
+  private filters: FiltersView;
+  private products: ProductsView;
   constructor(parent: HTMLElement, initData: IProductsPageData, callbacks: IProductsPageCallbacks) {
     super(parent, 'div', 'main-products');
 
@@ -22,5 +22,6 @@ export class ProductsPageView extends Element {
     const { productsCallback, filtersCallback } = callbacks;
 
     this.products.renderProducts(data, productsCallback);
+    this.filters.update(filterOptions, filtersCallback);
   }
 }
