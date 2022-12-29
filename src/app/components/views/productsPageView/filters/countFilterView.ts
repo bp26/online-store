@@ -6,7 +6,7 @@ import { FiltersAction } from '../../../../types/enums';
 import { FiltersCallback } from '../../../../types/types';
 import { FiltersType } from '../../../../types/enums';
 
-export class CountFiltersView extends Element {
+export class CountFilterView extends Element {
   private sliderOne: FilterSlider;
   private sliderTwo: FilterSlider;
   private emptyValue: Element;

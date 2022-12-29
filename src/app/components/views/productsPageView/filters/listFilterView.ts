@@ -5,7 +5,7 @@ import { FiltersAction } from '../../../../types/enums';
 import { FiltersCallback } from '../../../../types/types';
 import { FiltersType } from '../../../../types/enums';
 
-export class ListFiltersView extends Element {
+export class ListFilterView extends Element {
   private list: Element;
   constructor(parent: HTMLElement, filterName: ListFilterNames, filterOptions: ListOptions, callback: FiltersCallback) {
     super(parent, 'div', `filters-${filterName}`);
