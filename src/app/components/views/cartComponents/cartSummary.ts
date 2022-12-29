@@ -86,7 +86,7 @@ export class CartSummaryContent {
   drawTableBlock(name: string, discount: string): void {
     const amountList = this.getDiscountListItem()
     if (!amountList) {
-      this.rootTableDiscount = new Element(this.blockInputorTable.elem, 'div', 'block-table')
+      this.rootTableDiscount = new Element(this.blockInputorTable.elem, 'div', 'block-table', '', false)
       const titleBlockIgnor = new Element(this.rootTableDiscount.elem, 'p', 'block-table__title', 'Applied codes')
       this.ulDiscount = new Element(this.rootTableDiscount.elem, 'ul', 'block-table__list')
       this.drawItemTableBlock(name, discount, this.ulDiscount.elem, this.rootTableDiscount)
