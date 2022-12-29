@@ -17,4 +17,12 @@ export class FiltersView extends Element {
     this.priceFilter = new CountFiltersView(this.elem, 'price', price, callback);
     this.stockFilter = new CountFiltersView(this.elem, 'stock', stock, callback);
   }
+
+  public update(options: IFilterOptions, callback: FiltersCallback): void {
+    const { category, brand, price, stock } = options;
+    this.categoryFilter.renderOptions('category', category, callback);
+    this.brandFilter.renderOptions('brand', brand, callback);
+    this.priceFilter.update(price);
+    this.stockFilter.update(stock);
+  }
 }
