@@ -77,4 +77,8 @@ export class Model {
   getMatrixCart(value: number): IProduct[][] {
     return this.cart.matrixCard(value)
   }
+
+  validationInputSummary = (value: string): string[] | false => {
+    return this.cart.validationInputSummary(value)
+  }
 }

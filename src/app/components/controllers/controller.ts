@@ -75,4 +75,8 @@ export class Controller {
   getPaginationInputValue(): number {
     return this.model.getPaginationInputValue()
   }
+
+  validationInputSummary = (value: string): string[] | false => {
+    return this.model.validationInputSummary(value)
+  }
 }

@@ -22,6 +22,7 @@ export class CartView extends Element {
   private setPaginationPagesCount: (count: number) => void
   private setPaginationInputValue: (value: number) => void
   private getPaginationInputValue: () => number
+  private validationInputSummary: (value: string) => string[] | false
   private arrSummaryOrHeaderView: [CartSummaryContent, CartHeaderContent, CartProductCard] | []
 
   constructor(
@@ -41,7 +42,8 @@ export class CartView extends Element {
     getPaginationPagesCount: () => number,
     setPaginationPagesCount: (count: number) => void,
     setPaginationInputValue: (value: number) => void,
-    getPaginationInputValue: () => number
+    getPaginationInputValue: () => number,
+    validationInputSummary: (value: string) => string[] | false
   ) {
     super(parent, 'div', 'cart-page')
     this.arraySummaryData = arraySummaryData
@@ -61,6 +63,7 @@ export class CartView extends Element {
     this.setPaginationPagesCount = setPaginationPagesCount
     this.setPaginationInputValue = setPaginationInputValue
     this.getPaginationInputValue = getPaginationInputValue
+    this.validationInputSummary = validationInputSummary
     if (this.arraySummaryData[0] === 0) {
       this.drawEmptyCart()
     } else {
@@ -98,7 +101,7 @@ export class CartView extends Element {
       this.mountDetailsPage,
       this.drawEmptyCart
     )
-    const summaryContent = new CartSummaryContent(summaryBlock.elem, this.arraySummaryData)
+    const summaryContent = new CartSummaryContent(summaryBlock.elem, this.arraySummaryData, this.validationInputSummary)
     this.arrSummaryOrHeaderView = [summaryContent, headerContent, productCardContent]
   }
 

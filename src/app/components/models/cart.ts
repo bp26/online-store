@@ -1,5 +1,6 @@
 import { IProduct, ICartList } from '../../types/interfaces'
 import { products } from '../../../assets/data/products'
+import { discountsObj } from '../../../assets/discount/discount'
 import { binarySearch } from '../../utils/binarySearch'
 import { localStorageGuard } from '../../utils/localGuard'
 import { localStorageCart } from '../../types/enums'
@@ -14,9 +15,13 @@ export class Cart {
   private paginationHead: number
   private paginationPagesCount: number
   private paginationInputValue: number
+  private valueDiscount: string[]
+  private discount: number
   constructor() {
     this.countProdContent = <HTMLParagraphElement>document.querySelector('.cart-description-count')
     this.summProdContent = <HTMLParagraphElement>document.querySelector('.cart-description-summ')
+    this.valueDiscount = ['RS', 'EPM']
+    this.discount = 0
 
     const CartList = localStorageGuard(localStorageCart.CART_LIST)
     const CountProductCart = localStorageGuard(localStorageCart.COUNT_PRODUCT_CART)
@@ -161,5 +166,15 @@ export class Cart {
     }
     localStorage.setItem('matrixPagination', JSON.stringify(this.matrix))
     return this.matrix
+  }
+
+  validationInputSummary = (value: string) => {
+    if (/^rs$/i.test(value)) {
+      return [discountsObj[0].name, discountsObj[0].value]
+    }
+    if (/^epm$/i.test(value)) {
+      return [discountsObj[1].name, discountsObj[1].value]
+    }
+    return false
   }
 }

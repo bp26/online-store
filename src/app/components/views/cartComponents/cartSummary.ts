@@ -8,7 +8,7 @@ export class CartSummaryContent {
   private blockDiscount: Element | null
   private blockInputorTable: Element
   private listDiscount: Element | null
-  constructor(node: HTMLElement, arrayData: number[]) {
+  constructor(node: HTMLElement, arrayData: number[], validationInputSummary: (value: string) => string[] | false) {
     this.blockDiscount = null
     this.listDiscount = null
     const headerSummary = new Element(node, 'div', 'summary-head')
@@ -25,8 +25,21 @@ export class CartSummaryContent {
     this.countDuscountTotal = new Element(blockTotalDiscountSummary.elem, 'p', 'summary-total-discount__count', `${arrayData[1]}`)
     this.blockInputorTable = new Element(node, 'div', 'summary-block-input')
     const inputSummary = new Element(this.blockInputorTable.elem, 'input', 'summary-input')
+    const valueInput = <HTMLInputElement>inputSummary.elem
     inputSummary.elem.setAttribute('type', 'text')
     inputSummary.elem.setAttribute('placeholder', 'Enter promo code')
+    inputSummary.elem.oninput = () => {
+      const value = valueInput.value
+      let validation: string[] | false = false
+      if (value) {
+        validation = validationInputSummary(value)
+      }
+      if (validation) {
+        this.drawDiscountBlock(validation[0], validation[1])
+      } else {
+        this.blockDiscount?.destroy()
+      }
+    }
     this.discountBlockPrice = new Element(node, 'div', 'summary-block-disc-description')
     const discountDescrSummaryIgnor = new Element(this.discountBlockPrice.elem, 'p', 'summary-disc-description', "Promo for test: 'RS', 'EPM'")
     const buttonSummary = new Element(node, 'button', 'summary-button')
@@ -38,9 +51,9 @@ export class CartSummaryContent {
     this.countProduct.elem.textContent = `${arrayData[0]}`
   }
 
-  ap(): void {
+  drawDiscountBlock(name: string, discount: string): void {
     this.blockDiscount = new Element(this.discountBlockPrice.elem, 'div', 'block-discount')
-    const blockContentIgnor = new Element(this.blockDiscount.elem, 'p', 'block-discount__content', 'Rolling Scopes School - 10%')
+    const blockContentIgnor = new Element(this.blockDiscount.elem, 'p', 'block-discount__content', `${name} - ${discount}%`)
     const blockButton = new Element(this.blockDiscount.elem, 'button', 'block-discount__button')
     const blockButtonSpanIgnor = new Element(blockButton.elem, 'span', 'button-span', 'ADD')
   }

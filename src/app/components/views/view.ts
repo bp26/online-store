@@ -51,7 +51,8 @@ export class View {
       this.getPaginationPagesCount,
       this.setPaginationPagesCount,
       this.setPaginationInputValue,
-      this.getPaginationInputValue
+      this.getPaginationInputValue,
+      this.validationInputSummary
     )
   }
 
@@ -158,5 +159,9 @@ export class View {
 
   getPaginationInputValue = (): number => {
     return this.controller.getPaginationInputValue()
+  }
+
+  validationInputSummary = (value: string): string[] | false => {
+    return this.controller.validationInputSummary(value)
   }
 }
