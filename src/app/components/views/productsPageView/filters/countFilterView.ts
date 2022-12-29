@@ -34,7 +34,7 @@ export class CountFiltersView extends Element {
     };
   }
 
-  private getSliderValues(): [string, string] {
+  private getSliderValues(): [number, number] {
     const valueOne = this.sliderOne.getValue();
     const valueTwo = this.sliderTwo.getValue();
     return [valueOne, valueTwo];
@@ -50,9 +50,14 @@ export class CountFiltersView extends Element {
     this.minValue.elem.textContent = `${options.min}`;
     this.maxValue.elem.textContent = `${options.max}`;
     if (!options.isActive) {
-      this.sliderOne.setValue(options.min);
-      this.sliderTwo.setValue(options.max);
+      this.setSliderValues(options);
     }
+  }
+
+  private setSliderValues(options: CountOptions): void {
+    const isSliderOneGreater = this.sliderOne.getValue() >= this.sliderTwo.getValue();
+    this.sliderOne.setValue(isSliderOneGreater ? options.max : options.min);
+    this.sliderTwo.setValue(isSliderOneGreater ? options.min : options.max);
   }
 
   public update(options: CountOptions): void {
