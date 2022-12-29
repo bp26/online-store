@@ -14,17 +14,17 @@ export class CountFilterView extends Element {
   private maxValue: Element;
 
   constructor(parent: HTMLElement, filterName: CountFilterNames, options: CountOptions, callback: FiltersCallback) {
-    super(parent, 'div', `filters-count filters-${filterName}`);
+    super(parent, 'div', `filters-count`);
 
-    const valuesContainer = new Element(this.elem, 'div', `filters-${filterName}__values-container`);
-    this.emptyValue = new Element(valuesContainer.elem, 'p', `filters-${filterName}__empty-value`, 'NOT FOUND');
-    this.minValue = new Element(valuesContainer.elem, 'div', `filters-${filterName}__value`, `${options.min}`);
-    this.maxValue = new Element(valuesContainer.elem, 'div', `filters-${filterName}__value`, `${options.max}`);
+    const valuesContainer = new Element(this.elem, 'div', `filters-count__values-container`);
+    this.emptyValue = new Element(valuesContainer.elem, 'p', `filters-count__empty-value`, 'NOT FOUND');
+    this.minValue = new Element(valuesContainer.elem, 'div', `filters-count__value`, `${options.min}`);
+    this.maxValue = new Element(valuesContainer.elem, 'div', `filters-count__value`, `${options.max}`);
     this.toggleValues(options);
 
-    const slidersContainer = new Element(this.elem, 'div', `filters-${filterName}__sliders-container`);
-    this.sliderOne = new FilterSlider(slidersContainer.elem, `filters-${filterName}__slider`, options.start, options.end, options.min);
-    this.sliderTwo = new FilterSlider(slidersContainer.elem, `filters-${filterName}__slider`, options.start, options.end, options.max);
+    const slidersContainer = new Element(this.elem, 'div', `filters-count__sliders-container`);
+    this.sliderOne = new FilterSlider(slidersContainer.elem, `filters-count__slider`, options.start, options.end, options.min);
+    this.sliderTwo = new FilterSlider(slidersContainer.elem, `filters-count__slider`, options.start, options.end, options.max);
 
     this.sliderOne.elem.oninput = () => {
       callback(FiltersAction.filter, { type: FiltersType[filterName], filter: this.getSliderValues() });
