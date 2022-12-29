@@ -73,7 +73,7 @@ export class Filter {
     }
   }
 
-  private setCountFilter(filterName: CountFilterNames, filterValue: [string, string]): void {
+  private setCountFilter(filterName: CountFilterNames, filterValue: [number, number]): void {
     const sortedFilter = filterValue.map((value) => +value).sort((a, b) => a - b);
     this.filters[filterName] = {
       min: sortedFilter[0],

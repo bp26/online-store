@@ -16,14 +16,11 @@ export class FilterSlider extends Element {
     this.elem.value = `${value}`;
   }
 
-  public getValue(): string {
+  public getValue(): number {
     if (!(this.elem instanceof HTMLInputElement)) {
       throw new Error();
     }
     const value = this.elem.value;
-    if (!value) {
-      throw new Error('No slider value found!');
-    }
-    return value;
+    return +value;
   }
 }
