@@ -1,10 +1,10 @@
-import { Element } from '../../element';
+import { Element } from '../../../element';
 import { FilterSlider } from './filterSlider';
-import { CountOptions } from '../../../types/types';
-import { CountFilterNames } from '../../../types/types';
-import { FiltersAction } from '../../../types/enums';
-import { FiltersCallback } from '../../../types/types';
-import { FiltersType } from '../../../types/enums';
+import { CountOptions } from '../../../../types/types';
+import { CountFilterNames } from '../../../../types/types';
+import { FiltersAction } from '../../../../types/enums';
+import { FiltersCallback } from '../../../../types/types';
+import { FiltersType } from '../../../../types/enums';
 
 export class CountFiltersView extends Element {
   private sliderOne: FilterSlider;

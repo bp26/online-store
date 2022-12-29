@@ -1,9 +1,9 @@
-import { Element } from '../../element';
-import { ListOptions } from '../../../types/types';
-import { ListFilterNames } from '../../../types/types';
-import { FiltersAction } from '../../../types/enums';
-import { FiltersCallback } from '../../../types/types';
-import { FiltersType } from '../../../types/enums';
+import { Element } from '../../../element';
+import { ListOptions } from '../../../../types/types';
+import { ListFilterNames } from '../../../../types/types';
+import { FiltersAction } from '../../../../types/enums';
+import { FiltersCallback } from '../../../../types/types';
+import { FiltersType } from '../../../../types/enums';
 
 export class ListFiltersView extends Element {
   private list: Element;

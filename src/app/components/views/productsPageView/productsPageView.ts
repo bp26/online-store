@@ -1,6 +1,6 @@
 import { Element } from '../../element';
-import { ProductsView } from '../productsView';
-import { FiltersView } from '../filters/filtersView';
+import { ProductsView } from './productsView';
+import { FiltersView } from './filters/filtersView';
 import { IProductsPageData } from '../../../types/interfaces';
 import { IProductsPageCallbacks } from '../../../types/interfaces';
 

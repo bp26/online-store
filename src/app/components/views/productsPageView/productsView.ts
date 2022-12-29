@@ -1,10 +1,10 @@
-import { Element } from '../element';
-import { ProductsData } from '../../types/types';
-import { IProduct } from '../../types/interfaces';
-import { infoList } from '../../utils/constants';
-import { ProductsCallback } from '../../types/types';
-import { ProductsAction } from '../../types/enums';
-import { CardButtonTitles } from '../../types/enums';
+import { Element } from '../../element';
+import { ProductsData } from '../../../types/types';
+import { IProduct } from '../../../types/interfaces';
+import { infoList } from '../../../utils/constants';
+import { ProductsCallback } from '../../../types/types';
+import { ProductsAction } from '../../../types/enums';
+import { CardButtonTitles } from '../../../types/enums';
 
 export class ProductsView extends Element {
   constructor(parent: HTMLElement, data: ProductsData, callback: ProductsCallback) {

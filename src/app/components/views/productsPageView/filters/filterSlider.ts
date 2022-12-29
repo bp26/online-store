@@ -1,4 +1,4 @@
-import { Element } from '../../element';
+import { Element } from '../../../element';
 
 export class FilterSlider extends Element {
   constructor(parent: HTMLElement, className: string, min: number, max: number, value: number) {
