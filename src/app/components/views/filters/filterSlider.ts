@@ -10,11 +10,17 @@ export class FilterSlider extends Element {
   }
 
   public setValue(value: number): void {
-    this.elem.setAttribute('value', `${value}`);
+    if (!(this.elem instanceof HTMLInputElement)) {
+      throw new Error();
+    }
+    this.elem.value = `${value}`;
   }
 
   public getValue(): string {
-    const value = this.elem.getAttribute('value');
+    if (!(this.elem instanceof HTMLInputElement)) {
+      throw new Error();
+    }
+    const value = this.elem.value;
     if (!value) {
       throw new Error('No slider value found!');
     }
