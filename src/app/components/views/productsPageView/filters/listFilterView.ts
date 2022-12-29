@@ -10,7 +10,7 @@ export class ListFilterView extends Element {
   constructor(parent: HTMLElement, filterName: ListFilterNames, filterOptions: ListOptions, callback: FiltersCallback) {
     super(parent, 'div', `filters-list`);
 
-    const upperWrapper = new Element(this.elem, 'div', `filter-list__upper-wrapper`);
+    const upperWrapper = new Element(this.elem, 'div', `filters-list__upper-wrapper`);
     const name = new Element(upperWrapper.elem, 'span', `filters-list__name`, `${filterName}`);
 
     const bottomWrapper = new Element(this.elem, 'div', `filters-list__bottom-wrapper`);
