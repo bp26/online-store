@@ -11,7 +11,7 @@ export class ListFilterView extends Element {
     super(parent, 'div', `filters-list`);
 
     const upperWrapper = new Element(this.elem, 'div', `filters-list__upper-wrapper`);
-    const name = new Element(upperWrapper.elem, 'span', `filters-list__name`, `${filterName}`);
+    const name = new Element(upperWrapper.elem, 'span', `filters-list__name`, `${filterName[0].toUpperCase() + filterName.slice(1)}`);
 
     const bottomWrapper = new Element(this.elem, 'div', `filters-list__bottom-wrapper`);
     this.list = new Element(bottomWrapper.elem, 'ul', `fiters-list__list`);
@@ -23,6 +23,12 @@ export class ListFilterView extends Element {
     this.list.elem.innerHTML = '';
     for (const filterOption in filterOptions) {
       const option = new Element(this.list.elem, 'li', `filters-list__option`);
+      if (filterOptions[filterOption].current === 0) {
+        option.elem.classList.add('filters-list__option_empty');
+      }
+      if (filterOptions[filterOption].isChecked) {
+        option.elem.classList.add('filters-list__option_checked');
+      }
 
       const input = new Element(option.elem, 'input', `filters-list__checkbox`);
       input.elem.setAttribute('type', 'checkbox');
@@ -33,7 +39,7 @@ export class ListFilterView extends Element {
       };
 
       const label = new Element(option.elem, 'label', `filters-list__label`, `${filterOption}`);
-      label.elem.setAttribute('id', `${filterOption}`);
+      label.elem.setAttribute('for', `${filterOption}`);
 
       const span = new Element(option.elem, 'span', `filters-list__count`, `${filterOptions[filterOption].current}/${filterOptions[filterOption].full}`);
     }
