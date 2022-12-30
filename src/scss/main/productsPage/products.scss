@@ -6,8 +6,9 @@
   grid-auto-rows: 300px;
   gap: 40px;
 
-  padding-top: 30px;
-  padding-left: 30px;
+  padding: 10px 20px 10px 20px;
+  border: 1px solid $border-color-base;
+  border-radius: $border-radius-base;
 }
 
 .product-card {
