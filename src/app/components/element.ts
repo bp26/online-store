@@ -1,20 +1,20 @@
 export class Element {
-  elem: HTMLElement
+  elem: HTMLElement;
   constructor(parent: HTMLElement, tag: string, className: string, textContent = '', flag = true) {
-    const elem = document.createElement(tag)
+    const elem = document.createElement(tag);
 
-    elem.className = className
-    elem.textContent = textContent
+    elem.className = className;
+    elem.textContent = textContent;
     if (flag) {
-      parent.append(elem)
+      parent.append(elem);
     } else {
-      parent.prepend(elem)
+      parent.prepend(elem);
     }
 
-    this.elem = elem
+    this.elem = elem;
   }
 
   destroy() {
-    this.elem.remove()
+    this.elem.remove();
   }
 }

@@ -1,110 +1,114 @@
-import { Model } from '../models/model'
-import { ProductsData } from '../../types/types'
-import { IProduct } from '../../types/interfaces'
-import { View } from '../views/view'
-import { ProductsAction } from '../../types/enums'
+import { Model } from '../models/model';
+import { ProductsData } from '../../types/types';
+import { IProduct } from '../../types/interfaces';
+import { View } from '../views/view';
+import { ProductsAction } from '../../types/enums';
 
 export class Controller {
-  readonly model: Model
-  readonly view: View
+  readonly model: Model;
+  readonly view: View;
   constructor(view: View) {
-    this.view = view
-    this.model = new Model()
+    this.view = view;
+    this.model = new Model();
   }
 
   handleProductsInit(): ProductsData {
-    return this.model.getData()
+    return this.model.getData();
   }
 
   getSummaryData(): number[] {
-    return this.model.getSummaryData()
+    return this.model.getSummaryData();
   }
 
   toggleBtnCart(flag: boolean): boolean {
-    return this.model.toggleOpenCart(flag)
+    return this.model.toggleOpenCart(flag);
   }
 
   toggleCountProductCart(price: number, id: number, flag: boolean): void {
-    this.model.toggleCountProductCart(price, id, flag)
+    this.model.toggleCountProductCart(price, id, flag);
   }
 
   handleProductsCallback(action: ProductsAction, id: number, price: number): void {
     if (action === ProductsAction.add) {
-      this.model.productCart(id, price)
+      this.model.productCart(id, price);
     } else if (action === ProductsAction.details) {
-      this.view.mountDetailsPage(id)
+      this.view.mountDetailsPage(id);
     }
   }
 
   getCartList(id: number) {
-    return this.model.getCartList(id)
+    return this.model.getCartList(id);
   }
 
   getMatrixCart(value: number): IProduct[][] {
-    return this.model.getMatrixCart(value)
+    return this.model.getMatrixCart(value);
   }
 
   togglePaginationHead(flag: boolean): void {
-    this.model.togglePaginationHead(flag)
+    this.model.togglePaginationHead(flag);
   }
 
   getPaginationHead(): number {
-    return this.model.getPaginationHead()
+    return this.model.getPaginationHead();
   }
 
   getPaginationPagesCount(): number {
-    return this.model.getPaginationPagesCount()
+    return this.model.getPaginationPagesCount();
   }
 
   setPaginationPagesCount(count: number): void {
-    this.model.setPaginationPagesCount(count)
+    this.model.setPaginationPagesCount(count);
   }
 
   paginationHeadValue(head: number) {
-    return this.model.paginationHeadValue(head)
+    return this.model.paginationHeadValue(head);
   }
 
   inputUpdatePaginationHead() {
-    this.model.inputUpdatePaginationHead()
+    this.model.inputUpdatePaginationHead();
   }
 
   setPaginationInputValue(count: number): void {
-    this.model.setPaginationInputValue(count)
+    this.model.setPaginationInputValue(count);
   }
 
   getPaginationInputValue(): number {
-    return this.model.getPaginationInputValue()
+    return this.model.getPaginationInputValue();
   }
 
   validationInputSummary = (value: string): string[] | false => {
-    return this.model.validationInputSummary(value)
-  }
+    return this.model.validationInputSummary(value);
+  };
 
   setDiscountListItem(flag: boolean): void {
-    this.model.setDiscountListItem(flag)
+    this.model.setDiscountListItem(flag);
   }
 
   getDiscountListItem(): number {
-    return this.model.getDiscountListItem()
+    return this.model.getDiscountListItem();
   }
 
-  setNameDiscount(name: string): void {
-    this.model.setNameDiscount(name)
+  setNameDiscount(name: string, discount: string): void {
+    this.model.setNameDiscount(name, discount);
   }
 
   deleteNameDiscount(name: string): void {
-    this.model.deleteNameDiscount(name)
+    this.model.deleteNameDiscount(name);
   }
 
   getNameDiscount(name: string): boolean {
-    return this.model.getNameDiscount(name)
+    return this.model.getNameDiscount(name);
   }
 
   calculateProcent(): number {
-    return this.model.calculateProcent()
+    return this.model.calculateProcent();
   }
 
   setDiscountProcent(flag: boolean, discount: number): void {
-    this.model.setDiscountProcent(flag, discount)
+    this.model.setDiscountProcent(flag, discount);
+  }
+
+  getValueDiscountData(): Map<string, string> {
+    return this.model.getValueDiscountData();
   }
 }

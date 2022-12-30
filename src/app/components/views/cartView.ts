@@ -1,36 +1,37 @@
-import { Element } from '../element'
-import { CartProductCard } from './cartComponents/cartProductCard'
-import { CartHeaderContent } from './cartComponents/cartHeader'
-import { CartSummaryContent } from './cartComponents/cartSummary'
-import { IProduct } from '../../types/interfaces'
-import { funcVoid } from '../../types/types'
+import { Element } from '../element';
+import { CartProductCard } from './cartComponents/cartProductCard';
+import { CartHeaderContent } from './cartComponents/cartHeader';
+import { CartSummaryContent } from './cartComponents/cartSummary';
+import { IProduct } from '../../types/interfaces';
+import { funcVoid } from '../../types/types';
 
 export class CartView extends Element {
-  private arraySummaryData: number[]
-  private btnNeg: funcVoid
-  private btnPos: funcVoid
-  private destroyCart: funcVoid
-  private getValueInput: (value: number) => IProduct[][]
-  private getValueContentCart: () => number
-  private getCartList: (id: number) => number[]
-  private btnPagination: (flag: boolean) => number
-  private getPaginationHead: () => number
-  private paginationHeadValue: (head: number) => number
-  private inputUpdatePaginationHead: () => void
-  private mountDetailsPage: (id: number) => void
-  private getPaginationPagesCount: () => number
-  private setPaginationPagesCount: (count: number) => void
-  private setPaginationInputValue: (value: number) => void
-  private getPaginationInputValue: () => number
-  private validationInputSummary: (value: string) => string[] | false
-  private setDiscountListItem: (flag: boolean) => void
-  private getDiscountListItem: () => number
-  private setNameDiscount: (name: string) => void
-  private getNameDiscount: (name: string) => boolean
-  private deleteNameDiscount: (name: string) => void
-  private calculateProcent: () => number
-  private setDiscountProcent: (flag: boolean, discount: number) => void
-  private arrSummaryOrHeaderView: [CartSummaryContent, CartHeaderContent, CartProductCard] | []
+  private arraySummaryData: number[];
+  private btnNeg: funcVoid;
+  private btnPos: funcVoid;
+  private destroyCart: funcVoid;
+  private getValueInput: (value: number) => IProduct[][];
+  private getValueContentCart: () => number;
+  private getCartList: (id: number) => number[];
+  private btnPagination: (flag: boolean) => number;
+  private getPaginationHead: () => number;
+  private paginationHeadValue: (head: number) => number;
+  private inputUpdatePaginationHead: () => void;
+  private mountDetailsPage: (id: number) => void;
+  private getPaginationPagesCount: () => number;
+  private setPaginationPagesCount: (count: number) => void;
+  private setPaginationInputValue: (value: number) => void;
+  private getPaginationInputValue: () => number;
+  private validationInputSummary: (value: string) => string[] | false;
+  private setDiscountListItem: (flag: boolean) => void;
+  private getDiscountListItem: () => number;
+  private setNameDiscount: (name: string, discount: string) => void;
+  private getNameDiscount: (name: string) => boolean;
+  private deleteNameDiscount: (name: string) => void;
+  private calculateProcent: () => number;
+  private setDiscountProcent: (flag: boolean, discount: number) => void;
+  private getValueDiscountData: () => Map<string, string>;
+  private arrSummaryOrHeaderView: [CartSummaryContent, CartHeaderContent, CartProductCard] | [];
 
   constructor(
     parent: HTMLElement,
@@ -53,48 +54,50 @@ export class CartView extends Element {
     validationInputSummary: (value: string) => string[] | false,
     setDiscountListItem: (flag: boolean) => void,
     getDiscountListItem: () => number,
-    setNameDiscount: (name: string) => void,
+    setNameDiscount: (name: string, discount: string) => void,
     getNameDiscount: (name: string) => boolean,
     deleteNameDiscount: (name: string) => void,
     calculateProcent: () => number,
-    setDiscountProcent: (flag: boolean, discount: number) => void
+    setDiscountProcent: (flag: boolean, discount: number) => void,
+    getValueDiscountData: () => Map<string, string>
   ) {
-    super(parent, 'div', 'cart-page')
-    this.arraySummaryData = arraySummaryData
-    this.arrSummaryOrHeaderView = []
-    this.btnNeg = btnNeg
-    this.btnPos = btnPos
-    this.destroyCart = destroyCart
-    this.getValueInput = getValueInput
-    this.getValueContentCart = getValueContentCart
-    this.getCartList = getCartList
-    this.btnPagination = btnPagination
-    this.getPaginationHead = getPaginationHead
-    this.paginationHeadValue = paginationHeadValue
-    this.inputUpdatePaginationHead = inputUpdatePaginationHead
-    this.mountDetailsPage = mountDetailsPage
-    this.getPaginationPagesCount = getPaginationPagesCount
-    this.setPaginationPagesCount = setPaginationPagesCount
-    this.setPaginationInputValue = setPaginationInputValue
-    this.getPaginationInputValue = getPaginationInputValue
-    this.validationInputSummary = validationInputSummary
-    this.setDiscountListItem = setDiscountListItem
-    this.getDiscountListItem = getDiscountListItem
-    this.setNameDiscount = setNameDiscount
-    this.getNameDiscount = getNameDiscount
-    this.deleteNameDiscount = deleteNameDiscount
-    this.calculateProcent = calculateProcent
-    this.setDiscountProcent = setDiscountProcent
+    super(parent, 'div', 'cart-page');
+    this.arraySummaryData = arraySummaryData;
+    this.arrSummaryOrHeaderView = [];
+    this.btnNeg = btnNeg;
+    this.btnPos = btnPos;
+    this.destroyCart = destroyCart;
+    this.getValueInput = getValueInput;
+    this.getValueContentCart = getValueContentCart;
+    this.getCartList = getCartList;
+    this.btnPagination = btnPagination;
+    this.getPaginationHead = getPaginationHead;
+    this.paginationHeadValue = paginationHeadValue;
+    this.inputUpdatePaginationHead = inputUpdatePaginationHead;
+    this.mountDetailsPage = mountDetailsPage;
+    this.getPaginationPagesCount = getPaginationPagesCount;
+    this.setPaginationPagesCount = setPaginationPagesCount;
+    this.setPaginationInputValue = setPaginationInputValue;
+    this.getPaginationInputValue = getPaginationInputValue;
+    this.validationInputSummary = validationInputSummary;
+    this.setDiscountListItem = setDiscountListItem;
+    this.getDiscountListItem = getDiscountListItem;
+    this.setNameDiscount = setNameDiscount;
+    this.getNameDiscount = getNameDiscount;
+    this.deleteNameDiscount = deleteNameDiscount;
+    this.calculateProcent = calculateProcent;
+    this.setDiscountProcent = setDiscountProcent;
+    this.getValueDiscountData = getValueDiscountData;
     if (this.arraySummaryData[0] === 0) {
-      this.drawEmptyCart()
+      this.drawEmptyCart();
     } else {
-      this.drawCart()
+      this.drawCart();
     }
   }
 
   private drawCart(): void {
-    const mainContentCart = new Element(this.elem, 'section', 'cart-content')
-    const summaryBlock = new Element(this.elem, 'section', 'cart-summary')
+    const mainContentCart = new Element(this.elem, 'section', 'cart-content');
+    const summaryBlock = new Element(this.elem, 'section', 'cart-summary');
     const headerContent = new CartHeaderContent(
       mainContentCart.elem,
       this.getValueInput,
@@ -107,8 +110,8 @@ export class CartView extends Element {
       this.getPaginationHead,
       this.setPaginationInputValue,
       this.getPaginationInputValue
-    )
-    const dataMatrix = headerContent.dataMatrix
+    );
+    const dataMatrix = headerContent.dataMatrix;
     const productCardContent = new CartProductCard(
       mainContentCart.elem,
       dataMatrix,
@@ -121,7 +124,7 @@ export class CartView extends Element {
       this.paginationHeadValue,
       this.mountDetailsPage,
       this.drawEmptyCart
-    )
+    );
     const summaryContent = new CartSummaryContent(
       summaryBlock.elem,
       this.arraySummaryData,
@@ -132,37 +135,38 @@ export class CartView extends Element {
       this.getNameDiscount,
       this.deleteNameDiscount,
       this.calculateProcent,
-      this.setDiscountProcent
-    )
-    this.arrSummaryOrHeaderView = [summaryContent, headerContent, productCardContent]
+      this.setDiscountProcent,
+      this.getValueDiscountData
+    );
+    this.arrSummaryOrHeaderView = [summaryContent, headerContent, productCardContent];
   }
 
   private drawEmptyCart = () => {
-    this.elem.innerHTML = ''
-    const mainContentCartIgnor = new Element(this.elem, 'p', 'cart-empty', 'Cart is empty')
-  }
+    this.elem.innerHTML = '';
+    const mainContentCartIgnor = new Element(this.elem, 'p', 'cart-empty', 'Cart is empty');
+  };
 
   public summaryContent(arg: number[]) {
     if (this.arrSummaryOrHeaderView.length === 3) {
-      this.arrSummaryOrHeaderView[0].toggleContent(arg)
+      this.arrSummaryOrHeaderView[0].toggleContent(arg);
     }
   }
 
   private updateCartContent = (value: number, head: number) => {
     if (this.arrSummaryOrHeaderView.length === 3) {
-      this.arrSummaryOrHeaderView[2].updateCart(value, head)
+      this.arrSummaryOrHeaderView[2].updateCart(value, head);
     }
-  }
+  };
 
   public countHeaderUpdate = () => {
     if (this.arrSummaryOrHeaderView.length === 3) {
-      this.arrSummaryOrHeaderView[1].countUpdate()
+      this.arrSummaryOrHeaderView[1].countUpdate();
     }
-  }
+  };
 
   private inputUpdateHeaderCount = () => {
     if (this.arrSummaryOrHeaderView.length === 3) {
-      this.arrSummaryOrHeaderView[1].inputUpdateCount()
+      this.arrSummaryOrHeaderView[1].inputUpdateCount();
     }
-  }
+  };
 }

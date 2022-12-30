@@ -16,4 +16,12 @@ export enum localStorageCart {
   PAGINATION_PAGES_COUNT = 'paginationPagesCount',
   PAGINATION_INPUT_VALUE = 'paginationInputValue',
   MATRIX_PAGINATION = 'matrixPagination',
+  DISCOUNT_LIST_ITEM = 'discountListItem',
+  DISCOUNT_PROCENT = 'discountProcent',
+  DISCOUNT_NAME = 'nameDiscount',
+  DISCOUNT_ROOT_TABLE = 'rootTableDiscount',
+  DISCOUNT_STRING = 'stringDiscount',
+  DISCOUNT_UL = 'ulDiscount',
+  DISCOUNT_COUNT_TOTAL = 'countDiscountTotal',
+  CALCULATE_PROCENT = 'calculateProcent',
 }

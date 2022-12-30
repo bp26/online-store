@@ -1,4 +1,4 @@
-import { IDiscount } from '../../app/types/interfaces'
+import { IDiscount } from '../../app/types/interfaces';
 
 export const discountsObj: IDiscount = {
   0: {
@@ -9,4 +9,4 @@ export const discountsObj: IDiscount = {
     name: 'EPAM Systems',
     value: '15',
   },
-}
+};
