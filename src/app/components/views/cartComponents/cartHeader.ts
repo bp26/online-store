@@ -41,7 +41,7 @@ export class CartHeaderContent {
       return !/^[Ee - +-]$/.test(event.key);
     };
 
-    inputCountProduct.elem.oninput = () => {
+    inputCountProduct.elem.oninput = (): void => {
       const inputValue = Number(inputElem.value);
       if (inputValue) {
         this.dataMatrix = getValueInput(inputValue);
@@ -54,7 +54,7 @@ export class CartHeaderContent {
       }
     };
 
-    pageBtnRight.elem.onclick = () => {
+    pageBtnRight.elem.onclick = (): void => {
       const inputValue = Number(inputElem.value);
       if (this.count === this.dataMatrix.length) {
         return;
@@ -66,7 +66,7 @@ export class CartHeaderContent {
       setPaginationPagesCount(this.count);
     };
 
-    pageBtnLeft.elem.onclick = () => {
+    pageBtnLeft.elem.onclick = (): void => {
       const inputValue = Number(inputElem.value);
       if (this.count === 1) {
         return;
@@ -79,12 +79,12 @@ export class CartHeaderContent {
     };
   }
 
-  public countUpdate() {
+  public countUpdate(): void {
     this.count -= 1;
     this.pageNumber.elem.textContent = `${this.count}`;
   }
 
-  public inputUpdateCount() {
+  public inputUpdateCount(): void {
     this.count = 1;
     this.pageNumber.elem.textContent = `${this.count}`;
   }

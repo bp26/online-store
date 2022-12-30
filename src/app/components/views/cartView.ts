@@ -141,30 +141,30 @@ export class CartView extends Element {
     this.arrSummaryOrHeaderView = [summaryContent, headerContent, productCardContent];
   }
 
-  private drawEmptyCart = () => {
+  private drawEmptyCart = (): void => {
     this.elem.innerHTML = '';
     const mainContentCartIgnor = new Element(this.elem, 'p', 'cart-empty', 'Cart is empty');
   };
 
-  public summaryContent(arg: number[]) {
+  public summaryContent(arg: number[]): void {
     if (this.arrSummaryOrHeaderView.length === 3) {
       this.arrSummaryOrHeaderView[0].toggleContent(arg);
     }
   }
 
-  private updateCartContent = (value: number, head: number) => {
+  private updateCartContent = (value: number, head: number): void => {
     if (this.arrSummaryOrHeaderView.length === 3) {
       this.arrSummaryOrHeaderView[2].updateCart(value, head);
     }
   };
 
-  public countHeaderUpdate = () => {
+  public countHeaderUpdate = (): void => {
     if (this.arrSummaryOrHeaderView.length === 3) {
       this.arrSummaryOrHeaderView[1].countUpdate();
     }
   };
 
-  private inputUpdateHeaderCount = () => {
+  private inputUpdateHeaderCount = (): void => {
     if (this.arrSummaryOrHeaderView.length === 3) {
       this.arrSummaryOrHeaderView[1].inputUpdateCount();
     }

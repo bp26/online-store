@@ -36,7 +36,7 @@ export class Controller {
     }
   }
 
-  getCartList(id: number) {
+  getCartList(id: number): number[] {
     return this.model.getCartList(id);
   }
 
@@ -64,7 +64,7 @@ export class Controller {
     return this.model.paginationHeadValue(head);
   }
 
-  inputUpdatePaginationHead() {
+  inputUpdatePaginationHead(): void {
     this.model.inputUpdatePaginationHead();
   }
 

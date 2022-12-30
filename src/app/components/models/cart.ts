@@ -140,7 +140,7 @@ export class Cart {
     return [count, price];
   }
 
-  incOrDecProduct(id: number, price: number, flag: boolean) {
+  incOrDecProduct(id: number, price: number, flag: boolean): void {
     if (flag) {
       this.list[id].count += 1;
       this.list[id].price += price;
@@ -172,7 +172,7 @@ export class Cart {
     return this.matrix;
   }
 
-  validationInputSummary(value: string) {
+  validationInputSummary(value: string): string[] | false {
     if (/^rs$/i.test(value)) {
       return [discountsObj[0].name, discountsObj[0].value];
     }

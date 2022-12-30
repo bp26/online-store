@@ -45,11 +45,11 @@ export class Model {
     return this.cart.getPaginationInputValue();
   }
 
-  paginationHeadValue(head: number) {
+  paginationHeadValue(head: number): boolean {
     return this.cart.paginationHeadValue(head);
   }
 
-  inputUpdatePaginationHead() {
+  inputUpdatePaginationHead(): void {
     this.cart.inputUpdatePaginationHead();
   }
 
@@ -70,7 +70,7 @@ export class Model {
     return (this.openCart = false);
   }
 
-  getCartList(id: number) {
+  getCartList(id: number): number[] {
     return this.cart.getCartList(id);
   }
 

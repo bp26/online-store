@@ -104,7 +104,7 @@ export class View {
     throw new Error('Array dataMatrix is null');
   };
 
-  getValueContentCart = () => {
+  getValueContentCart = (): number => {
     return this.inputValue;
   };
 
@@ -112,13 +112,13 @@ export class View {
     return this.controller.getCartList(id);
   };
 
-  destroyProductCart = (price: number, id: number) => {
+  destroyProductCart = (price: number, id: number): void => {
     this.controller.toggleCountProductCart(price, id, false);
     this.controller.getMatrixCart(this.inputValue);
     this.summaryContentCart(this.controller.getSummaryData());
   };
 
-  paginationHeadValue = (head: number) => {
+  paginationHeadValue = (head: number): number => {
     const toggle = this.controller.paginationHeadValue(head);
     if (!toggle) {
       this.cart?.countHeaderUpdate();
@@ -149,7 +149,7 @@ export class View {
     return this.controller.getPaginationHead();
   };
 
-  inputUpdatePaginationHead = () => {
+  inputUpdatePaginationHead = (): void => {
     this.controller.inputUpdatePaginationHead();
   };
 

@@ -159,12 +159,12 @@ export class CartSummaryContent {
     };
   }
 
-  drawDiscountPrice() {
+  drawDiscountPrice(): void {
     const result = this.calculateProcent();
     this.countDiscountTotal = new Element(this.blockTotalSummary.elem, 'p', 'summary-total-discount__count', `Total: ${result}`);
   }
 
-  examinationInput(value: string) {
+  examinationInput(value: string): void {
     let validation: string[] | false = false;
     if (value) {
       validation = this.validationInputSummary(value);
@@ -176,7 +176,7 @@ export class CartSummaryContent {
     }
   }
 
-  drawLocalStorageContent(name: string, discount: string) {
+  drawLocalStorageContent(name: string, discount: string): void {
     this.rootTableDiscount = new Element(this.blockInputorTable.elem, 'div', 'block-table', '', false);
     const titleBlockIgnor = new Element(this.rootTableDiscount.elem, 'p', 'block-table__title', 'Applied codes');
     this.ulDiscount = new Element(this.rootTableDiscount.elem, 'ul', 'block-table__list');

@@ -39,14 +39,13 @@ export class CartProductCard {
     this.drawContent(this.getValueContentCart(), getPaginationHead());
   }
 
-  private drawContent(value: number, head: number) {
+  private drawContent(value: number, head: number): void {
     if (this.arrayProductCart.length === 0) {
       this.drawEmptyCart();
       return;
     }
     for (let i = 0; i < value && this.arrayProductCart[head][i]; i += 1) {
-      const id = this.arrayProductCart[head][i].id;
-      const arrayCountOrPrice = this.getCartList(id);
+      const arrayCountOrPrice = this.getCartList(this.arrayProductCart[head][i].id);
       let count = arrayCountOrPrice[0];
       const price = arrayCountOrPrice[1];
 
@@ -103,12 +102,12 @@ export class CartProductCard {
     }
   }
 
-  public updateCart(value: number, head: number) {
+  public updateCart(value: number, head: number): void {
     this.ul.elem.innerHTML = '';
     this.drawContent(value, head);
   }
 
-  private closurePrice(price: number, actualPrice: number) {
+  private closurePrice(price: number, actualPrice: number): (flag: boolean) => number {
     let count = price;
     return function (flag: boolean) {
       if (flag) {
@@ -118,7 +117,7 @@ export class CartProductCard {
     };
   }
 
-  private closureAmountProduct(amount: number) {
+  private closureAmountProduct(amount: number): (flag: boolean) => number {
     let count = amount;
     return function (flag: boolean) {
       if (flag) {
