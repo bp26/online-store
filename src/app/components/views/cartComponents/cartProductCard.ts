@@ -91,9 +91,7 @@ export class CartProductCard {
       };
 
       buttonPositive.elem.onclick = (): void => {
-        if (count === this.arrayProductCart[head][i].stock) {
-          return;
-        }
+        if (count === this.arrayProductCart[head][i].stock) return;
         count += 1;
         this.btnPos(this.arrayProductCart[head][i].price, this.arrayProductCart[head][i].id);
         counterStocks.elem.textContent = `${getAmountProduct(true)}`;
@@ -110,20 +108,16 @@ export class CartProductCard {
   private closurePrice(price: number, actualPrice: number): (flag: boolean) => number {
     let count = price;
     return function (flag: boolean) {
-      if (flag) {
-        return (count += actualPrice);
-      }
-      return (count -= actualPrice);
+      flag ? (count += actualPrice) : (count -= actualPrice);
+      return count;
     };
   }
 
   private closureAmountProduct(amount: number): (flag: boolean) => number {
     let count = amount;
     return function (flag: boolean) {
-      if (flag) {
-        return (count += 1);
-      }
-      return (count -= 1);
+      flag ? (count += 1) : (count -= 1);
+      return count;
     };
   }
 }

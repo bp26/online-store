@@ -64,10 +64,8 @@ export class Model {
   }
 
   toggleOpenCart(flag: boolean): boolean {
-    if (flag) {
-      return (this.openCart = true);
-    }
-    return (this.openCart = false);
+    flag ? (this.openCart = true) : (this.openCart = false);
+    return this.openCart;
   }
 
   getCartList(id: number): number[] {

@@ -75,11 +75,7 @@ export class View {
 
   disabledBtnCart(flag: boolean): void {
     const openCart = this.controller.toggleBtnCart(flag);
-    if (openCart) {
-      this.buttonCart.disabled = true;
-    } else {
-      this.buttonCart.disabled = false;
-    }
+    openCart ? (this.buttonCart.disabled = true) : (this.buttonCart.disabled = false);
   }
 
   summaryContentCart(arg: number[]) {
