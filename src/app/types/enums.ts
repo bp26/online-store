@@ -4,8 +4,8 @@ export enum ProductsAction {
 }
 
 export enum CardButtonTitles {
-  add = 'ADD TO CART',
-  remove = 'REMOVE FROM CART',
+  ADD = 'ADD TO CART',
+  REMOVE = 'REMOVE FROM CART',
 }
 
 export enum localStorageCart {
