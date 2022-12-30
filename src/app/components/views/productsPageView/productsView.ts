@@ -14,9 +14,13 @@ export class ProductsView extends Element {
 
   public renderProducts(data: ProductsData, callback: ProductsCallback): void {
     this.elem.innerHTML = '';
-    data.forEach((product) => {
-      this.elem.append(this.drawProduct(product, callback));
-    });
+    if (data.length !== 0) {
+      data.forEach((product) => {
+        this.elem.append(this.drawProduct(product, callback));
+      });
+    } else {
+      const emptyMessage = new Element(this.elem, 'p', 'products__empty-message', 'NOT FOUND');
+    }
   }
 
   private drawProduct(product: IProduct, callback: ProductsCallback): DocumentFragment {
