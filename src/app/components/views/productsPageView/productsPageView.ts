@@ -8,7 +8,7 @@ export class ProductsPageView extends Element {
   private filters: FiltersView;
   private products: ProductsView;
   constructor(parent: HTMLElement, initData: IProductsPageData, callbacks: IProductsPageCallbacks) {
-    super(parent, 'div', 'main-products');
+    super(parent, 'div', 'products-page');
 
     const { data, filterOptions } = initData;
     const { productsCallback, filtersCallback } = callbacks;
