@@ -5,11 +5,8 @@ export class Element {
 
     elem.className = className;
     elem.textContent = textContent;
-    if (flag) {
-      parent.append(elem);
-    } else {
-      parent.prepend(elem);
-    }
+
+    flag ? parent.append(elem) : parent.prepend(elem);
 
     this.elem = elem;
   }
