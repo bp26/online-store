@@ -109,24 +109,14 @@ export class Cart {
   }
 
   summaProductCart(flag: boolean, price: number): void {
-    if (flag) {
-      this.sumProductCart += price;
-      this.summProdContent.textContent = `${this.sumProductCart}`;
-    } else {
-      this.sumProductCart -= price;
-      this.summProdContent.textContent = `${this.sumProductCart}`;
-    }
+    flag ? (this.sumProductCart += price) : (this.sumProductCart -= price);
+    this.summProdContent.textContent = `${this.sumProductCart}`;
     localStorage.setItem(localStorageCart.SUM_PRODUCT_CART, JSON.stringify(this.sumProductCart));
   }
 
   amountProductCart(flag: boolean): void {
-    if (flag) {
-      this.countProductCart += 1;
-      this.countProdContent.textContent = `${this.countProductCart}`;
-    } else {
-      this.countProductCart -= 1;
-      this.countProdContent.textContent = `${this.countProductCart}`;
-    }
+    flag ? (this.countProductCart += 1) : (this.countProductCart -= 1);
+    this.countProdContent.textContent = `${this.countProductCart}`;
     localStorage.setItem(localStorageCart.COUNT_PRODUCT_CART, JSON.stringify(this.countProductCart));
   }
 
