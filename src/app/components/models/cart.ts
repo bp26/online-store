@@ -173,20 +173,12 @@ export class Cart {
   }
 
   setDiscountListItem(flag: boolean): void {
-    if (flag) {
-      this.discountListItem += 1;
-    } else {
-      this.discountListItem -= 1;
-    }
+    flag ? (this.discountListItem += 1) : (this.discountListItem -= 1);
     localStorage.setItem(localStorageCart.DISCOUNT_LIST_ITEM, JSON.stringify(this.discountListItem));
   }
 
   setDiscountProcent(flag: boolean, discount: number): void {
-    if (flag) {
-      this.discountProcent += discount;
-    } else {
-      this.discountProcent -= discount;
-    }
+    flag ? (this.discountProcent += discount) : (this.discountProcent -= discount);
     localStorage.setItem(localStorageCart.DISCOUNT_PROCENT, JSON.stringify(this.discountProcent));
   }
 
