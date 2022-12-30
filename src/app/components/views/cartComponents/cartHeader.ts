@@ -56,9 +56,7 @@ export class CartHeaderContent {
 
     pageBtnRight.elem.onclick = (): void => {
       const inputValue = Number(inputElem.value);
-      if (this.count === this.dataMatrix.length) {
-        return;
-      }
+      if (this.count === this.dataMatrix.length) return;
       this.count += 1;
       this.paginationHead = btnPagination(true);
       this.pageNumber.elem.textContent = `${this.count}`;
@@ -68,9 +66,7 @@ export class CartHeaderContent {
 
     pageBtnLeft.elem.onclick = (): void => {
       const inputValue = Number(inputElem.value);
-      if (this.count === 1) {
-        return;
-      }
+      if (this.count === 1) return;
       this.count -= 1;
       this.paginationHead = btnPagination(false);
       this.pageNumber.elem.textContent = `${this.count}`;
