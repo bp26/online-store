@@ -93,7 +93,7 @@ export class Cart {
   }
 
   toggleProduct(id: number, price: number): void {
-    if (this.list[id] !== undefined) {
+    if (!this.list[id]) {
       this.amountProductCart(false);
       this.summaProductCart(false, price);
       delete this.list[id];
