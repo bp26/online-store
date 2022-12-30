@@ -18,7 +18,7 @@ export class Controller {
     return this.model.getProductsPageData();
   }
 
-  handleProductsPageCallbacks() {
+  public handleProductsPageCallbacks() {
     return {
       productsCallback: this.handleProductsCallback.bind(this),
       filtersCallback: this.handleFiltersCallback.bind(this),
