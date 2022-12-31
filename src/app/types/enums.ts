@@ -8,7 +8,7 @@ export enum CardButtonTitles {
   REMOVE = 'REMOVE FROM CART',
 }
 
-export enum localStorageCart {
+export const enum localStorageCart {
   CART_LIST = 'cartList',
   COUNT_PRODUCT_CART = 'countProductCart',
   SUM_PRODUCT_CART = 'sumProductCart',
@@ -24,4 +24,16 @@ export enum localStorageCart {
   DISCOUNT_UL = 'ulDiscount',
   DISCOUNT_COUNT_TOTAL = 'countDiscountTotal',
   CALCULATE_PROCENT = 'calculateProcent',
+}
+
+export const enum HTMLTag {
+  DIV = 'div',
+  P = 'p',
+  SPAN = 'span',
+  INPUT = 'input',
+  BUTTON = 'button',
+  UL = 'ul',
+  LI = 'li',
+  SECTION = 'section',
+  IMG = 'img',
 }

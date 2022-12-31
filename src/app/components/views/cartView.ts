@@ -4,6 +4,7 @@ import { CartHeaderContent } from './cartComponents/cartHeader';
 import { CartSummaryContent } from './cartComponents/cartSummary';
 import { IProduct } from '../../types/interfaces';
 import { funcVoid } from '../../types/types';
+import { HTMLTag } from '../../types/enums';
 
 export class CartView extends Element {
   private arraySummaryData: number[];
@@ -61,7 +62,7 @@ export class CartView extends Element {
     setDiscountProcent: (flag: boolean, discount: number) => void,
     getValueDiscountData: () => Map<string, string>
   ) {
-    super(parent, 'div', 'cart-page');
+    super(parent, HTMLTag.DIV, 'cart-page');
     this.arraySummaryData = arraySummaryData;
     this.arrSummaryOrHeaderView = [];
     this.btnNeg = btnNeg;
@@ -96,8 +97,8 @@ export class CartView extends Element {
   }
 
   private drawCart(): void {
-    const mainContentCart = new Element(this.elem, 'section', 'cart-content');
-    const summaryBlock = new Element(this.elem, 'section', 'cart-summary');
+    const mainContentCart = new Element(this.elem, HTMLTag.SECTION, 'cart-content');
+    const summaryBlock = new Element(this.elem, HTMLTag.SECTION, 'cart-summary');
     const headerContent = new CartHeaderContent(
       mainContentCart.elem,
       this.getValueInput,
@@ -143,7 +144,7 @@ export class CartView extends Element {
 
   private drawEmptyCart = (): void => {
     this.elem.innerHTML = '';
-    const mainContentCartIgnor = new Element(this.elem, 'p', 'cart-empty', 'Cart is empty');
+    const mainContentCartIgnor = new Element(this.elem, HTMLTag.P, 'cart-empty', 'Cart is empty');
   };
 
   public summaryContent(arg: number[]): void {

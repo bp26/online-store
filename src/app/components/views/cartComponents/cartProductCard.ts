@@ -1,6 +1,7 @@
 import { Element } from '../../element';
 import { IProduct } from '../../../types/interfaces';
 import { funcVoid } from '../../../types/types';
+import { HTMLTag } from '../../../types/enums';
 
 export class CartProductCard {
   ul: Element;
@@ -35,7 +36,7 @@ export class CartProductCard {
     this.paginationHeadValue = paginationHeadValue;
     this.mountDetailsPage = mountDetailsPage;
     this.drawEmptyCart = drawEmptyCart;
-    this.ul = new Element(node, 'ul', 'item-product');
+    this.ul = new Element(node, HTMLTag.UL, 'item-product');
     this.drawContent(this.getValueContentCart(), getPaginationHead());
   }
 
@@ -49,29 +50,29 @@ export class CartProductCard {
       let count = arrayCountOrPrice[0];
       const price = arrayCountOrPrice[1];
 
-      const li = new Element(this.ul.elem, 'li', 'list-product');
-      const countProductIgnor = new Element(li.elem, 'p', 'count-product', `${i + 1}`);
-      const imageBlockProduct = new Element(li.elem, 'div', 'image-block');
-      const imageProduct = new Element(imageBlockProduct.elem, 'img', 'images-product');
+      const li = new Element(this.ul.elem, HTMLTag.LI, 'list-product');
+      const countProductIgnor = new Element(li.elem, HTMLTag.P, 'count-product', `${i + 1}`);
+      const imageBlockProduct = new Element(li.elem, HTMLTag.DIV, 'image-block');
+      const imageProduct = new Element(imageBlockProduct.elem, HTMLTag.IMG, 'images-product');
       imageProduct.elem.setAttribute('src', `${this.arrayProductCart[head][i].images[0]}`);
       imageProduct.elem.setAttribute('alt', `${this.arrayProductCart[head][i].title}`);
-      const descriptionBlockProduct = new Element(li.elem, 'div', 'block-base');
+      const descriptionBlockProduct = new Element(li.elem, HTMLTag.DIV, 'block-base');
       descriptionBlockProduct.elem.onclick = () => {
         this.mountDetailsPage(this.arrayProductCart[head][i].id);
       };
-      const nameProductIgnor = new Element(descriptionBlockProduct.elem, 'p', 'product-title', `${this.arrayProductCart[head][i].title}`);
-      const descrBlock = new Element(descriptionBlockProduct.elem, 'div', 'block-description');
-      const descriptionProductIgnor = new Element(descrBlock.elem, 'p', 'product-description', `${this.arrayProductCart[head][i].description}`);
-      const blockRatAndDisc = new Element(descrBlock.elem, 'div', 'block-data');
-      const ratingProductIgnor = new Element(blockRatAndDisc.elem, 'p', 'product-rating', `Rating: ${this.arrayProductCart[head][i].rating}`);
-      const discountProductIgnor = new Element(blockRatAndDisc.elem, 'p', 'product-discount', `Discount: ${this.arrayProductCart[head][i].discountPercentage}%`);
-      const blockAmountProducts = new Element(li.elem, 'div', 'block-amount');
-      const stockProductIgnor = new Element(blockAmountProducts.elem, 'p', 'stock', `Stock: ${this.arrayProductCart[head][i].stock}`);
-      const blockCounterProduct = new Element(blockAmountProducts.elem, 'div', 'block-counter');
-      const buttonNegative = new Element(blockCounterProduct.elem, 'button', 'button-count', '-');
-      const counterStocks = new Element(blockCounterProduct.elem, 'p', 'count-prod', `${count}`);
-      const buttonPositive = new Element(blockCounterProduct.elem, 'button', 'button-count', '+');
-      const priceProduct = new Element(blockAmountProducts.elem, 'p', 'price', `$${price}`);
+      const nameProductIgnor = new Element(descriptionBlockProduct.elem, HTMLTag.P, 'product-title', `${this.arrayProductCart[head][i].title}`);
+      const descrBlock = new Element(descriptionBlockProduct.elem, HTMLTag.DIV, 'block-description');
+      const descriptionProductIgnor = new Element(descrBlock.elem, HTMLTag.P, 'product-description', `${this.arrayProductCart[head][i].description}`);
+      const blockRatAndDisc = new Element(descrBlock.elem, HTMLTag.DIV, 'block-data');
+      const ratingProductIgnor = new Element(blockRatAndDisc.elem, HTMLTag.P, 'product-rating', `Rating: ${this.arrayProductCart[head][i].rating}`);
+      const discountProductIgnor = new Element(blockRatAndDisc.elem, HTMLTag.P, 'product-discount', `Discount: ${this.arrayProductCart[head][i].discountPercentage}%`);
+      const blockAmountProducts = new Element(li.elem, HTMLTag.DIV, 'block-amount');
+      const stockProductIgnor = new Element(blockAmountProducts.elem, HTMLTag.P, 'stock', `Stock: ${this.arrayProductCart[head][i].stock}`);
+      const blockCounterProduct = new Element(blockAmountProducts.elem, HTMLTag.DIV, 'block-counter');
+      const buttonNegative = new Element(blockCounterProduct.elem, HTMLTag.BUTTON, 'button-count', '-');
+      const counterStocks = new Element(blockCounterProduct.elem, HTMLTag.P, 'count-prod', `${count}`);
+      const buttonPositive = new Element(blockCounterProduct.elem, HTMLTag.BUTTON, 'button-count', '+');
+      const priceProduct = new Element(blockAmountProducts.elem, HTMLTag.P, 'price', `$${price}`);
 
       const getPrice = this.closurePrice(price, this.arrayProductCart[head][i].price);
       const getAmountProduct = this.closureAmountProduct(count);

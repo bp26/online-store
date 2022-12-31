@@ -3,12 +3,11 @@ import { ProductsData } from '../../types/types';
 import { IProduct } from '../../types/interfaces';
 import { infoList } from '../../constants/constants';
 import { ProductsCallback } from '../../types/types';
-import { ProductsAction } from '../../types/enums';
-import { CardButtonTitles } from '../../types/enums';
+import { ProductsAction, CardButtonTitles, HTMLTag } from '../../types/enums';
 
 export class ProductsView extends Element {
   constructor(parent: HTMLElement, data: ProductsData, callback: ProductsCallback) {
-    super(parent, 'div', 'products');
+    super(parent, HTMLTag.DIV, 'products');
     data.forEach((product) => {
       this.elem.append(this.drawProduct(product, callback));
     });
@@ -52,7 +51,7 @@ export class ProductsView extends Element {
     }
 
     infoList.forEach((item) => {
-      const li = document.createElement('li');
+      const li = document.createElement(HTMLTag.LI);
       li.className = `product-card__${item}`;
       li.textContent = `${item}: ${product[item as keyof IProduct]}`;
       info.append(li);
