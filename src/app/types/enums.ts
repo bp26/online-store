@@ -1,6 +1,6 @@
 export enum ProductsAction {
-  add,
-  details,
+  ADD,
+  DETAILS,
 }
 
 export enum CardButtonTitles {

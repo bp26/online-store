@@ -46,10 +46,12 @@ export class Cart {
   }
 
   paginationHeadValue(head: number): boolean {
-    if (!this.matrix[head] && this.paginationHead !== 0) {
+    if (!this.matrix[head]) {
+      if (this.paginationHead !== 0) {
         this.paginationHead -= 1;
         localStorage.setItem(localStorageCart.PAGINATION_HEAD, JSON.stringify(this.paginationHead));
         return false;
+      }
     }
     return true;
   }
@@ -91,7 +93,7 @@ export class Cart {
   }
 
   toggleProduct(id: number, price: number): void {
-    if (!this.list[id]) {
+    if (this.list[id]) {
       this.amountProductCart(false);
       this.summaProductCart(false, price);
       delete this.list[id];

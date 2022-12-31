@@ -29,9 +29,9 @@ export class Controller {
   }
 
   handleProductsCallback(action: ProductsAction, id: number, price: number): void {
-    if (action === ProductsAction.add) {
+    if (action === ProductsAction.ADD) {
       this.model.productCart(id, price);
-    } else if (action === ProductsAction.details) {
+    } else if (action === ProductsAction.DETAILS) {
       this.view.mountDetailsPage(id);
     }
   }
