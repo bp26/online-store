@@ -56,7 +56,7 @@ export class Cart {
   }
 
   paginationHeadValue(head: number): boolean {
-    if (!this.matrix[head] && this.paginationHead !== 0) {
+    if (!this.matrix[head] && this.paginationHead) {
       this.paginationHead -= 1;
       localStorage.setItem(localStorageCart.PAGINATION_HEAD, JSON.stringify(this.paginationHead));
       return false;
