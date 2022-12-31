@@ -4,6 +4,16 @@ import { discountsObj } from '../../../assets/discount/discount';
 import { binarySearch } from '../../utils/binarySearch';
 import { localStorageGuard, localStorageGuardMapDiscount } from '../../utils/localGuard';
 import { localStorageCart } from '../../types/enums';
+import {
+  DEFAULT_COUNT_PRODUCT_CART,
+  DEFAULT_SUM_PRODUCT_CART,
+  DEFAULT_PAGINATION_HEAD,
+  DEFAULT_PAGINATION_PAGES_COUNT,
+  DEFAULT_PAGINATION_INPUT_VALUE,
+  DEFAULT_DISCOUNT_LIST_ITEM,
+  DEFAULT_DISCOUNT_PROCENT,
+  ONE_HUNDRED,
+} from '../../constants/constants';
 
 export class Cart {
   readonly list: ICartList;
@@ -32,14 +42,14 @@ export class Cart {
     const DiscountListItem = localStorageGuard(localStorageCart.DISCOUNT_LIST_ITEM);
     const DiscountProcent = localStorageGuard(localStorageCart.DISCOUNT_PROCENT);
     this.list = CartList instanceof Object && !Array.isArray(CartList) ? CartList : {};
-    this.countProductCart = typeof CountProductCart === 'number' ? CountProductCart : 0;
-    this.sumProductCart = typeof SumProductCart === 'number' ? SumProductCart : 0;
-    this.paginationHead = typeof PaginationHead === 'number' ? PaginationHead : 0;
-    this.paginationPagesCount = typeof PaginationPagesCount === 'number' ? PaginationPagesCount : 1;
-    this.paginationInputValue = typeof PaginationInputValue === 'number' ? PaginationInputValue : 3;
+    this.countProductCart = typeof CountProductCart === 'number' ? CountProductCart : DEFAULT_COUNT_PRODUCT_CART;
+    this.sumProductCart = typeof SumProductCart === 'number' ? SumProductCart : DEFAULT_SUM_PRODUCT_CART;
+    this.paginationHead = typeof PaginationHead === 'number' ? PaginationHead : DEFAULT_PAGINATION_HEAD;
+    this.paginationPagesCount = typeof PaginationPagesCount === 'number' ? PaginationPagesCount : DEFAULT_PAGINATION_PAGES_COUNT;
+    this.paginationInputValue = typeof PaginationInputValue === 'number' ? PaginationInputValue : DEFAULT_PAGINATION_INPUT_VALUE;
     this.matrix = Matrix as IProduct[][];
-    this.discountListItem = typeof DiscountListItem === 'number' ? DiscountListItem : 0;
-    this.discountProcent = typeof DiscountProcent === 'number' ? DiscountProcent : 0;
+    this.discountListItem = typeof DiscountListItem === 'number' ? DiscountListItem : DEFAULT_DISCOUNT_LIST_ITEM;
+    this.discountProcent = typeof DiscountProcent === 'number' ? DiscountProcent : DEFAULT_DISCOUNT_PROCENT;
     this.nameDiscount = localStorageGuardMapDiscount(localStorageCart.DISCOUNT_NAME);
     this.summProdContent.textContent = `${this.sumProductCart}`;
     this.countProdContent.textContent = `${this.countProductCart}`;
@@ -47,9 +57,9 @@ export class Cart {
 
   paginationHeadValue(head: number): boolean {
     if (!this.matrix[head] && this.paginationHead !== 0) {
-        this.paginationHead -= 1;
-        localStorage.setItem(localStorageCart.PAGINATION_HEAD, JSON.stringify(this.paginationHead));
-        return false;
+      this.paginationHead -= 1;
+      localStorage.setItem(localStorageCart.PAGINATION_HEAD, JSON.stringify(this.paginationHead));
+      return false;
     }
     return true;
   }
@@ -69,7 +79,7 @@ export class Cart {
   }
 
   togglePaginationHead(flag: boolean): void {
-    flag ? this.paginationHead += 1 : this.paginationHead -= 1
+    flag ? (this.paginationHead += 1) : (this.paginationHead -= 1);
     localStorage.setItem(localStorageCart.PAGINATION_HEAD, JSON.stringify(this.paginationHead));
   }
 
@@ -200,7 +210,7 @@ export class Cart {
   }
 
   calculateProcent(): number {
-    const procent = (this.sumProductCart / 100) * this.discountProcent;
+    const procent = (this.sumProductCart / ONE_HUNDRED) * this.discountProcent;
     const result = this.sumProductCart - procent;
     localStorage.setItem(localStorageCart.CALCULATE_PROCENT, JSON.stringify(result));
     return result;
