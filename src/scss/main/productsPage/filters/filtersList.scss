@@ -16,13 +16,19 @@
 }
 
 .filters-list__bottom-wrapper {
-  height: 245px;
+  height: 240px;
   overflow-y: scroll;
   padding: 5px;
 
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+.filters-list__list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
 .filters-list__option {
