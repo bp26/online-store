@@ -14,7 +14,7 @@ export class ListFilterView extends Element {
     const name = new Element(upperWrapper.elem, 'span', `filters-list__name`, `${filterName[0].toUpperCase() + filterName.slice(1)}`);
 
     const bottomWrapper = new Element(this.elem, 'div', `filters-list__bottom-wrapper`);
-    this.list = new Element(bottomWrapper.elem, 'ul', `fiters-list__list`);
+    this.list = new Element(bottomWrapper.elem, 'ul', `filters-list__list`);
 
     this.renderOptions(filterName, filterOptions, callback);
   }
