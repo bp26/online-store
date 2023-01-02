@@ -42,6 +42,8 @@ export const enum localStorageCart {
 export const enum HTMLTag {
   DIV = 'div',
   P = 'p',
+  H2 = 'h2',
+  FORM = 'form',
   SPAN = 'span',
   INPUT = 'input',
   BUTTON = 'button',

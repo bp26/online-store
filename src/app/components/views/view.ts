@@ -2,6 +2,7 @@ import { Controller } from '../controllers/controller';
 import { ProductsPageView } from './productsPageView/productsPageView';
 import { CartView } from '../views/cartView';
 import { IProduct } from '../../types/interfaces';
+import { ModalView } from './form/formView';
 
 export class View {
   readonly root: HTMLElement;
@@ -60,9 +61,14 @@ export class View {
       this.deleteNameDiscount,
       this.calculateProcent,
       this.setDiscountProcent,
-      this.getValueDiscountData
+      this.getValueDiscountData,
+      this.mountModal
     );
   }
+
+  mountModal = () => {
+    new ModalView();
+  };
 
   public mountDetailsPage = (id: number): void => {
     this.root.innerHTML = '';
