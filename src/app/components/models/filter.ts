@@ -125,27 +125,27 @@ export class Filter {
     const min = filter ? filter.min : start;
     const max = filter ? filter.max : end;
 
-    const isActive = filter && filter.isActive;
+    const isActive = filter !== null && filter.isActive;
     const isEmpty = filteredData.length === 0;
 
     if (isActive) {
       filter.isActive = false;
       return {
-        start: start,
-        end: end,
-        min: min,
-        max: max,
-        isActive: true,
-        isEmpty: isEmpty,
+        start,
+        end,
+        min,
+        max,
+        isActive,
+        isEmpty,
       };
     } else {
       return {
-        start: start,
-        end: end,
+        start,
+        end,
         min: isEmpty ? min : Math.min(...filteredData.map((product) => product[filterName])),
         max: isEmpty ? max : Math.max(...filteredData.map((product) => product[filterName])),
-        isActive: false,
-        isEmpty: isEmpty,
+        isActive,
+        isEmpty,
       };
     }
   }
