@@ -6,4 +6,4 @@ if (!(root instanceof HTMLElement)) {
   throw new Error('Element "Main" not found');
 }
 
-const app = new View(root);
+const appIgnor = new View(root);

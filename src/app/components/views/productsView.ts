@@ -3,12 +3,11 @@ import { ProductsData } from '../../types/types';
 import { IProduct } from '../../types/interfaces';
 import { infoList } from '../../constants/constants';
 import { ProductsCallback } from '../../types/types';
-import { ProductsAction } from '../../types/enums';
-import { CardButtonTitles } from '../../types/enums';
+import { ProductsAction, CardButtonTitles, HTMLTag } from '../../types/enums';
 
 export class ProductsView extends Element {
   constructor(parent: HTMLElement, data: ProductsData, callback: ProductsCallback) {
-    super(parent, 'div', 'products');
+    super(parent, HTMLTag.DIV, 'products');
     data.forEach((product) => {
       this.elem.append(this.drawProduct(product, callback));
     });
@@ -36,7 +35,7 @@ export class ProductsView extends Element {
         throw new Error(`${e} is not an HTMLElement`);
       }
       if (!e.target.classList.contains('product-card__button')) {
-        callback(ProductsAction.details, product.id);
+        callback(ProductsAction.DETAILS, product.id, product.price);
       }
     };
 
@@ -52,7 +51,7 @@ export class ProductsView extends Element {
     }
 
     infoList.forEach((item) => {
-      const li = document.createElement('li');
+      const li = document.createElement(HTMLTag.LI);
       li.className = `product-card__${item}`;
       li.textContent = `${item}: ${product[item as keyof IProduct]}`;
       info.append(li);
@@ -64,15 +63,14 @@ export class ProductsView extends Element {
     }
 
     addButton.onclick = () => {
-      callback(ProductsAction.add, product.id);
+      callback(ProductsAction.ADD, product.id, product.price);
       card.classList.toggle('product-card_added');
-      if (addButton.textContent === CardButtonTitles.add) {
-        addButton.textContent = CardButtonTitles.remove;
+      if (addButton.textContent === CardButtonTitles.ADD) {
+        addButton.textContent = CardButtonTitles.REMOVE;
       } else {
-        addButton.textContent = CardButtonTitles.add;
+        addButton.textContent = CardButtonTitles.ADD;
       }
     };
-
     return clone;
   }
 }
