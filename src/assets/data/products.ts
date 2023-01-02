@@ -1,6 +1,6 @@
 import { ProductsData } from '../../app/types/types';
 
-const products: ProductsData = [
+export const products: ProductsData = [
   {
     id: 1,
     title: 'iPhone 9',
@@ -1793,5 +1793,3 @@ const products: ProductsData = [
     ],
   },
 ];
-
-export default products;

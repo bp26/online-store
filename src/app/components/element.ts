@@ -1,12 +1,13 @@
 export class Element {
   elem: HTMLElement;
-  constructor(parent: HTMLElement, tag = 'div', className: string, textContent = '') {
+  constructor(parent: HTMLElement, tag: string, className: string, textContent = '', flag = true) {
     const elem = document.createElement(tag);
 
     elem.className = className;
     elem.textContent = textContent;
 
-    parent.append(elem);
+    flag ? parent.append(elem) : parent.prepend(elem);
+
     this.elem = elem;
   }
 

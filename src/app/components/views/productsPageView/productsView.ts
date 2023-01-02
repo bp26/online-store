@@ -45,7 +45,7 @@ export class ProductsView extends Element {
         throw new Error(`${e} is not an HTMLElement`);
       }
       if (!e.target.classList.contains('product-card__button')) {
-        callback(ProductsAction.DETAILS, product.id);
+        callback(ProductsAction.DETAILS, product.id, product.price);
       }
     };
 
@@ -70,7 +70,7 @@ export class ProductsView extends Element {
     }
 
     addButton.onclick = () => {
-      callback(ProductsAction.ADD, product.id);
+      callback(ProductsAction.ADD, product.id, product.price);
       card.classList.toggle('product-card_added');
       if (addButton.textContent === CardButtonTitles.ADD) {
         addButton.textContent = CardButtonTitles.REMOVE;

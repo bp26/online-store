@@ -19,6 +19,24 @@ export interface IProduct {
   images: string[];
 }
 
+export interface ICartList {
+  [key: string]: IDescriptionCartList;
+}
+
+export interface IDiscount {
+  [key: string]: IDiscountValue;
+}
+
+interface IDiscountValue {
+  name: string;
+  value: string;
+}
+
+interface IDescriptionCartList {
+  count: number;
+  price: number;
+}
+
 export interface IFilterOptions {
   category: ListOptions;
   brand: ListOptions;
