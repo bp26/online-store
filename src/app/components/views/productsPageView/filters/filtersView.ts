@@ -15,7 +15,7 @@ export class FiltersView extends Element {
     const { category, brand, price, stock } = options;
 
     const resetButton = new Element(this.elem, 'button', 'filters__button', 'Reset');
-    resetButton.elem.onclick = () => callback(FiltersAction.reset);
+    resetButton.elem.onclick = () => callback(FiltersAction.RESET);
 
     this.categoryFilter = new ListFilterView(this.elem, 'category', category, callback);
     this.brandFilter = new ListFilterView(this.elem, 'brand', brand, callback);
