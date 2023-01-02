@@ -29,7 +29,6 @@ export class Controller {
     switch (action) {
       case ProductsAction.ADD:
         this.model.cart.toggleProduct(id);
-        console.log(this.model.cart.getCartList());
         break;
       case ProductsAction.DETAILS:
         this.view.mountDetailsPage(id);
