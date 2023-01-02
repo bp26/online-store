@@ -1,11 +1,12 @@
 import { Controller } from '../controllers/controller';
-import { ProductsView } from './productsView';
+import { ProductsPageView } from './productsPageView/productsPageView';
 import { CartView } from '../views/cartView';
 import { IProduct } from '../../types/interfaces';
 
 export class View {
   readonly root: HTMLElement;
   readonly controller: Controller;
+  productsPage?: ProductsPageView;
   private buttonCart: HTMLButtonElement;
   private pageMain: HTMLHeadElement;
   private inputValue: number;
@@ -23,14 +24,13 @@ export class View {
     this.mountProductsPage();
   }
 
-  mountProductsPage(): void {
+  public mountProductsPage(): void {
     this.root.innerHTML = '';
     this.disabledBtnCart(false);
-    const productsCallback = this.controller.handleProductsCallback.bind(this.controller);
-    const productsIgnor = new ProductsView(this.root, this.controller.handleProductsInit(), productsCallback);
+    this.productsPage = new ProductsPageView(this.root, this.controller.handleProductsPageInit(), this.controller.handleProductsPageCallbacks());
   }
 
-  mountCartPage(): void {
+  public mountCartPage(): void {
     this.root.innerHTML = '';
     this.disabledBtnCart(true);
     const arrSummaryData = this.getSummaryData();
@@ -64,7 +64,7 @@ export class View {
     );
   }
 
-  mountDetailsPage = (id: number): void => {
+  public mountDetailsPage = (id: number): void => {
     this.root.innerHTML = '';
     this.disabledBtnCart(false);
   };

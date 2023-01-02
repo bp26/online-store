@@ -2,19 +2,34 @@ import { ProductsData } from '../../types/types';
 import { IProduct } from '../../types/interfaces';
 import { products } from '../../../assets/data/products';
 import { Cart } from './cart';
+import { Filter } from './filter';
+import { IProductsPageData } from '../../types/interfaces';
 
 export class Model {
   readonly data: ProductsData;
   readonly cart: Cart;
   private openCart: boolean;
+  readonly filter: Filter;
+
   constructor() {
     this.data = products;
     this.cart = new Cart();
     this.openCart = false;
+    this.filter = new Filter();
   }
 
-  getData(): ProductsData {
+  private getData(): ProductsData {
     return this.data;
+  }
+
+  public getProductsPageData(): IProductsPageData {
+    const initialData = this.getData();
+    const transData = this.filter.filterData(initialData);
+    const filterOptions = this.filter.setFilterOptions(initialData, transData);
+    return {
+      data: transData,
+      filterOptions: filterOptions,
+    };
   }
 
   getSummaryData(): number[] {

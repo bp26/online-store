@@ -1,19 +1,30 @@
-import { Element } from '../element';
-import { ProductsData } from '../../types/types';
-import { IProduct } from '../../types/interfaces';
-import { infoList } from '../../constants/constants';
-import { ProductsCallback } from '../../types/types';
-import { ProductsAction, CardButtonTitles, HTMLTag } from '../../types/enums';
+import { Element } from '../../element';
+import { ProductsData } from '../../../types/types';
+import { IProduct } from '../../../types/interfaces';
+import { infoList } from '../../../utils/constants';
+import { ProductsCallback } from '../../../types/types';
+import { ProductsAction } from '../../../types/enums';
+import { CardButtonTitles } from '../../../types/enums';
+import { HTMLTag } from '../../../types/enums';
 
 export class ProductsView extends Element {
   constructor(parent: HTMLElement, data: ProductsData, callback: ProductsCallback) {
     super(parent, HTMLTag.DIV, 'products');
-    data.forEach((product) => {
-      this.elem.append(this.drawProduct(product, callback));
-    });
+    this.renderProducts(data, callback);
   }
 
-  drawProduct(product: IProduct, callback: ProductsCallback): DocumentFragment {
+  public renderProducts(data: ProductsData, callback: ProductsCallback): void {
+    this.elem.innerHTML = '';
+    if (data.length !== 0) {
+      data.forEach((product) => {
+        this.elem.append(this.drawProduct(product, callback));
+      });
+    } else {
+      const emptyMessage = new Element(this.elem, HTMLTag.P, 'products__empty-message', 'NOT FOUND');
+    }
+  }
+
+  private drawProduct(product: IProduct, callback: ProductsCallback): DocumentFragment {
     const temp = document.querySelector('#temp-product-card');
     if (!(temp instanceof HTMLTemplateElement)) {
       throw new Error(`${temp} is not an HTMLTemplateElement`);
@@ -51,10 +62,7 @@ export class ProductsView extends Element {
     }
 
     infoList.forEach((item) => {
-      const li = document.createElement(HTMLTag.LI);
-      li.className = `product-card__${item}`;
-      li.textContent = `${item}: ${product[item as keyof IProduct]}`;
-      info.append(li);
+      const li = new Element(info, HTMLTag.LI, `product-card__${item}`, `${item}: ${product[item as keyof IProduct]}`);
     });
 
     const addButton = clone.querySelector('.product-card__button');
@@ -71,6 +79,7 @@ export class ProductsView extends Element {
         addButton.textContent = CardButtonTitles.ADD;
       }
     };
+
     return clone;
   }
 }

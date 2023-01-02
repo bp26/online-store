@@ -3,6 +3,19 @@ export enum ProductsAction {
   DETAILS,
 }
 
+export enum FiltersAction {
+  FILTER,
+  RESET,
+  COPY,
+}
+
+export enum FiltersType {
+  category = 'category',
+  brand = 'brand',
+  price = 'price',
+  stock = 'stock',
+}
+
 export enum CardButtonTitles {
   ADD = 'ADD TO CART',
   REMOVE = 'REMOVE FROM CART',
@@ -36,4 +49,10 @@ export const enum HTMLTag {
   LI = 'li',
   SECTION = 'section',
   IMG = 'img',
+  LABEL = 'label',
+}
+
+export const enum DisplayStyle {
+  BLOCK = 'block',
+  NONE = 'none',
 }

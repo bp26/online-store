@@ -13,7 +13,7 @@ import {
   DEFAULT_DISCOUNT_LIST_ITEM,
   DEFAULT_DISCOUNT_PROCENT,
   ONE_HUNDRED,
-} from '../../constants/constants';
+} from '../../utils/constants';
 
 export class Cart {
   readonly list: ICartList;
