@@ -39,7 +39,11 @@ export class Filter {
 
   private filterCount(product: IProduct, filterName: CountFilterNames): boolean {
     const filter = this.filters[filterName];
-    return filter !== null ? product[filterName] >= filter.min && product[filterName] <= filter.max : true;
+    if (filter !== null) {
+      return product[filterName] >= filter.min && product[filterName] <= filter.max;
+    } else {
+      return true;
+    }
   }
 
   public resetFilters(): void {
