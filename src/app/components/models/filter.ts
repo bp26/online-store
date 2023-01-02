@@ -98,7 +98,7 @@ export class Filter {
   private setListOptions(data: ProductsData, filteredData: ProductsData, filterName: ListFilterNames): ListOptions {
     const fullOptions = data.reduce((acc: ListOptions, product: IProduct) => {
       const filter = product[filterName];
-      if (acc[filter] === undefined) {
+      if (!acc[filter]) {
         acc[filter] = {
           current: 0,
           full: 1,
