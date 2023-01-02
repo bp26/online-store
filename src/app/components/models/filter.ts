@@ -24,10 +24,10 @@ export class Filter {
   }
 
   public filterData(data: ProductsData): ProductsData {
-    const categoryFilter = (product: IProduct) => this.filterList(product, 'category');
-    const brandFilter = (product: IProduct) => this.filterList(product, 'brand');
-    const priceFilter = (product: IProduct) => this.filterCount(product, 'price');
-    const stockFilter = (product: IProduct) => this.filterCount(product, 'stock');
+    const categoryFilter = (product: IProduct) => this.filterList(product, FiltersType.category);
+    const brandFilter = (product: IProduct) => this.filterList(product, FiltersType.brand);
+    const priceFilter = (product: IProduct) => this.filterCount(product, FiltersType.price);
+    const stockFilter = (product: IProduct) => this.filterCount(product, FiltersType.stock);
     const filterArray = [categoryFilter, brandFilter, priceFilter, stockFilter];
     return filterArray.reduce((data, filterFunc) => data.filter(filterFunc), data);
   }
@@ -54,16 +54,16 @@ export class Filter {
     const { type, filter } = filtersData;
     switch (type) {
       case FiltersType.category:
-        if (typeof filter === 'string') this.setListFilter('category', filter);
+        if (typeof filter === 'string') this.setListFilter(FiltersType.category, filter);
         break;
       case FiltersType.brand:
-        if (typeof filter === 'string') this.setListFilter('brand', filter);
+        if (typeof filter === 'string') this.setListFilter(FiltersType.brand, filter);
         break;
       case FiltersType.price:
-        if (typeof filter !== 'string') this.setCountFilter('price', filter);
+        if (typeof filter !== 'string') this.setCountFilter(FiltersType.price, filter);
         break;
       case FiltersType.stock:
-        if (typeof filter !== 'string') this.setCountFilter('stock', filter);
+        if (typeof filter !== 'string') this.setCountFilter(FiltersType.stock, filter);
         break;
     }
   }
@@ -88,10 +88,10 @@ export class Filter {
 
   public setFilterOptions(data: ProductsData, filteredData: ProductsData) {
     return {
-      category: this.setListOptions(data, filteredData, 'category'),
-      brand: this.setListOptions(data, filteredData, 'brand'),
-      price: this.setCountOptions(data, filteredData, 'price'),
-      stock: this.setCountOptions(data, filteredData, 'stock'),
+      category: this.setListOptions(data, filteredData, FiltersType.category),
+      brand: this.setListOptions(data, filteredData, FiltersType.brand),
+      price: this.setCountOptions(data, filteredData, FiltersType.price),
+      stock: this.setCountOptions(data, filteredData, FiltersType.stock),
     };
   }
 
