@@ -50,3 +50,8 @@ export const enum HTMLTag {
   SECTION = 'section',
   IMG = 'img',
 }
+
+export const enum DisplayStyle {
+  BLOCK = 'block',
+  NONE = 'none',
+}

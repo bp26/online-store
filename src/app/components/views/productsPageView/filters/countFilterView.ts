@@ -5,6 +5,7 @@ import { CountFilterNames } from '../../../../types/types';
 import { FiltersAction } from '../../../../types/enums';
 import { FiltersCallback } from '../../../../types/types';
 import { FiltersType } from '../../../../types/enums';
+import { DisplayStyle } from '../../../../types/enums';
 
 export class CountFilterView extends Element {
   private sliderOne: FilterSlider;
@@ -46,9 +47,9 @@ export class CountFilterView extends Element {
   }
 
   private toggleValues(options: CountOptions): void {
-    this.emptyValue.elem.style.display = options.isEmpty ? 'block' : 'none';
-    this.minValue.elem.style.display = options.isEmpty ? 'none' : 'block';
-    this.maxValue.elem.style.display = options.isEmpty ? 'none' : 'block';
+    this.emptyValue.elem.style.display = options.isEmpty ? DisplayStyle.BLOCK : DisplayStyle.NONE;
+    this.minValue.elem.style.display = options.isEmpty ? DisplayStyle.NONE : DisplayStyle.BLOCK;
+    this.maxValue.elem.style.display = options.isEmpty ? DisplayStyle.NONE : DisplayStyle.BLOCK;
   }
 
   private setValues(options: CountOptions) {
