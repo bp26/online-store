@@ -5,10 +5,11 @@ import { infoList } from '../../../utils/constants';
 import { ProductsCallback } from '../../../types/types';
 import { ProductsAction } from '../../../types/enums';
 import { CardButtonTitles } from '../../../types/enums';
+import { HTMLTag } from '../../../types/enums';
 
 export class ProductsView extends Element {
   constructor(parent: HTMLElement, data: ProductsData, callback: ProductsCallback) {
-    super(parent, 'div', 'products');
+    super(parent, HTMLTag.DIV, 'products');
     this.renderProducts(data, callback);
   }
 
@@ -19,7 +20,7 @@ export class ProductsView extends Element {
         this.elem.append(this.drawProduct(product, callback));
       });
     } else {
-      const emptyMessage = new Element(this.elem, 'p', 'products__empty-message', 'NOT FOUND');
+      const emptyMessage = new Element(this.elem, HTMLTag.P, 'products__empty-message', 'NOT FOUND');
     }
   }
 
@@ -61,7 +62,7 @@ export class ProductsView extends Element {
     }
 
     infoList.forEach((item) => {
-      const li = new Element(info, 'li', `product-card__${item}`, `${item}: ${product[item as keyof IProduct]}`);
+      const li = new Element(info, HTMLTag.LI, `product-card__${item}`, `${item}: ${product[item as keyof IProduct]}`);
     });
 
     const addButton = clone.querySelector('.product-card__button');

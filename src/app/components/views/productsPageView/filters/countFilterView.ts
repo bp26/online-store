@@ -6,6 +6,7 @@ import { FiltersAction } from '../../../../types/enums';
 import { FiltersCallback } from '../../../../types/types';
 import { FiltersType } from '../../../../types/enums';
 import { DisplayStyle } from '../../../../types/enums';
+import { HTMLTag } from '../../../../types/enums';
 
 export class CountFilterView extends Element {
   private sliderOne: FilterSlider;
@@ -15,20 +16,20 @@ export class CountFilterView extends Element {
   private maxValue: Element;
 
   constructor(parent: HTMLElement, filterName: CountFilterNames, options: CountOptions, callback: FiltersCallback) {
-    super(parent, 'div', `filters-count`);
+    super(parent, HTMLTag.DIV, `filters-count`);
 
-    const upperWrapper = new Element(this.elem, 'div', `filters-count__upper-wrapper`);
-    const name = new Element(upperWrapper.elem, 'span', `filters-count__name`, `${filterName[0].toUpperCase() + filterName.slice(1)}`);
+    const upperWrapper = new Element(this.elem, HTMLTag.DIV, `filters-count__upper-wrapper`);
+    const name = new Element(upperWrapper.elem, HTMLTag.SPAN, `filters-count__name`, `${filterName[0].toUpperCase() + filterName.slice(1)}`);
 
-    const bottomWrapper = new Element(this.elem, 'div', `filters-count__bottom-wrapper`);
+    const bottomWrapper = new Element(this.elem, HTMLTag.DIV, `filters-count__bottom-wrapper`);
 
-    const valuesContainer = new Element(bottomWrapper.elem, 'div', `filters-count__values-container`);
-    this.emptyValue = new Element(valuesContainer.elem, 'p', `filters-count__empty-value`, 'NOT FOUND');
-    this.minValue = new Element(valuesContainer.elem, 'div', `filters-count__value`, `${options.min}`);
-    this.maxValue = new Element(valuesContainer.elem, 'div', `filters-count__value`, `${options.max}`);
+    const valuesContainer = new Element(bottomWrapper.elem, HTMLTag.DIV, `filters-count__values-container`);
+    this.emptyValue = new Element(valuesContainer.elem, HTMLTag.SPAN, `filters-count__empty-value`, 'NOT FOUND');
+    this.minValue = new Element(valuesContainer.elem, HTMLTag.SPAN, `filters-count__value`, `${options.min}`);
+    this.maxValue = new Element(valuesContainer.elem, HTMLTag.SPAN, `filters-count__value`, `${options.max}`);
     this.toggleValues(options);
 
-    const slidersContainer = new Element(bottomWrapper.elem, 'div', `filters-count__sliders-container`);
+    const slidersContainer = new Element(bottomWrapper.elem, HTMLTag.DIV, `filters-count__sliders-container`);
     this.sliderOne = new FilterSlider(slidersContainer.elem, `filters-count__slider`, options.start, options.end, options.min);
     this.sliderTwo = new FilterSlider(slidersContainer.elem, `filters-count__slider`, options.start, options.end, options.max);
 

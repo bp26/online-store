@@ -3,12 +3,13 @@ import { ProductsView } from './productsView';
 import { FiltersView } from './filters/filtersView';
 import { IProductsPageData } from '../../../types/interfaces';
 import { IProductsPageCallbacks } from '../../../types/interfaces';
+import { HTMLTag } from '../../../types/enums';
 
 export class ProductsPageView extends Element {
   private filters: FiltersView;
   private products: ProductsView;
   constructor(parent: HTMLElement, initData: IProductsPageData, callbacks: IProductsPageCallbacks) {
-    super(parent, 'div', 'products-page');
+    super(parent, HTMLTag.DIV, 'products-page');
 
     const { data, filterOptions } = initData;
     const { productsCallback, filtersCallback } = callbacks;

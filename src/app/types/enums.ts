@@ -49,6 +49,7 @@ export const enum HTMLTag {
   LI = 'li',
   SECTION = 'section',
   IMG = 'img',
+  LABEL = 'label',
 }
 
 export const enum DisplayStyle {

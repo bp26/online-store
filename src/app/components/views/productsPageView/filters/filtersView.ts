@@ -4,6 +4,8 @@ import { ListFilterView } from './listFilterView';
 import { CountFilterView } from './countFilterView';
 import { FiltersCallback } from '../../../../types/types';
 import { FiltersAction } from '../../../../types/enums';
+import { FiltersType } from '../../../../types/enums';
+import { HTMLTag } from '../../../../types/enums';
 
 export class FiltersView extends Element {
   private categoryFilter: ListFilterView;
@@ -11,22 +13,22 @@ export class FiltersView extends Element {
   private priceFilter: CountFilterView;
   private stockFilter: CountFilterView;
   constructor(parent: HTMLElement, options: IFilterOptions, callback: FiltersCallback) {
-    super(parent, 'div', 'filters');
+    super(parent, HTMLTag.DIV, 'filters');
     const { category, brand, price, stock } = options;
 
-    const resetButton = new Element(this.elem, 'button', 'filters__button', 'Reset');
+    const resetButton = new Element(this.elem, HTMLTag.BUTTON, 'filters__button', 'Reset');
     resetButton.elem.onclick = () => callback(FiltersAction.RESET);
 
-    this.categoryFilter = new ListFilterView(this.elem, 'category', category, callback);
-    this.brandFilter = new ListFilterView(this.elem, 'brand', brand, callback);
-    this.priceFilter = new CountFilterView(this.elem, 'price', price, callback);
-    this.stockFilter = new CountFilterView(this.elem, 'stock', stock, callback);
+    this.categoryFilter = new ListFilterView(this.elem, FiltersType.category, category, callback);
+    this.brandFilter = new ListFilterView(this.elem, FiltersType.brand, brand, callback);
+    this.priceFilter = new CountFilterView(this.elem, FiltersType.price, price, callback);
+    this.stockFilter = new CountFilterView(this.elem, FiltersType.stock, stock, callback);
   }
 
   public update(options: IFilterOptions, callback: FiltersCallback): void {
     const { category, brand, price, stock } = options;
-    this.categoryFilter.renderOptions('category', category, callback);
-    this.brandFilter.renderOptions('brand', brand, callback);
+    this.categoryFilter.renderOptions(FiltersType.category, category, callback);
+    this.brandFilter.renderOptions(FiltersType.brand, brand, callback);
     this.priceFilter.update(price);
     this.stockFilter.update(stock);
   }
