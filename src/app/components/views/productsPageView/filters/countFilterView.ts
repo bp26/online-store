@@ -32,10 +32,10 @@ export class CountFilterView extends Element {
     this.sliderTwo = new FilterSlider(slidersContainer.elem, `filters-count__slider`, options.start, options.end, options.max);
 
     this.sliderOne.elem.oninput = () => {
-      callback(FiltersAction.filter, { type: FiltersType[filterName], filter: this.getSliderValues() });
+      callback(FiltersAction.FILTER, { type: FiltersType[filterName], filter: this.getSliderValues() });
     };
     this.sliderTwo.elem.oninput = () => {
-      callback(FiltersAction.filter, { type: FiltersType[filterName], filter: this.getSliderValues() });
+      callback(FiltersAction.FILTER, { type: FiltersType[filterName], filter: this.getSliderValues() });
     };
   }
 

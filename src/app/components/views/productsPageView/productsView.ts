@@ -45,7 +45,7 @@ export class ProductsView extends Element {
         throw new Error(`${e} is not an HTMLElement`);
       }
       if (!e.target.classList.contains('product-card__button')) {
-        callback(ProductsAction.details, product.id);
+        callback(ProductsAction.DETAILS, product.id);
       }
     };
 
@@ -70,12 +70,12 @@ export class ProductsView extends Element {
     }
 
     addButton.onclick = () => {
-      callback(ProductsAction.add, product.id);
+      callback(ProductsAction.ADD, product.id);
       card.classList.toggle('product-card_added');
-      if (addButton.textContent === CardButtonTitles.add) {
-        addButton.textContent = CardButtonTitles.remove;
+      if (addButton.textContent === CardButtonTitles.ADD) {
+        addButton.textContent = CardButtonTitles.REMOVE;
       } else {
-        addButton.textContent = CardButtonTitles.add;
+        addButton.textContent = CardButtonTitles.ADD;
       }
     };
 

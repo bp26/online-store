@@ -1,22 +1,22 @@
 export enum ProductsAction {
-  add,
-  details,
+  ADD,
+  DETAILS,
 }
 
 export enum FiltersAction {
-  filter,
-  reset,
-  copy,
+  FILTER,
+  RESET,
+  COPY,
 }
 
 export enum FiltersType {
-  category,
-  brand,
-  price,
-  stock,
+  category = 'category',
+  brand = 'brand',
+  price = 'price',
+  stock = 'stock',
 }
 
 export enum CardButtonTitles {
-  add = 'ADD TO CART',
-  remove = 'REMOVE FROM CART',
+  ADD = 'ADD TO CART',
+  REMOVE = 'REMOVE FROM CART',
 }

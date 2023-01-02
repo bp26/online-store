@@ -27,11 +27,11 @@ export class Controller {
 
   private handleProductsCallback(action: ProductsAction, id: number): void {
     switch (action) {
-      case ProductsAction.add:
+      case ProductsAction.ADD:
         this.model.cart.toggleProduct(id);
         console.log(this.model.cart.getCartList());
         break;
-      case ProductsAction.details:
+      case ProductsAction.DETAILS:
         this.view.mountDetailsPage(id);
         break;
     }
@@ -39,15 +39,15 @@ export class Controller {
 
   private handleFiltersCallback(action: FiltersAction, filtersData?: FiltersData): void {
     switch (action) {
-      case FiltersAction.filter:
+      case FiltersAction.FILTER:
         if (filtersData) this.model.filter.setFilter(filtersData);
         if (this.view.productsPage) this.view.productsPage.updateOnFilter(this.handleProductsPageInit(), this.handleProductsPageCallbacks());
         break;
-      case FiltersAction.reset:
+      case FiltersAction.RESET:
         this.model.filter.resetFilters();
         if (this.view.productsPage) this.view.productsPage.updateOnFilter(this.handleProductsPageInit(), this.handleProductsPageCallbacks());
         break;
-      case FiltersAction.copy:
+      case FiltersAction.COPY:
         break;
     }
   }

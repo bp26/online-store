@@ -35,7 +35,7 @@ export class ListFilterView extends Element {
       (input.elem as HTMLInputElement).checked = filterOptions[filterOption].isChecked;
       input.elem.setAttribute('id', `${filterOption}`);
       input.elem.oninput = () => {
-        callback(FiltersAction.filter, { type: FiltersType[filterName], filter: filterOption });
+        callback(FiltersAction.FILTER, { type: FiltersType[filterName], filter: filterOption });
       };
 
       const label = new Element(option.elem, 'label', `filters-list__label`, `${filterOption}`);
