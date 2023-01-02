@@ -68,7 +68,7 @@ export class CartSummaryContent {
     };
     this.discountBlockPrice = new Element(node, HTMLTag.DIV, 'summary-block-disc-description');
     const discountDescrSummaryIgnor = new Element(this.discountBlockPrice.elem, HTMLTag.P, 'summary-disc-description', "Promo for test: 'RS', 'EPM'");
-    const buttonSummary = new Element(node, 'button', 'summary-button');
+    const buttonSummary = new Element(node, HTMLTag.BUTTON, 'summary-button');
     const buttonSpanSummaryIgnor = new Element(buttonSummary.elem, HTMLTag.SPAN, 'summary-button__span', 'BUY NOW');
     const amountList = this.getDiscountListItem();
     if (amountList) {
