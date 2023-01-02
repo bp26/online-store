@@ -102,7 +102,7 @@ export class Filter {
         acc[filter] = {
           current: 0,
           full: 1,
-          isChecked: this.filters[filterName].includes(filter) ? true : false,
+          isChecked: this.filters[filterName].includes(filter),
         };
       } else {
         acc[filter].full += 1;
@@ -126,7 +126,7 @@ export class Filter {
     const max = filter ? filter.max : end;
 
     const isActive = filter && filter.isActive;
-    const isEmpty = filteredData.length === 0 ? true : false;
+    const isEmpty = filteredData.length === 0;
 
     if (isActive) {
       filter.isActive = false;
