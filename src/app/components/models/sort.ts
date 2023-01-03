@@ -15,6 +15,10 @@ export class Sort {
     this.type = type;
   }
 
+  public getType(): SortType {
+    return this.type;
+  }
+
   public sortData(data: ProductsData): ProductsData {
     switch (this.type) {
       case SortType.DEFAULT:
