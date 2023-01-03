@@ -50,9 +50,20 @@ export const enum HTMLTag {
   SECTION = 'section',
   IMG = 'img',
   LABEL = 'label',
+  SELECT = 'select',
 }
 
 export const enum DisplayStyle {
   BLOCK = 'block',
   NONE = 'none',
+}
+
+export enum SortType {
+  DEFAULT = 'Sort by default',
+  PRICE_ASC = 'Sort by price &uarr;',
+  PRICE_DESC = 'Sort by brice &darr;',
+  RATING_ASC = 'Sort by rating &uarr;',
+  RATING_DESC = 'Sort by rating &darr;',
+  DISCOUNT_ASC = 'Sort by discount &uarr;',
+  DISCOUNT_DESC = 'Sort by discount &darr;',
 }
