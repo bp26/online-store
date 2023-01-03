@@ -1,9 +1,9 @@
-export enum ProductsAction {
+export const enum ProductsAction {
   ADD,
   DETAILS,
 }
 
-export enum FiltersAction {
+export const enum FiltersAction {
   FILTER,
   RESET,
   COPY,
@@ -16,7 +16,7 @@ export enum FiltersType {
   stock = 'stock',
 }
 
-export enum CardButtonTitles {
+export const enum CardButtonTitles {
   ADD = 'ADD TO CART',
   REMOVE = 'REMOVE FROM CART',
 }
@@ -56,6 +56,12 @@ export const enum HTMLTag {
 export const enum DisplayStyle {
   BLOCK = 'block',
   NONE = 'none',
+}
+
+export const enum ProductsHeaderAction {
+  SORT,
+  SEARCH,
+  TOGGLE_VIEW,
 }
 
 export enum SortType {
