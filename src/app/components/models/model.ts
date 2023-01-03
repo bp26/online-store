@@ -3,6 +3,7 @@ import { IProduct } from '../../types/interfaces';
 import { products } from '../../../assets/data/products';
 import { Cart } from './cart';
 import { Filter } from './filter';
+import { Sort } from './sort';
 import { IProductsPageData } from '../../types/interfaces';
 
 export class Model {
@@ -10,21 +11,29 @@ export class Model {
   readonly cart: Cart;
   private openCart: boolean;
   readonly filter: Filter;
+  readonly sort: Sort;
 
   constructor() {
     this.data = products;
     this.cart = new Cart();
-    this.openCart = false;
     this.filter = new Filter();
+    this.sort = new Sort();
+    this.openCart = false;
   }
 
   private getData(): ProductsData {
     return this.data;
   }
 
+  private transformData(data: ProductsData): ProductsData {
+    const filteredData = this.filter.filterData(data);
+    const sortedData = this.sort.sortData(filteredData);
+    return sortedData;
+  }
+
   public getProductsPageData(): IProductsPageData {
     const initialData = this.getData();
-    const transData = this.filter.filterData(initialData);
+    const transData = this.transformData(initialData);
     const filterOptions = this.filter.setFilterOptions(initialData, transData);
     return {
       data: transData,
