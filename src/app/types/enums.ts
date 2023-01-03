@@ -67,3 +67,14 @@ export enum SortType {
   DISCOUNT_ASC = 'Sort by discount &uarr;',
   DISCOUNT_DESC = 'Sort by discount &darr;',
 }
+
+export const enum SortDirection {
+  ASC,
+  DESC,
+}
+
+export const enum SortCategory {
+  PRICE = 'price',
+  DISCOUNT = 'discountPercentage',
+  RATING = 'rating',
+}
