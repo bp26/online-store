@@ -50,3 +50,11 @@
 .block-cvv {
   display: flex;
 }
+
+.valid {
+  border: 10px solid green;
+}
+
+.invalid {
+  border: 10px solid red;
+}

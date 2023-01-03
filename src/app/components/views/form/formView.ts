@@ -1,5 +1,9 @@
 import { Element } from '../../element';
 import { HTMLTag } from '../../../types/enums';
+import { InputName } from './inputComponent/inputName';
+import { InputPhone } from './inputComponent/inputPhone';
+import { InputAdress } from './inputComponent/inputAdress';
+import { InputMail } from './inputComponent/inputMail';
 
 export class ModalView extends Element {
   constructor() {
@@ -7,10 +11,10 @@ export class ModalView extends Element {
     const modal = new Element(this.elem, HTMLTag.DIV, 'modal-form');
     const form = new Element(modal.elem, HTMLTag.FORM, 'form');
     const titleFormIgnor = new Element(form.elem, HTMLTag.H2, 'form__title', 'Personal details');
-    const inputNameIgnor = new Element(form.elem, HTMLTag.INPUT, 'form__input-name');
-    const inputPhoneIgnor = new Element(form.elem, HTMLTag.INPUT, 'form__input-phone');
-    const inputAdressIgnor = new Element(form.elem, HTMLTag.INPUT, 'form__input-adress');
-    const inputMailIgnor = new Element(form.elem, HTMLTag.INPUT, 'form__input-mail');
+    new InputName(form.elem);
+    new InputPhone(form.elem);
+    new InputAdress(form.elem);
+    new InputMail(form.elem);
     const wrapperCard = new Element(form.elem, HTMLTag.DIV, 'wrapper-card');
     const titleCardIgnor = new Element(wrapperCard.elem, HTMLTag.H2, 'wrapper-card__title', 'Credit card details');
     const card = new Element(wrapperCard.elem, HTMLTag.DIV, 'modal-card');

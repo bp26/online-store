@@ -29,6 +29,7 @@ export class View {
     this.root.innerHTML = '';
     this.disabledBtnCart(false);
     this.productsPage = new ProductsPageView(this.root, this.controller.handleProductsPageInit(), this.controller.handleProductsPageCallbacks());
+    this.mountModal();
   }
 
   public mountCartPage(): void {
