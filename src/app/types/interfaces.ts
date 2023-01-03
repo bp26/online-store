@@ -4,6 +4,7 @@ import { CountFilter } from './types';
 import { ProductsData } from './types';
 import { ProductsCallback } from './types';
 import { FiltersCallback } from './types';
+import { SortType } from './enums';
 
 export interface IProduct {
   id: number;
@@ -54,6 +55,7 @@ export interface IFilters {
 export interface IProductsPageData {
   data: ProductsData;
   filterOptions: IFilterOptions;
+  sortOptions: SortType;
 }
 
 export interface IProductsPageCallbacks {

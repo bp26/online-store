@@ -38,6 +38,7 @@ export class Model {
     return {
       data: transData,
       filterOptions: filterOptions,
+      sortOptions: this.sort.getType(),
     };
   }
 
