@@ -56,9 +56,19 @@ export interface IFilters {
 }
 
 export interface IProductsPageData {
-  data: ProductsData;
+  productsOptions: IProductsOptions;
   filterOptions: IFilterOptions;
-  sortOptions: SortType;
+  headerOptions: IHeaderOptions;
+}
+
+export interface IProductsOptions {
+  data: ProductsData;
+  cartArray: number[];
+}
+
+export interface IHeaderOptions {
+  sortType: SortType;
+  productsCount: number;
 }
 
 export interface IProductsPageCallbacks {
