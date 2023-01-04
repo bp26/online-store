@@ -1,4 +1,5 @@
 export const INFO_LIST: string[] = ['category', 'brand', 'price', 'discountPercentage', 'rating', 'stock'];
+export const SEARCH_CATEGORIES: string[] = ['title', 'description', 'category', 'brand', 'price', 'discountPercentage', 'rating', 'stock'];
 
 export const DEFAULT_COUNT_PRODUCT_CART = 0;
 export const DEFAULT_SUM_PRODUCT_CART = 0;
