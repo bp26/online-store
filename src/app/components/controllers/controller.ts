@@ -6,6 +6,9 @@ import { ProductsAction } from '../../types/enums';
 import { FiltersAction } from '../../types/enums';
 import { FiltersData } from '../../types/types';
 import { IProductsPageData } from '../../types/interfaces';
+import { IProductsPageCallbacks } from '../../types/interfaces';
+import { IProductsHeaderCallbacks } from '../../types/interfaces';
+import { SortType } from '../../types/enums';
 
 export class Controller {
   readonly model: Model;
@@ -19,7 +22,7 @@ export class Controller {
     return this.model.getProductsPageData();
   }
 
-  public handleProductsPageCallbacks() {
+  public handleProductsPageCallbacks(): IProductsPageCallbacks {
     return {
       productsCallback: this.handleProductsCallback.bind(this),
       filtersCallback: this.handleFiltersCallback.bind(this),
@@ -51,6 +54,24 @@ export class Controller {
         break;
     }
   }
+
+  private handleProductsHeaderCallbacks(): IProductsHeaderCallbacks {
+    return {
+      sortCallback: this.handleSortCallback,
+      searchCallback: this.handleSearchCallback,
+      toggleViewCallback: this.handleToggleViewCallback,
+    };
+  }
+
+  private handleSortCallback(type: SortType): void {
+    this.model.sort.setType(type);
+  }
+
+  private handleSearchCallback(searchLine: string): void {
+    this.model.search.setSearchLine(searchLine);
+  }
+
+  private handleToggleViewCallback(): void {}
 
   getSummaryData(): number[] {
     return this.model.getSummaryData();
