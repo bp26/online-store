@@ -45,11 +45,11 @@ export class Controller {
     switch (action) {
       case FiltersAction.FILTER:
         if (filtersData) this.model.filter.setFilter(filtersData);
-        if (this.view.productsPage) this.view.productsPage.updateOnFilter(this.handleProductsPageInit(), this.handleProductsPageCallbacks());
+        if (this.view.productsPage) this.view.productsPage.updateOnFilterSearch(this.handleProductsPageInit(), this.handleProductsPageCallbacks());
         break;
       case FiltersAction.RESET:
         this.model.filter.resetFilters();
-        if (this.view.productsPage) this.view.productsPage.updateOnFilter(this.handleProductsPageInit(), this.handleProductsPageCallbacks());
+        if (this.view.productsPage) this.view.productsPage.updateOnFilterSearch(this.handleProductsPageInit(), this.handleProductsPageCallbacks());
         break;
       case FiltersAction.COPY:
         break;
@@ -66,10 +66,12 @@ export class Controller {
 
   private handleSortCallback(type: SortType): void {
     this.model.sort.setType(type);
+    if (this.view.productsPage) this.view.productsPage.updateOnSort(this.handleProductsPageInit(), this.handleProductsPageCallbacks());
   }
 
   private handleSearchCallback(searchLine: string): void {
     this.model.search.setSearchLine(searchLine);
+    if (this.view.productsPage) this.view.productsPage.updateOnFilterSearch(this.handleProductsPageInit(), this.handleProductsPageCallbacks());
   }
 
   private handleToggleViewCallback(): void {}
