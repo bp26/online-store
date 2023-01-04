@@ -51,7 +51,7 @@ export class Model {
   private setProductsOptions(data: ProductsData): IProductsOptions {
     return {
       data,
-      cartArray: [],
+      cartArray: this.cart.getCartArray(),
     };
   }
 
