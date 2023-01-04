@@ -4,6 +4,7 @@ import { products } from '../../../assets/data/products';
 import { Cart } from './cart';
 import { Filter } from './filter';
 import { Sort } from './sort';
+import { Search } from './search';
 import { IProductsPageData } from '../../types/interfaces';
 
 export class Model {
@@ -12,12 +13,14 @@ export class Model {
   private openCart: boolean;
   readonly filter: Filter;
   readonly sort: Sort;
+  readonly search: Search;
 
   constructor() {
     this.data = products;
     this.cart = new Cart();
     this.filter = new Filter();
     this.sort = new Sort();
+    this.search = new Search();
     this.openCart = false;
   }
 
