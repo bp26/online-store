@@ -66,12 +66,12 @@ export const enum ProductsHeaderAction {
 
 export enum SortType {
   DEFAULT = 'Sort by default',
-  PRICE_ASC = 'Sort by price &uarr;',
-  PRICE_DESC = 'Sort by brice &darr;',
-  RATING_ASC = 'Sort by rating &uarr;',
-  RATING_DESC = 'Sort by rating &darr;',
-  DISCOUNT_ASC = 'Sort by discount &uarr;',
-  DISCOUNT_DESC = 'Sort by discount &darr;',
+  PRICE_ASC = 'Sort by price \u2191',
+  PRICE_DESC = 'Sort by price \u2193',
+  RATING_ASC = 'Sort by rating \u2191',
+  RATING_DESC = 'Sort by rating \u2193',
+  DISCOUNT_ASC = 'Sort by discount \u2191',
+  DISCOUNT_DESC = 'Sort by discount \u2193',
 }
 
 export const enum SortDirection {
