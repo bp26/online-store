@@ -1,7 +1,7 @@
 import { Element } from '../../element';
 import { ProductsData } from '../../../types/types';
 import { IProduct } from '../../../types/interfaces';
-import { infoList } from '../../../utils/constants';
+import { INFO_LIST } from '../../../utils/constants';
 import { ProductsCallback } from '../../../types/types';
 import { ProductsAction } from '../../../types/enums';
 import { CardButtonTitles } from '../../../types/enums';
@@ -61,7 +61,7 @@ export class ProductsView extends Element {
       throw new Error(`${info} is not an HTMLElement`);
     }
 
-    infoList.forEach((item) => {
+    INFO_LIST.forEach((item) => {
       const li = new Element(info, HTMLTag.LI, `product-card__${item}`, `${item}: ${product[item as keyof IProduct]}`);
     });
 
