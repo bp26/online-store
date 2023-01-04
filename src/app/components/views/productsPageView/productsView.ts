@@ -1,30 +1,30 @@
 import { Element } from '../../element';
-import { ProductsData } from '../../../types/types';
 import { IProduct } from '../../../types/interfaces';
 import { INFO_LIST } from '../../../utils/constants';
 import { ProductsCallback } from '../../../types/types';
 import { ProductsAction } from '../../../types/enums';
 import { CardButtonTitles } from '../../../types/enums';
 import { HTMLTag } from '../../../types/enums';
+import { IProductsOptions } from '../../../types/interfaces';
 
 export class ProductsView extends Element {
-  constructor(parent: HTMLElement, data: ProductsData, callback: ProductsCallback) {
+  constructor(parent: HTMLElement, productsOptions: IProductsOptions, callback: ProductsCallback) {
     super(parent, HTMLTag.DIV, 'products');
-    this.renderProducts(data, callback);
+    this.renderProducts(productsOptions, callback);
   }
 
-  public renderProducts(data: ProductsData, callback: ProductsCallback): void {
+  public renderProducts({ data, cartArray }: IProductsOptions, callback: ProductsCallback): void {
     this.elem.innerHTML = '';
     if (data.length !== 0) {
       data.forEach((product) => {
-        this.elem.append(this.drawProduct(product, callback));
+        this.elem.append(this.drawProduct(product, cartArray.includes(product.id), callback));
       });
     } else {
       const emptyMessage = new Element(this.elem, HTMLTag.P, 'products__empty-message', 'NOT FOUND');
     }
   }
 
-  private drawProduct(product: IProduct, callback: ProductsCallback): DocumentFragment {
+  private drawProduct(product: IProduct, inCart: boolean, callback: ProductsCallback): DocumentFragment {
     const temp = document.querySelector('#temp-product-card');
     if (!(temp instanceof HTMLTemplateElement)) {
       throw new Error(`${temp} is not an HTMLTemplateElement`);
@@ -70,15 +70,14 @@ export class ProductsView extends Element {
       throw new Error(`${addButton} is not an HTMLButtonElement`);
     }
 
-    addButton.onclick = () => {
-      callback(ProductsAction.ADD, product.id, product.price);
-      card.classList.toggle('product-card_added');
-      if (addButton.textContent === CardButtonTitles.ADD) {
-        addButton.textContent = CardButtonTitles.REMOVE;
-      } else {
-        addButton.textContent = CardButtonTitles.ADD;
-      }
-    };
+    if (inCart) {
+      card.classList.add('product-card_added');
+      addButton.textContent = CardButtonTitles.REMOVE;
+    } else {
+      addButton.textContent = CardButtonTitles.ADD;
+    }
+
+    addButton.onclick = () => callback(ProductsAction.ADD, product.id, product.price);
 
     return clone;
   }
