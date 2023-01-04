@@ -26,6 +26,7 @@ export class Controller {
     return {
       productsCallback: this.handleProductsCallback.bind(this),
       filtersCallback: this.handleFiltersCallback.bind(this),
+      headerCallback: this.handleProductsHeaderCallbacks(),
     };
   }
 
@@ -57,9 +58,9 @@ export class Controller {
 
   private handleProductsHeaderCallbacks(): IProductsHeaderCallbacks {
     return {
-      sortCallback: this.handleSortCallback,
-      searchCallback: this.handleSearchCallback,
-      toggleViewCallback: this.handleToggleViewCallback,
+      sortCallback: this.handleSortCallback.bind(this),
+      searchCallback: this.handleSearchCallback.bind(this),
+      toggleViewCallback: this.handleToggleViewCallback.bind(this),
     };
   }
 
