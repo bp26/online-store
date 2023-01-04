@@ -5,6 +5,9 @@ import { ProductsData } from './types';
 import { ProductsCallback } from './types';
 import { FiltersCallback } from './types';
 import { SortType } from './enums';
+import { SearchCallback } from './types';
+import { SortCallback } from './types';
+import { ToggleViewCallback } from './types';
 
 export interface IProduct {
   id: number;
@@ -61,4 +64,10 @@ export interface IProductsPageData {
 export interface IProductsPageCallbacks {
   productsCallback: ProductsCallback;
   filtersCallback: FiltersCallback;
+}
+
+export interface IProductsHeaderCallbacks {
+  sortCallback: SortCallback;
+  searchCallback: SearchCallback;
+  toggleViewCallback: ToggleViewCallback;
 }
