@@ -6,6 +6,8 @@ import { Filter } from './filter';
 import { Sort } from './sort';
 import { Search } from './search';
 import { IProductsPageData } from '../../types/interfaces';
+import { IProductsOptions } from '../../types/interfaces';
+import { IHeaderOptions } from '../../types/interfaces';
 
 export class Model {
   readonly data: ProductsData;
@@ -30,18 +32,33 @@ export class Model {
 
   private transformData(data: ProductsData): ProductsData {
     const filteredData = this.filter.filterData(data);
-    const sortedData = this.sort.sortData(filteredData);
+    const searchedData = this.search.searchData(filteredData);
+    const sortedData = this.sort.sortData(searchedData);
+
     return sortedData;
   }
 
   public getProductsPageData(): IProductsPageData {
     const initialData = this.getData();
     const transData = this.transformData(initialData);
-    const filterOptions = this.filter.setFilterOptions(initialData, transData);
     return {
-      data: transData,
-      filterOptions: filterOptions,
-      sortOptions: this.sort.getType(),
+      productsOptions: this.setProductsOptions(transData),
+      filterOptions: this.filter.setFilterOptions(initialData, transData),
+      headerOptions: this.setHeaderOptions(transData),
+    };
+  }
+
+  private setProductsOptions(data: ProductsData): IProductsOptions {
+    return {
+      data,
+      cartArray: [],
+    };
+  }
+
+  private setHeaderOptions(data: ProductsData): IHeaderOptions {
+    return {
+      sortType: this.sort.getType(),
+      productsCount: data.length,
     };
   }
 
