@@ -64,6 +64,7 @@ export interface IProductsPageData {
 export interface IProductsPageCallbacks {
   productsCallback: ProductsCallback;
   filtersCallback: FiltersCallback;
+  headerCallback: IProductsHeaderCallbacks;
 }
 
 export interface IProductsHeaderCallbacks {
