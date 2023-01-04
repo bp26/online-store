@@ -1,9 +1,10 @@
 import { Element } from '../../../element';
 import { HTMLTag } from '../../../../types/enums';
 import { SortType } from '../../../../types/enums';
+import { SortCallback } from '../../../../types/types';
 
 export class SortView extends Element {
-  constructor(parent: HTMLElement, type: SortType) {
+  constructor(parent: HTMLElement, type: SortType, callback: SortCallback) {
     super(parent, HTMLTag.DIV, 'products-header__sort');
 
     const dropbtn = new Element(this.elem, HTMLTag.DIV, 'products-header__dropbtn', type);
@@ -14,6 +15,7 @@ export class SortView extends Element {
       const dropoption = new Element(droplist.elem, HTMLTag.DIV, 'products-header__dropoption', option);
       dropoption.elem.onclick = () => {
         dropbtn.elem.textContent = option;
+        callback(option);
       };
     });
   }
