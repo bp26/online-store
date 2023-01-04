@@ -7,7 +7,7 @@ import { Sort } from './sort';
 import { Search } from './search';
 import { IProductsPageData } from '../../types/interfaces';
 import { IProductsOptions } from '../../types/interfaces';
-import { IHeaderOptions } from '../../types/interfaces';
+import { IProductsHeaderOptions } from '../../types/interfaces';
 
 export class Model {
   readonly data: ProductsData;
@@ -55,7 +55,7 @@ export class Model {
     };
   }
 
-  private setHeaderOptions(data: ProductsData): IHeaderOptions {
+  private setHeaderOptions(data: ProductsData): IProductsHeaderOptions {
     return {
       sortType: this.sort.getType(),
       productsCount: data.length,
