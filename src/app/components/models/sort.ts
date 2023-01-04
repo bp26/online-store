@@ -5,11 +5,7 @@ import { ProductsData } from '../../types/types';
 import { IProduct } from '../../types/interfaces';
 
 export class Sort {
-  private type: SortType;
-
-  constructor() {
-    this.type = SortType.DEFAULT;
-  }
+  private type: SortType = SortType.DEFAULT;
 
   public setType(type: SortType): void {
     this.type = type;
