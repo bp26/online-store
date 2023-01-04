@@ -1,4 +1,4 @@
-export const infoList: string[] = ['category', 'brand', 'price', 'discount', 'rating', 'stock'];
+export const infoList: string[] = ['category', 'brand', 'price', 'discountPercentage', 'rating', 'stock'];
 
 export const DEFAULT_COUNT_PRODUCT_CART = 0;
 export const DEFAULT_SUM_PRODUCT_CART = 0;
