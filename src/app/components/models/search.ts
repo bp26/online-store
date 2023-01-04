@@ -20,6 +20,10 @@ export class Search {
   }
 
   private checkProduct(product: IProduct): boolean {
-    return SEARCH_CATEGORIES.some((category) => (product[category as keyof IProduct] + '').includes(this.line));
+    return SEARCH_CATEGORIES.some((category) =>
+      String(product[category as keyof IProduct])
+        .toLowerCase()
+        .includes(this.line)
+    );
   }
 }
