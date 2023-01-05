@@ -84,3 +84,8 @@ export const enum SortCategory {
   DISCOUNT = 'discountPercentage',
   RATING = 'rating',
 }
+
+export const enum ProductDisplay {
+  SIMPLE,
+  DETAILED,
+}
