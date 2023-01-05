@@ -8,14 +8,16 @@ import { Search } from './search';
 import { IProductsPageData } from '../../types/interfaces';
 import { IProductsOptions } from '../../types/interfaces';
 import { IProductsHeaderOptions } from '../../types/interfaces';
+import { ProductDisplay } from '../../types/enums';
 
 export class Model {
   readonly data: ProductsData;
-  readonly cart: Cart;
-  private openCart: boolean;
   readonly filter: Filter;
   readonly sort: Sort;
   readonly search: Search;
+  readonly cart: Cart;
+  private openCart: boolean = false;
+  private productDisplay: ProductDisplay = ProductDisplay.DETAILED;
 
   constructor() {
     this.data = products;
@@ -23,7 +25,6 @@ export class Model {
     this.filter = new Filter();
     this.sort = new Sort();
     this.search = new Search();
-    this.openCart = false;
   }
 
   private getData(): ProductsData {
@@ -52,6 +53,7 @@ export class Model {
     return {
       data,
       cartArray: this.cart.getCartArray(),
+      productDisplay: this.productDisplay,
     };
   }
 
@@ -60,6 +62,10 @@ export class Model {
       sortType: this.sort.getType(),
       productsCount: data.length,
     };
+  }
+
+  public setProductDisplay(display: ProductDisplay): void {
+    this.productDisplay = display;
   }
 
   getSummaryData(): number[] {
