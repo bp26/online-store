@@ -3,6 +3,7 @@ import { ProductsAction } from './enums';
 import { FiltersAction } from './enums';
 import { FiltersType } from './enums';
 import { SortType } from './enums';
+import { ProductDisplay } from './enums';
 
 export type ProductsData = IProduct[];
 
@@ -10,7 +11,7 @@ export type ProductsCallback = (action: ProductsAction, id: number, price: numbe
 export type FiltersCallback = (action: FiltersAction, filtersData?: FiltersData) => void;
 export type SortCallback = (type: SortType) => void;
 export type SearchCallback = (searchLine: string) => void;
-export type ToggleViewCallback = () => void;
+export type ToggleDisplayCallback = (display: ProductDisplay) => void;
 
 export type funcVoid = (price: number, id: number) => void;
 export type funcVoidId = (id: number) => void;
