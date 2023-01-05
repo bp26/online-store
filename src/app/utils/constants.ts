@@ -9,3 +9,5 @@ export const DEFAULT_PAGINATION_INPUT_VALUE = 3;
 export const DEFAULT_DISCOUNT_LIST_ITEM = 0;
 export const DEFAULT_DISCOUNT_PROCENT = 0;
 export const ONE_HUNDRED = 100;
+
+export const SEARCH_PLACEHOLDER = 'Search products';
