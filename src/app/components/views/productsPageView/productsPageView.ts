@@ -1,5 +1,5 @@
 import { Element } from '../../element';
-import { ProductsView } from './productsView';
+import { ProductsView } from './products/productsView';
 import { FiltersView } from './filters/filtersView';
 import { ProductsHeaderView } from './productsHeader/productsHeaderView';
 import { IProductsPageData } from '../../../types/interfaces';
