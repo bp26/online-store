@@ -7,7 +7,8 @@ import { FiltersCallback } from './types';
 import { SortType } from './enums';
 import { SearchCallback } from './types';
 import { SortCallback } from './types';
-import { ToggleViewCallback } from './types';
+import { ToggleDisplayCallback } from './types';
+import { ProductDisplay } from './enums';
 
 export interface IProduct {
   id: number;
@@ -64,6 +65,7 @@ export interface IProductsPageData {
 export interface IProductsOptions {
   data: ProductsData;
   cartArray: number[];
+  productDisplay: ProductDisplay;
 }
 
 export interface IProductsHeaderOptions {
@@ -80,5 +82,5 @@ export interface IProductsPageCallbacks {
 export interface IProductsHeaderCallbacks {
   sortCallback: SortCallback;
   searchCallback: SearchCallback;
-  toggleViewCallback: ToggleViewCallback;
+  toggleDisplayCallback: ToggleDisplayCallback;
 }
