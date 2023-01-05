@@ -9,6 +9,7 @@ import { IProductsPageData } from '../../types/interfaces';
 import { IProductsPageCallbacks } from '../../types/interfaces';
 import { IProductsHeaderCallbacks } from '../../types/interfaces';
 import { SortType } from '../../types/enums';
+import { ProductDisplay } from '../../types/enums';
 
 export class Controller {
   readonly model: Model;
@@ -60,13 +61,13 @@ export class Controller {
     return {
       sortCallback: this.handleSortCallback.bind(this),
       searchCallback: this.handleSearchCallback.bind(this),
-      toggleViewCallback: this.handleToggleViewCallback.bind(this),
+      toggleDisplayCallback: this.handleToggleDisplayCallback.bind(this),
     };
   }
 
   private handleSortCallback(type: SortType): void {
     this.model.sort.setType(type);
-    if (this.view.productsPage) this.view.productsPage.updateOnSort(this.handleProductsPageInit(), this.handleProductsPageCallbacks());
+    if (this.view.productsPage) this.view.productsPage.updateOnSortDisplay(this.handleProductsPageInit(), this.handleProductsPageCallbacks());
   }
 
   private handleSearchCallback(searchLine: string): void {
@@ -74,7 +75,10 @@ export class Controller {
     if (this.view.productsPage) this.view.productsPage.updateOnFilterSearch(this.handleProductsPageInit(), this.handleProductsPageCallbacks());
   }
 
-  private handleToggleViewCallback(): void {}
+  private handleToggleDisplayCallback(display: ProductDisplay): void {
+    this.model.setProductDisplay(display);
+    if (this.view.productsPage) this.view.productsPage.updateOnSortDisplay(this.handleProductsPageInit(), this.handleProductsPageCallbacks());
+  }
 
   getSummaryData(): number[] {
     return this.model.getSummaryData();
