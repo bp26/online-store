@@ -86,6 +86,6 @@ export const enum SortCategory {
 }
 
 export const enum ProductDisplay {
-  SIMPLE,
-  DETAILED,
+  SIMPLE = 'Simple',
+  DETAILED = 'Detailed',
 }
