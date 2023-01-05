@@ -32,7 +32,7 @@ export class ProductsPageView extends Element {
     this.header.updateCount(headerOptions.productsCount);
   }
 
-  public updateOnSort(initData: IProductsPageData, callbacks: IProductsPageCallbacks) {
+  public updateOnSortDisplay(initData: IProductsPageData, callbacks: IProductsPageCallbacks) {
     const { productsOptions } = initData;
     const { productsCallback } = callbacks;
 
