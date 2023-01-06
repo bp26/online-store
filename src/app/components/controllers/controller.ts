@@ -67,7 +67,7 @@ export class Controller {
 
   private handleSortCallback(type: SortType): void {
     this.model.sort.setType(type);
-    if (this.view.productsPage) this.view.productsPage.updateOnSortDisplay(this.handleProductsPageInit(), this.handleProductsPageCallbacks());
+    if (this.view.productsPage) this.view.productsPage.updateOnSort(this.handleProductsPageInit(), this.handleProductsPageCallbacks());
   }
 
   private handleSearchCallback(searchLine: string): void {
@@ -77,7 +77,7 @@ export class Controller {
 
   private handleToggleDisplayCallback(display: ProductDisplay): void {
     this.model.setProductDisplay(display);
-    if (this.view.productsPage) this.view.productsPage.updateOnSortDisplay(this.handleProductsPageInit(), this.handleProductsPageCallbacks());
+    if (this.view.productsPage) this.view.productsPage.updateOnToggleDisplay(this.model.getProductDisplay());
   }
 
   getSummaryData(): number[] {
