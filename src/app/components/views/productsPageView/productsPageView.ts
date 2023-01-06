@@ -4,7 +4,7 @@ import { FiltersView } from './filters/filtersView';
 import { ProductsHeaderView } from './productsHeader/productsHeaderView';
 import { IProductsPageData } from '../../../types/interfaces';
 import { IProductsPageCallbacks } from '../../../types/interfaces';
-import { HTMLTag } from '../../../types/enums';
+import { HTMLTag, ProductDisplay } from '../../../types/enums';
 
 export class ProductsPageView extends Element {
   private filters: FiltersView;
@@ -32,10 +32,14 @@ export class ProductsPageView extends Element {
     this.header.updateCount(headerOptions.productsCount);
   }
 
-  public updateOnSortDisplay(initData: IProductsPageData, callbacks: IProductsPageCallbacks) {
+  public updateOnSort(initData: IProductsPageData, callbacks: IProductsPageCallbacks) {
     const { productsOptions } = initData;
     const { productsCallback } = callbacks;
 
     this.products.renderProducts(productsOptions, productsCallback);
+  }
+
+  public updateOnToggleDisplay(productDisplay: ProductDisplay) {
+    this.products.toggleDisplay(productDisplay);
   }
 }
