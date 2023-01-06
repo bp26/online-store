@@ -15,12 +15,12 @@ export class ProductsHeaderView extends Element {
     const { sortCallback, searchCallback, toggleDisplayCallback } = callbacks;
 
     const sortList = new SortView(this.elem, sortType, sortCallback);
-    this.productsCount = new Element(this.elem, HTMLTag.SPAN, 'products-header__count', String(productsCount));
+    this.productsCount = new Element(this.elem, HTMLTag.SPAN, 'products-header__count', `Found: ${String(productsCount)}`);
     const searchInput = new SearchView(this.elem, searchCallback);
     const viewToggle = new ToggleDisplayView(this.elem, toggleDisplayCallback);
   }
 
   public updateCount(count: number): void {
-    this.productsCount.elem.textContent = String(count);
+    this.productsCount.elem.textContent = `Found: ${String(count)}`;
   }
 }
