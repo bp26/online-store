@@ -8,7 +8,7 @@ import { HTMLTag } from '../../../../types/enums';
 import { ProductDisplay } from '../../../../types/enums';
 
 export class Product extends Element {
-  constructor(parent: HTMLElement, product: IProduct, private inCart: boolean, productDisplay: ProductDisplay, callback: ProductsCallback) {
+  constructor(parent: HTMLElement, product: IProduct, private inCart: boolean, callback: ProductsCallback) {
     super(parent, HTMLTag.DIV, 'product-card');
 
     const temp = document.querySelector('#temp-product-card');
@@ -26,7 +26,6 @@ export class Product extends Element {
       throw new Error(`${card} is not an HTMLElement`);
     }
     card.style.backgroundImage = `url(${product.thumbnail})`;
-    if (productDisplay === ProductDisplay.SIMPLE) card.classList.add('product-card__container_simple');
 
     card.onclick = (e) => {
       if (!(e.target instanceof HTMLElement)) {
