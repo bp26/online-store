@@ -1,5 +1,6 @@
 .products {
-  width: 80%;
+  position: relative;
+  width: 100%;
 
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -9,6 +10,14 @@
   padding: 10px 20px 10px 20px;
   border: 1px solid $border-color-base;
   border-radius: $border-radius-base;
+
+  z-index: 10;
+
+  &_simple {
+    .product-card__info {
+      display: none;
+    }
+  }
 }
 
 .product-card__container {
@@ -22,12 +31,6 @@
 
   &_added {
     border-color: red;
-  }
-
-  &_simple {
-    .product-card__info {
-      display: none;
-    }
   }
 }
 
