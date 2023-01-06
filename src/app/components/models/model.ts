@@ -68,6 +68,10 @@ export class Model {
     this.productDisplay = display;
   }
 
+  public getProductDisplay(): ProductDisplay {
+    return this.productDisplay;
+  }
+
   getSummaryData(): number[] {
     return this.cart.getSummaryData();
   }
