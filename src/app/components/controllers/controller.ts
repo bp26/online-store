@@ -1,11 +1,11 @@
 import { Model } from '../models/model';
-import { ProductsData } from '../../types/types';
 import { IProduct } from '../../types/interfaces';
 import { View } from '../views/view';
 import { ProductsAction } from '../../types/enums';
 import { FiltersAction } from '../../types/enums';
 import { FiltersData } from '../../types/types';
 import { IProductsPageData } from '../../types/interfaces';
+import { DetailsAction } from '../../types/enums';
 
 export class Controller {
   readonly model: Model;
@@ -17,6 +17,10 @@ export class Controller {
 
   public handleProductsPageInit(): IProductsPageData {
     return this.model.getProductsPageData();
+  }
+
+  public handleDetailsPageInit(id: number) {
+    return this.model.getDetailsPageData(id);
   }
 
   public handleProductsPageCallbacks() {
@@ -49,6 +53,21 @@ export class Controller {
         break;
       case FiltersAction.COPY:
         break;
+    }
+  }
+
+  public handleDetailsCallback(action: DetailsAction, id?: number, price?: number): void {
+    switch (action) {
+      case DetailsAction.BACK:
+        this.view.mountProductsPage();
+        break;
+      case DetailsAction.ADD:
+        if (id && price) this.model.cart.toggleProduct(id, price);
+        break;
+      case DetailsAction.BUY:
+        if (id && price) {
+          this.model.cart.addProduct(id, price);
+        }
     }
   }
 
