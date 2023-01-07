@@ -2,6 +2,7 @@ import { IProduct } from '../types/interfaces';
 
 export const infoList: string[] = ['category', 'brand', 'price', 'discount', 'rating', 'stock'];
 export const BREADCRUMBS_LIST: Array<keyof IProduct> = ['category', 'brand', 'title'];
+export const DETAILS_INFO_LIST: Array<keyof IProduct> = ['description', 'discountPercentage', 'rating', 'stock', 'brand', 'category'];
 
 export const DEFAULT_COUNT_PRODUCT_CART = 0;
 export const DEFAULT_SUM_PRODUCT_CART = 0;
