@@ -56,3 +56,8 @@ export const enum DisplayStyle {
   BLOCK = 'block',
   NONE = 'none',
 }
+
+export const enum BreadcrumbsElements {
+  STORE = 'Store',
+  SEPARATOR = '>>',
+}
