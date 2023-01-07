@@ -2,7 +2,7 @@ import { Element } from '../../element';
 import { HTMLTag } from '../../../types/enums';
 import { IProduct } from '../../../types/interfaces';
 
-export class ImagesView extends Element {
+export class DetailsImagesView extends Element {
   mainImage: Element;
 
   constructor(parent: HTMLElement, imageLinks: IProduct['images']) {
