@@ -9,6 +9,12 @@ export enum FiltersAction {
   COPY,
 }
 
+export enum DetailsAction {
+  BACK,
+  ADD,
+  BUY,
+}
+
 export enum FiltersType {
   category = 'category',
   brand = 'brand',
