@@ -4,6 +4,7 @@ import { CountFilter } from './types';
 import { ProductsData } from './types';
 import { ProductsCallback } from './types';
 import { FiltersCallback } from './types';
+import { DetailsCallback } from './types';
 
 export interface IProduct {
   id: number;
@@ -64,4 +65,9 @@ export interface IProductsPageCallbacks {
 export interface IDetailsPageData {
   product: IProduct;
   inCart: boolean;
+}
+
+export interface IDetailsPageInit {
+  pageData: IDetailsPageData;
+  callback: DetailsCallback;
 }
