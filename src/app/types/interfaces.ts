@@ -60,3 +60,8 @@ export interface IProductsPageCallbacks {
   productsCallback: ProductsCallback;
   filtersCallback: FiltersCallback;
 }
+
+export interface IDetailsPageData {
+  product: IProduct;
+  inCart: boolean;
+}
