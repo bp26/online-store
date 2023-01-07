@@ -1,16 +1,18 @@
 import { Controller } from '../controllers/controller';
 import { ProductsPageView } from './productsPageView/productsPageView';
+import { DetailsPageView } from './detailsPageView/detailsPageView';
 import { CartView } from '../views/cartView';
 import { IProduct } from '../../types/interfaces';
 
 export class View {
   readonly root: HTMLElement;
   readonly controller: Controller;
-  productsPage?: ProductsPageView;
+  public productsPage?: ProductsPageView;
+  public detailsPage?: DetailsPageView;
+  public cart?: CartView;
   private buttonCart: HTMLButtonElement;
   private pageMain: HTMLHeadElement;
   private inputValue: number;
-  private cart: CartView | undefined;
   private dataMatrix: IProduct[][] | undefined;
   constructor(root: HTMLElement) {
     this.root = root;
@@ -67,6 +69,7 @@ export class View {
   public mountDetailsPage = (id: number): void => {
     this.root.innerHTML = '';
     this.disabledBtnCart(false);
+    this.detailsPage = new DetailsPageView(this.root, this.controller.handleDetailsPageInit(id), this.controller.handleDetailsCallback.bind(this.controller));
   };
 
   getSummaryData(): number[] {
