@@ -3,21 +3,25 @@ import { Element } from '../../../element';
 import { MASTERCARD_IMG, VISA_IMG, AMERICAN_EXPRESS_IMG } from '../../../../utils/constants';
 
 export class InputCardNumber extends Element {
+  public valid: boolean
+  private inputCardNumberElem: HTMLInputElement
+  private conditionValidValue: RegExp
   constructor(node: HTMLElement, logo: HTMLElement) {
     super(node, HTMLTag.LABEL, 'form__label');
+    this.valid = false
     const conditionInvalidValue = new RegExp('[a-zа-ё[\\]{\\}(\\)\\\\!?.,_;:|/`\'"#№$%^&*@=+-]', 'gi');
-    const conditionValidValue = new RegExp('^\\d{4}\\s\\d{4}\\s\\d{4}\\s\\d{4}$', 'g');
+    this.conditionValidValue = new RegExp('^\\d{4}\\s\\d{4}\\s\\d{4}\\s\\d{4}$', 'g');
     const conditionValid = new RegExp('\\d{4}$', 'g');
 
     const inputCardNumber = new Element(node, HTMLTag.INPUT, 'modal-card__number');
-    const inputCardNumberElem = <HTMLInputElement>inputCardNumber.elem;
-    inputCardNumberElem.setAttribute('type', 'text');
-    inputCardNumberElem.setAttribute('title', 'Номер должен состоять из 16 цифр');
-    inputCardNumberElem.setAttribute('placeholder', 'Card number');
-    inputCardNumberElem.setAttribute('maxlength', '19');
-    inputCardNumberElem.oninput = () => {
-      if (inputCardNumberElem.value.length === 1 || !inputCardNumberElem.value.length) {
-        switch (inputCardNumberElem.value) {
+    this.inputCardNumberElem = <HTMLInputElement>inputCardNumber.elem;
+    this.inputCardNumberElem.setAttribute('type', 'text');
+    this.inputCardNumberElem.setAttribute('title', 'Номер должен состоять из 16 цифр');
+    this.inputCardNumberElem.setAttribute('placeholder', 'Card number');
+    this.inputCardNumberElem.setAttribute('maxlength', '19');
+    this.inputCardNumberElem.oninput = () => {
+      if (this.inputCardNumberElem.value.length === 1 || !this.inputCardNumberElem.value.length) {
+        switch (this.inputCardNumberElem.value) {
           case '5':
             logo.style.backgroundImage = `url(${MASTERCARD_IMG})`;
             break;
@@ -31,24 +35,29 @@ export class InputCardNumber extends Element {
             logo.style.backgroundImage = 'none';
         }
       }
-      if (conditionInvalidValue.test(inputCardNumberElem.value)) {
-        inputCardNumberElem.value = inputCardNumberElem.value.replace(conditionInvalidValue, '');
+      if (conditionInvalidValue.test(this.inputCardNumberElem.value)) {
+        this.inputCardNumberElem.value = this.inputCardNumberElem.value.replace(conditionInvalidValue, '');
       }
-      if (conditionValid.test(inputCardNumberElem.value) && !/^(\d{4}\s){3}\d{4}$/.test(inputCardNumberElem.value)) {
-        const val = inputCardNumberElem.value;
-        inputCardNumberElem.value = `${val} `;
+      if (conditionValid.test(this.inputCardNumberElem.value) && !/^(\d{4}\s){3}\d{4}$/.test(this.inputCardNumberElem.value)) {
+        const val = this.inputCardNumberElem.value;
+        this.inputCardNumberElem.value = `${val} `;
       }
     };
 
-    inputCardNumberElem.onchange = () => {
-      if (conditionValidValue.test(inputCardNumberElem.value)) {
-        console.log(conditionValidValue.test(inputCardNumberElem.value), 'change', 'on');
-        inputCardNumberElem.classList.remove('invalid');
-        inputCardNumberElem.classList.add('valid');
-      } else {
-        inputCardNumberElem.classList.remove('valid');
-        inputCardNumberElem.classList.add('invalid');
-      }
+    this.inputCardNumberElem.onchange = () => {
+      this.validation()
     };
+  }
+
+  public validation(): void {
+    if (this.conditionValidValue.test(this.inputCardNumberElem.value)) {
+      this.inputCardNumberElem.classList.remove('invalid');
+      this.inputCardNumberElem.classList.add('valid');
+      this.valid = true
+    } else {
+      this.inputCardNumberElem.classList.remove('valid');
+      this.inputCardNumberElem.classList.add('invalid');
+      this.valid = false
+    }
   }
 }

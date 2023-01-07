@@ -126,4 +126,8 @@ export class Model {
   setDiscountProcent(flag: boolean, discount: number): void {
     this.cart.setDiscountProcent(flag, discount);
   }
+
+  clearCart() {
+    this.cart.clearCart()
+  }
 }

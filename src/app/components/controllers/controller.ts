@@ -139,4 +139,8 @@ export class Controller {
   getValueDiscountData(): Map<string, string> {
     return this.model.getValueDiscountData();
   }
+
+  clearCart(): void {
+   this.model.clearCart()
+  }
 }

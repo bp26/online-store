@@ -146,7 +146,7 @@ export class CartView extends Element {
     this.arrSummaryOrHeaderView = [summaryContent, headerContent, productCardContent];
   }
 
-  private drawEmptyCart = (): void => {
+  public drawEmptyCart = (): void => {
     this.elem.innerHTML = '';
     const mainContentCartIgnor = new Element(this.elem, HTMLTag.P, 'cart-empty', 'Cart is empty');
   };
@@ -157,7 +157,7 @@ export class CartView extends Element {
     }
   }
 
-  private updateCartContent = (value: number, head: number): void => {
+  public updateCartContent = (value: number, head: number): void => {
     if (this.arrSummaryOrHeaderView.length === 3) {
       this.arrSummaryOrHeaderView[2].updateCart(value, head);
     }

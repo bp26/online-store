@@ -2,31 +2,39 @@ import { HTMLTag } from '../../../../types/enums';
 import { Element } from '../../../element';
 
 export class InputPhone extends Element {
+  public valid: boolean;
+  private inputPhoneElem: HTMLInputElement
   constructor(node: HTMLElement) {
     super(node, HTMLTag.LABEL, 'form__label');
-
+    this.valid = false
     const conditionInvalidValue = new RegExp('[a-zа-ё[\\]{\\}(\\)\\\\!?.,_;<>:|/`\'"#№$%^&*@=-]', 'gi');
 
     const inputPhone = new Element(this.elem, HTMLTag.INPUT, 'form__input-phone');
-    const inputPhoneElem = <HTMLInputElement>inputPhone.elem;
-    inputPhoneElem.setAttribute('type', 'tel');
-    inputPhoneElem.setAttribute('title', 'Номер должен содержать не менее 9 цифр и начинаться с "+"');
-    inputPhoneElem.setAttribute('placeholder', 'Phone number');
+    this.inputPhoneElem = <HTMLInputElement>inputPhone.elem;
+    this.inputPhoneElem.setAttribute('type', 'tel');
+    this.inputPhoneElem.setAttribute('title', 'Номер должен содержать не менее 9 цифр и начинаться с "+"');
+    this.inputPhoneElem.setAttribute('placeholder', 'Phone number');
 
-    inputPhoneElem.oninput = () => {
-      if (conditionInvalidValue.test(inputPhoneElem.value)) {
-        inputPhoneElem.value = inputPhoneElem.value.replace(conditionInvalidValue, '');
+    this.inputPhoneElem.oninput = () => {
+      if (conditionInvalidValue.test(this.inputPhoneElem.value)) {
+        this.inputPhoneElem.value = this.inputPhoneElem.value.replace(conditionInvalidValue, '');
       }
     };
 
-    inputPhoneElem.onchange = () => {
-      if (/^[+](\d(\s+)?){9,}$/.test(inputPhoneElem.value)) {
-        inputPhoneElem.classList.remove('invalid');
-        inputPhoneElem.classList.add('valid');
-      } else {
-        inputPhoneElem.classList.remove('valid');
-        inputPhoneElem.classList.add('invalid');
-      }
+    this.inputPhoneElem.onchange = () => {
+      this.validation()
     };
+  }
+
+  public validation(): void {
+    if (/^[+](\d(\s+)?){9,}$/.test(this.inputPhoneElem.value)) {
+      this.inputPhoneElem.classList.remove('invalid');
+      this.inputPhoneElem.classList.add('valid');
+      this.valid = true
+    } else {
+      this.inputPhoneElem.classList.remove('valid');
+      this.inputPhoneElem.classList.add('invalid');
+      this.valid = false
+    }
   }
 }

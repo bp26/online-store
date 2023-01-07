@@ -2,31 +2,40 @@ import { HTMLTag } from '../../../../types/enums';
 import { Element } from '../../../element';
 
 export class InputAdress extends Element {
+  public valid: boolean
+  private inputAdressElem: HTMLInputElement
   constructor(node: HTMLElement) {
     super(node, HTMLTag.LABEL, 'form__label');
+    this.valid = false
 
     const conditionInvalidValue = new RegExp('[-=+_?!,.;:\'"`[\\]{\\}(\\)]', 'g');
 
     const inputAdress = new Element(this.elem, HTMLTag.INPUT, 'form__input-adress');
-    const inputAdressElem = <HTMLInputElement>inputAdress.elem;
-    inputAdressElem.setAttribute('type', 'text');
-    inputAdressElem.setAttribute('title', 'Адрес должен иметь не меньше 3 слов по 5 символов каждый');
-    inputAdressElem.setAttribute('placeholder', 'Adress');
+    this.inputAdressElem = <HTMLInputElement>inputAdress.elem;
+    this.inputAdressElem.setAttribute('type', 'text');
+    this.inputAdressElem.setAttribute('title', 'Адрес должен иметь не меньше 3 слов по 5 символов каждый');
+    this.inputAdressElem.setAttribute('placeholder', 'Adress');
 
-    inputAdressElem.oninput = () => {
-      if (conditionInvalidValue.test(inputAdressElem.value)) {
-        inputAdressElem.value = inputAdressElem.value.replace(conditionInvalidValue, '');
+    this.inputAdressElem.oninput = () => {
+      if (conditionInvalidValue.test(this.inputAdressElem.value)) {
+        this.inputAdressElem.value = this.inputAdressElem.value.replace(conditionInvalidValue, '');
       }
     };
 
-    inputAdressElem.onchange = () => {
-      if (/^(\w{5,}(\s+)?){3,}$/.test(inputAdressElem.value)) {
-        inputAdressElem.classList.remove('invalid');
-        inputAdressElem.classList.add('valid');
-      } else {
-        inputAdressElem.classList.remove('valid');
-        inputAdressElem.classList.add('invalid');
-      }
+    this.inputAdressElem.onchange = () => {
+      this.validation()
     };
+  }
+
+  public validation(): void {
+    if (/^(\w{5,}(\s+)?){3,}$/.test(this.inputAdressElem.value)) {
+      this.inputAdressElem.classList.remove('invalid');
+      this.inputAdressElem.classList.add('valid');
+      this.valid = true
+    } else {
+      this.inputAdressElem.classList.remove('valid');
+      this.inputAdressElem.classList.add('invalid');
+      this.valid = false
+    }
   }
 }
