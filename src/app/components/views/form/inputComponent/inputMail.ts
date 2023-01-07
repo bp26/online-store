@@ -6,12 +6,11 @@ export class InputMail extends Element {
     super(node, HTMLTag.LABEL, 'form__label');
 
     const conditionInvalidValue = new RegExp('[[\\]{\\}(\\)!?,_=+-]', 'g');
-    const conditionValidValue = new RegExp('\\w+[@]\\w+\\.{1}\\D{0,5}', 'g');
 
     const inputMail = new Element(this.elem, HTMLTag.INPUT, 'form__input-mail');
     const inputMailElem = <HTMLInputElement>inputMail.elem;
     inputMailElem.setAttribute('type', 'email');
-    inputMailElem.setAttribute('pattern', `${conditionValidValue}`);
+    inputMailElem.setAttribute('title', 'E-mail должен быть корректным');
     inputMailElem.setAttribute('placeholder', 'E-mail');
 
     inputMailElem.oninput = () => {
@@ -21,7 +20,7 @@ export class InputMail extends Element {
     };
 
     inputMailElem.onchange = () => {
-      if (conditionValidValue.test(inputMailElem.value)) {
+      if (/^(\w+[.]?\w+)+[@]\w+[.]\w{0,5}$/.test(inputMailElem.value)) {
         inputMailElem.classList.remove('invalid');
         inputMailElem.classList.add('valid');
       } else {

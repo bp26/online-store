@@ -5,14 +5,12 @@ export class InputPhone extends Element {
   constructor(node: HTMLElement) {
     super(node, HTMLTag.LABEL, 'form__label');
 
-    const conditionInvalidValue = new RegExp('[^+\\d]', 'gi');
-    const conditionValidValue = new RegExp('^[+]\\d{9,}', 'g');
+    const conditionInvalidValue = new RegExp('[a-zа-ё[\\]{\\}(\\)\\\\!?.,_;<>:|/`\'"#№$%^&*@=-]', 'gi');
 
     const inputPhone = new Element(this.elem, HTMLTag.INPUT, 'form__input-phone');
     const inputPhoneElem = <HTMLInputElement>inputPhone.elem;
     inputPhoneElem.setAttribute('type', 'tel');
     inputPhoneElem.setAttribute('title', 'Номер должен содержать не менее 9 цифр и начинаться с "+"');
-    inputPhoneElem.setAttribute('pattern', `${conditionValidValue}`);
     inputPhoneElem.setAttribute('placeholder', 'Phone number');
 
     inputPhoneElem.oninput = () => {
@@ -22,7 +20,7 @@ export class InputPhone extends Element {
     };
 
     inputPhoneElem.onchange = () => {
-      if (conditionValidValue.test(inputPhoneElem.value)) {
+      if (/^[+](\d(\s+)?){9,}$/.test(inputPhoneElem.value)) {
         inputPhoneElem.classList.remove('invalid');
         inputPhoneElem.classList.add('valid');
       } else {

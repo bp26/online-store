@@ -4,6 +4,9 @@ import { InputName } from './inputComponent/inputName';
 import { InputPhone } from './inputComponent/inputPhone';
 import { InputAdress } from './inputComponent/inputAdress';
 import { InputMail } from './inputComponent/inputMail';
+import { InputCardNumber } from './inputComponent/inputCardNumber';
+import { InputCardDate } from './inputComponent/inputCardDate';
+import { InputCardCvv } from './inputComponent/inputCardCvv';
 
 export class ModalView extends Element {
   constructor() {
@@ -17,16 +20,15 @@ export class ModalView extends Element {
     new InputMail(form.elem);
     const wrapperCard = new Element(form.elem, HTMLTag.DIV, 'wrapper-card');
     const titleCardIgnor = new Element(wrapperCard.elem, HTMLTag.H2, 'wrapper-card__title', 'Credit card details');
+    const logoCard = new Element(wrapperCard.elem, HTMLTag.DIV, 'card-logo');
     const card = new Element(wrapperCard.elem, HTMLTag.DIV, 'modal-card');
-    const inputCardNumberIgnor = new Element(card.elem, HTMLTag.INPUT, 'modal-card__number');
+    new InputCardNumber(card.elem, logoCard.elem);
     const blockDateOrCvv = new Element(card.elem, HTMLTag.DIV, 'block-date-or-cvv');
-    const blockDate = new Element(blockDateOrCvv.elem, HTMLTag.DIV, 'block-date');
-    const titleBlockDateIgnor = new Element(blockDate.elem, HTMLTag.P, 'block-date__title', 'Date');
-    const inputCardDateIgnor = new Element(blockDate.elem, HTMLTag.INPUT, 'block-date__input');
+    new InputCardDate(blockDateOrCvv.elem);
     const blockCvv = new Element(blockDateOrCvv.elem, HTMLTag.DIV, 'block-cvv');
-    const titleBlockCvvIgnor = new Element(blockCvv.elem, HTMLTag.P, 'block-cvv__title', 'CVV');
-    const inputCardCvvIgnor = new Element(blockCvv.elem, HTMLTag.INPUT, 'block-cvv__input');
-    const buttonCard = new Element(wrapperCard.elem, HTMLTag.BUTTON, 'wrapper-card__button');
+    new InputCardCvv(blockCvv.elem);
+
+    const buttonCard = new Element(form.elem, HTMLTag.BUTTON, 'wrapper-card__button');
     const buttonSpanCardIgnor = new Element(buttonCard.elem, HTMLTag.SPAN, 'wrapper-card__button-span', 'Confirm');
   }
 }

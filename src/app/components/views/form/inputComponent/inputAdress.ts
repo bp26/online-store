@@ -6,12 +6,10 @@ export class InputAdress extends Element {
     super(node, HTMLTag.LABEL, 'form__label');
 
     const conditionInvalidValue = new RegExp('[-=+_?!,.;:\'"`[\\]{\\}(\\)]', 'g');
-    const conditionValidValue = new RegExp('\\w{5,}\\s\\w{5,}\\s\\w{5,}[\\s\\w]', 'g');
 
     const inputAdress = new Element(this.elem, HTMLTag.INPUT, 'form__input-adress');
     const inputAdressElem = <HTMLInputElement>inputAdress.elem;
     inputAdressElem.setAttribute('type', 'text');
-    inputAdressElem.setAttribute('pattern', `${conditionValidValue}`);
     inputAdressElem.setAttribute('title', 'Адрес должен иметь не меньше 3 слов по 5 символов каждый');
     inputAdressElem.setAttribute('placeholder', 'Adress');
 
@@ -22,7 +20,7 @@ export class InputAdress extends Element {
     };
 
     inputAdressElem.onchange = () => {
-      if (conditionValidValue.test(inputAdressElem.value)) {
+      if (/^(\w{5,}(\s+)?){3,}$/.test(inputAdressElem.value)) {
         inputAdressElem.classList.remove('invalid');
         inputAdressElem.classList.add('valid');
       } else {

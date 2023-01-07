@@ -2,7 +2,7 @@ import { Controller } from '../controllers/controller';
 import { ProductsPageView } from './productsPageView/productsPageView';
 import { CartView } from '../views/cartView';
 import { IProduct } from '../../types/interfaces';
-import { ModalView } from './form/formView';
+import { ModalView } from './form/modalView';
 
 export class View {
   readonly root: HTMLElement;
