@@ -66,8 +66,3 @@ export interface IDetailsPageData {
   product: IProduct;
   inCart: boolean;
 }
-
-export interface IDetailsPageInit {
-  pageData: IDetailsPageData;
-  callback: DetailsCallback;
-}
