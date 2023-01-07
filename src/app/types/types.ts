@@ -2,11 +2,13 @@ import { IProduct, ICartList } from './interfaces';
 import { ProductsAction } from './enums';
 import { FiltersAction } from './enums';
 import { FiltersType } from './enums';
+import { DetailsAction } from './enums';
 
 export type ProductsData = IProduct[];
 
 export type ProductsCallback = (action: ProductsAction, id: number, price: number) => void;
 export type FiltersCallback = (action: FiltersAction, filtersData?: FiltersData) => void;
+export type DetailsCallback = (action: DetailsAction, id?: number, price?: number) => void;
 
 export type funcVoid = (price: number, id: number) => void;
 export type funcVoidId = (id: number) => void;
