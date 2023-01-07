@@ -120,6 +120,7 @@ export class Cart {
         count: 1,
         price: price,
       };
+      localStorage.setItem(localStorageCart.CART_LIST, JSON.stringify(this.list));
     }
   }
 
