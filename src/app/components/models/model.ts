@@ -4,6 +4,8 @@ import { products } from '../../../assets/data/products';
 import { Cart } from './cart';
 import { Filter } from './filter';
 import { IProductsPageData } from '../../types/interfaces';
+import { IDetailsPageData } from '../../types/interfaces';
+import { binarySearch } from '../../utils/binarySearch';
 
 export class Model {
   readonly data: ProductsData;
@@ -29,6 +31,14 @@ export class Model {
     return {
       data: transData,
       filterOptions: filterOptions,
+    };
+  }
+
+  public getDetailsPageData(id: number): IDetailsPageData {
+    const data = this.getData();
+    return {
+      product: binarySearch(data, id),
+      inCart: false,
     };
   }
 
