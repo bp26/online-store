@@ -78,12 +78,16 @@ export class Model {
     const data = this.getData();
     return {
       product: binarySearch(data, id),
-      inCart: false,
+      inCart: this.checkProductInCart(id),
     };
   }
 
   public getCartPageData(): ProductsData {
-    return this.getData().filter((product) => this.cart.getCartArray().includes(product.id));
+    return this.getData().filter((product) => this.checkProductInCart(product.id));
+  }
+
+  private checkProductInCart(id: number): boolean {
+    return this.cart.getCartArray().includes(id);
   }
 
   getSummaryData(): number[] {
