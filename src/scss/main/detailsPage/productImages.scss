@@ -1,0 +1,33 @@
+.product-images {
+  @include flex-position-base-justify-beetwen;
+
+  &__side-container {
+    width: 25%;
+
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 5px;
+
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__main-container {
+    width: 70%;
+    @include flex-position-base;
+  }
+
+  &__image {
+    &_main {
+      max-width: 100%;
+      max-height: 35vh;
+    }
+
+    &_side {
+      max-width: 80%;
+    }
+  }
+}

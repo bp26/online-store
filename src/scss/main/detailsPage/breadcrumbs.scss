@@ -1,0 +1,12 @@
+.breadcrumbs {
+  margin: 3% auto;
+  @include flex-position-base-justify-beetwen;
+
+  &__item {
+    font-size: 22px;
+  }
+
+  &__separator {
+    font-size: 26px;
+  }
+}
