@@ -1,9 +1,9 @@
 import { Model } from '../models/model';
-import { IProduct } from '../../types/interfaces';
+import { IDetailsPageData, IProduct } from '../../types/interfaces';
 import { View } from '../views/view';
 import { ProductsAction } from '../../types/enums';
 import { FiltersAction } from '../../types/enums';
-import { FiltersData } from '../../types/types';
+import { FiltersData, ProductsData } from '../../types/types';
 import { IProductsPageData } from '../../types/interfaces';
 import { DetailsAction } from '../../types/enums';
 
@@ -19,8 +19,12 @@ export class Controller {
     return this.model.getProductsPageData();
   }
 
-  public handleDetailsPageInit(id: number) {
+  public handleDetailsPageInit(id: number): IDetailsPageData {
     return this.model.getDetailsPageData(id);
+  }
+
+  public handleCartPageInit(): ProductsData {
+    return this.model.getCartPageData();
   }
 
   public handleProductsPageCallbacks() {
