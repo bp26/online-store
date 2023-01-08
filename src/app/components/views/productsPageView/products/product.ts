@@ -60,7 +60,7 @@ export class Product extends Element {
 
     addButton.onclick = () => {
       callback(ProductsAction.ADD, product.id, product.price);
-      this.inCart = this.inCart === true ? false : true;
+      this.inCart = !this.inCart;
       this.setCartDisplay(card, addButton);
     };
 
