@@ -1,9 +1,9 @@
-export enum ProductsAction {
+export const enum ProductsAction {
   ADD,
   DETAILS,
 }
 
-export enum FiltersAction {
+export const enum FiltersAction {
   FILTER,
   RESET,
   COPY,
@@ -16,9 +16,9 @@ export enum FiltersType {
   stock = 'stock',
 }
 
-export enum CardButtonTitles {
-  ADD = 'ADD TO CART',
-  REMOVE = 'REMOVE FROM CART',
+export const enum CardButtonTitles {
+  ADD = 'ADD',
+  REMOVE = 'REMOVE',
 }
 
 export const enum localStorageCart {
@@ -52,6 +52,7 @@ export const enum HTMLTag {
   SECTION = 'section',
   IMG = 'img',
   LABEL = 'label',
+  SELECT = 'select',
 }
 
 export const enum DisplayStyle {
@@ -67,4 +68,36 @@ export const enum InfoForUser {
   INPUT_NUMBER = 'Номер должен состоять из 16 цифр',
   INPUT_CVV = 'Код должен состоять из 3 цифр',
   INPUT_DATE = 'Дата должна быть корректной',
+}
+
+export const enum ProductsHeaderAction {
+  SORT,
+  SEARCH,
+  TOGGLE_VIEW,
+}
+
+export enum SortType {
+  DEFAULT = 'Sort by default',
+  PRICE_ASC = 'Sort by price \u2191',
+  PRICE_DESC = 'Sort by price \u2193',
+  RATING_ASC = 'Sort by rating \u2191',
+  RATING_DESC = 'Sort by rating \u2193',
+  DISCOUNT_ASC = 'Sort by discount \u2191',
+  DISCOUNT_DESC = 'Sort by discount \u2193',
+}
+
+export const enum SortDirection {
+  ASC,
+  DESC,
+}
+
+export const enum SortCategory {
+  PRICE = 'price',
+  DISCOUNT = 'discountPercentage',
+  RATING = 'rating',
+}
+
+export const enum ProductDisplay {
+  SIMPLE = 'Simple',
+  DETAILED = 'Detailed',
 }

@@ -5,6 +5,10 @@ import { ProductsAction } from '../../types/enums';
 import { FiltersAction } from '../../types/enums';
 import { FiltersData } from '../../types/types';
 import { IProductsPageData } from '../../types/interfaces';
+import { IProductsPageCallbacks } from '../../types/interfaces';
+import { IProductsHeaderCallbacks } from '../../types/interfaces';
+import { SortType } from '../../types/enums';
+import { ProductDisplay } from '../../types/enums';
 
 export class Controller {
   readonly model: Model;
@@ -18,10 +22,11 @@ export class Controller {
     return this.model.getProductsPageData();
   }
 
-  public handleProductsPageCallbacks() {
+  public handleProductsPageCallbacks(): IProductsPageCallbacks {
     return {
       productsCallback: this.handleProductsCallback.bind(this),
       filtersCallback: this.handleFiltersCallback.bind(this),
+      headerCallback: this.handleProductsHeaderCallbacks(),
     };
   }
 
@@ -40,15 +45,38 @@ export class Controller {
     switch (action) {
       case FiltersAction.FILTER:
         if (filtersData) this.model.filter.setFilter(filtersData);
-        if (this.view.productsPage) this.view.productsPage.updateOnFilter(this.handleProductsPageInit(), this.handleProductsPageCallbacks());
+        if (this.view.productsPage) this.view.productsPage.updateOnFilterSearch(this.handleProductsPageInit(), this.handleProductsPageCallbacks());
         break;
       case FiltersAction.RESET:
         this.model.filter.resetFilters();
-        if (this.view.productsPage) this.view.productsPage.updateOnFilter(this.handleProductsPageInit(), this.handleProductsPageCallbacks());
+        if (this.view.productsPage) this.view.productsPage.updateOnFilterSearch(this.handleProductsPageInit(), this.handleProductsPageCallbacks());
         break;
       case FiltersAction.COPY:
         break;
     }
+  }
+
+  private handleProductsHeaderCallbacks(): IProductsHeaderCallbacks {
+    return {
+      sortCallback: this.handleSortCallback.bind(this),
+      searchCallback: this.handleSearchCallback.bind(this),
+      toggleDisplayCallback: this.handleToggleDisplayCallback.bind(this),
+    };
+  }
+
+  private handleSortCallback(type: SortType): void {
+    this.model.sort.setType(type);
+    if (this.view.productsPage) this.view.productsPage.updateOnSort(this.handleProductsPageInit(), this.handleProductsPageCallbacks());
+  }
+
+  private handleSearchCallback(searchLine: string): void {
+    this.model.search.setSearchLine(searchLine);
+    if (this.view.productsPage) this.view.productsPage.updateOnFilterSearch(this.handleProductsPageInit(), this.handleProductsPageCallbacks());
+  }
+
+  private handleToggleDisplayCallback(display: ProductDisplay): void {
+    this.model.setProductDisplay(display);
+    if (this.view.productsPage) this.view.productsPage.updateOnToggleDisplay(this.model.getProductDisplay());
   }
 
   getSummaryData(): number[] {

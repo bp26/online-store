@@ -143,6 +143,10 @@ export class Cart {
     return [count, price];
   }
 
+  getCartArray(): number[] {
+    return Object.keys(this.list).map((id) => Number(id));
+  }
+
   incOrDecProduct(id: number, price: number, flag: boolean): void {
     if (flag) {
       this.list[id].count += 1;

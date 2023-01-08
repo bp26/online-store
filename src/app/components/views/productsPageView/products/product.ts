@@ -1,30 +1,16 @@
-import { Element } from '../../element';
-import { ProductsData } from '../../../types/types';
-import { IProduct } from '../../../types/interfaces';
-import { infoList } from '../../../utils/constants';
-import { ProductsCallback } from '../../../types/types';
-import { ProductsAction } from '../../../types/enums';
-import { CardButtonTitles } from '../../../types/enums';
-import { HTMLTag } from '../../../types/enums';
+import { Element } from '../../../element';
+import { IProduct } from '../../../../types/interfaces';
+import { INFO_LIST } from '../../../../utils/constants';
+import { ProductsCallback } from '../../../../types/types';
+import { ProductsAction } from '../../../../types/enums';
+import { CardButtonTitles } from '../../../../types/enums';
+import { HTMLTag } from '../../../../types/enums';
+import { ProductDisplay } from '../../../../types/enums';
 
-export class ProductsView extends Element {
-  constructor(parent: HTMLElement, data: ProductsData, callback: ProductsCallback) {
-    super(parent, HTMLTag.DIV, 'products');
-    this.renderProducts(data, callback);
-  }
+export class Product extends Element {
+  constructor(parent: HTMLElement, product: IProduct, private inCart: boolean, callback: ProductsCallback) {
+    super(parent, HTMLTag.DIV, 'product-card');
 
-  public renderProducts(data: ProductsData, callback: ProductsCallback): void {
-    this.elem.innerHTML = '';
-    if (data.length !== 0) {
-      data.forEach((product) => {
-        this.elem.append(this.drawProduct(product, callback));
-      });
-    } else {
-      const emptyMessage = new Element(this.elem, HTMLTag.P, 'products__empty-message', 'NOT FOUND');
-    }
-  }
-
-  private drawProduct(product: IProduct, callback: ProductsCallback): DocumentFragment {
     const temp = document.querySelector('#temp-product-card');
     if (!(temp instanceof HTMLTemplateElement)) {
       throw new Error(`${temp} is not an HTMLTemplateElement`);
@@ -35,7 +21,7 @@ export class ProductsView extends Element {
       throw new Error(`${clone} is not a DocumentFragment`);
     }
 
-    const card = clone.querySelector('.product-card');
+    const card = clone.querySelector('.product-card__container');
     if (!(card instanceof HTMLElement)) {
       throw new Error(`${card} is not an HTMLElement`);
     }
@@ -61,7 +47,7 @@ export class ProductsView extends Element {
       throw new Error(`${info} is not an HTMLElement`);
     }
 
-    infoList.forEach((item) => {
+    INFO_LIST.forEach((item) => {
       const li = new Element(info, HTMLTag.LI, `product-card__${item}`, `${item}: ${product[item as keyof IProduct]}`);
     });
 
@@ -70,16 +56,24 @@ export class ProductsView extends Element {
       throw new Error(`${addButton} is not an HTMLButtonElement`);
     }
 
+    this.setCartDisplay(card, addButton);
+
     addButton.onclick = () => {
       callback(ProductsAction.ADD, product.id, product.price);
-      card.classList.toggle('product-card_added');
-      if (addButton.textContent === CardButtonTitles.ADD) {
-        addButton.textContent = CardButtonTitles.REMOVE;
-      } else {
-        addButton.textContent = CardButtonTitles.ADD;
-      }
+      this.inCart = !this.inCart;
+      this.setCartDisplay(card, addButton);
     };
 
-    return clone;
+    this.elem.append(clone);
+  }
+
+  private setCartDisplay(card: HTMLElement, addButton: HTMLElement): void {
+    if (this.inCart) {
+      card.classList.add('product-card__container_added');
+      addButton.textContent = CardButtonTitles.REMOVE;
+    } else {
+      addButton.textContent = CardButtonTitles.ADD;
+      card.classList.remove('product-card__container_added');
+    }
   }
 }

@@ -1,0 +1,90 @@
+.products-header {
+  @include flex-position-base-justify-beetwen;
+  height: 40px;
+  border: 1px solid $border-color-base;
+  border-radius: $border-radius-base;
+  padding: 0 20px 0 20px;
+}
+
+.products-header__sort {
+  position: relative;
+  width: 20%;
+}
+
+.products-header__dropbtn {
+  width: 100%;
+
+  padding: 2px 0 2px 0;
+  border: 1px solid $border-color-base;
+  border-radius: $border-radius-base;
+
+  text-align: center;
+  user-select: none;
+  background-color: white;
+}
+
+.products-header__droplist {
+  position: absolute;
+  top: 110%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  width: 100%;
+
+  list-style-type: none;
+  border: 1px solid $border-color-base;
+
+  visibility: hidden;
+  opacity: 0;
+
+  transition: all 0.2s ease-in-out;
+  z-index: 1000;
+  background-color: white;
+
+  &_visible {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.products-header__dropoption {
+  text-align: center;
+  background-color: inherit;
+  user-select: none;
+}
+
+.products-header__count {
+  user-select: none;
+}
+
+.products-header__search {
+  height: 60%;
+  border: 1px solid $border-color-base;
+  border-radius: $border-radius-base;
+  text-align: center;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    text-align: center;
+  }
+}
+
+.products-header__display {
+  display: flex;
+  gap: 5px;
+
+  padding: 3px;
+  border: 1px solid $border-color-base;
+  border-radius: $border-radius-base;
+}
+
+.products-header__button {
+  padding: 2px;
+  border: 1px solid $border-color-base;
+  border-radius: $border-radius-base;
+}

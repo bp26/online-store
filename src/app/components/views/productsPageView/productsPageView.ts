@@ -1,28 +1,45 @@
 import { Element } from '../../element';
-import { ProductsView } from './productsView';
+import { ProductsView } from './products/productsView';
 import { FiltersView } from './filters/filtersView';
+import { ProductsHeaderView } from './productsHeader/productsHeaderView';
 import { IProductsPageData } from '../../../types/interfaces';
 import { IProductsPageCallbacks } from '../../../types/interfaces';
-import { HTMLTag } from '../../../types/enums';
+import { HTMLTag, ProductDisplay } from '../../../types/enums';
 
 export class ProductsPageView extends Element {
   private filters: FiltersView;
   private products: ProductsView;
+  private header: ProductsHeaderView;
   constructor(parent: HTMLElement, initData: IProductsPageData, callbacks: IProductsPageCallbacks) {
     super(parent, HTMLTag.DIV, 'products-page');
 
-    const { data, filterOptions } = initData;
-    const { productsCallback, filtersCallback } = callbacks;
+    const { productsOptions, filterOptions, headerOptions } = initData;
+    const { productsCallback, filtersCallback, headerCallback } = callbacks;
 
     this.filters = new FiltersView(this.elem, filterOptions, filtersCallback);
-    this.products = new ProductsView(this.elem, data, productsCallback);
+
+    const wrapper = new Element(this.elem, HTMLTag.DIV, 'products-page__wrapper');
+    this.header = new ProductsHeaderView(wrapper.elem, headerOptions, headerCallback);
+    this.products = new ProductsView(wrapper.elem, productsOptions, productsCallback);
   }
 
-  public updateOnFilter(initData: IProductsPageData, callbacks: IProductsPageCallbacks): void {
-    const { data, filterOptions } = initData;
+  public updateOnFilterSearch(initData: IProductsPageData, callbacks: IProductsPageCallbacks): void {
+    const { productsOptions, filterOptions, headerOptions } = initData;
     const { productsCallback, filtersCallback } = callbacks;
 
-    this.products.renderProducts(data, productsCallback);
+    this.products.renderProducts(productsOptions, productsCallback);
     this.filters.update(filterOptions, filtersCallback);
+    this.header.updateCount(headerOptions.productsCount);
+  }
+
+  public updateOnSort(initData: IProductsPageData, callbacks: IProductsPageCallbacks) {
+    const { productsOptions } = initData;
+    const { productsCallback } = callbacks;
+
+    this.products.renderProducts(productsOptions, productsCallback);
+  }
+
+  public updateOnToggleDisplay(productDisplay: ProductDisplay) {
+    this.products.toggleDisplay(productDisplay);
   }
 }

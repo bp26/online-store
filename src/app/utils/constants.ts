@@ -1,4 +1,5 @@
-export const infoList: string[] = ['category', 'brand', 'price', 'discount', 'rating', 'stock'];
+export const INFO_LIST: string[] = ['category', 'brand', 'price', 'discountPercentage', 'rating', 'stock'];
+export const SEARCH_CATEGORIES: string[] = ['title', 'description', 'category', 'brand', 'price', 'discountPercentage', 'rating', 'stock'];
 
 export const DEFAULT_COUNT_PRODUCT_CART = 0;
 export const DEFAULT_SUM_PRODUCT_CART = 0;
@@ -12,3 +13,4 @@ export const VALUE_TIMER = 5;
 export const MASTERCARD_IMG = require('../../assets/svg/mastercard-logo.svg');
 export const VISA_IMG = require('../../assets/svg/visa-logo.svg');
 export const AMERICAN_EXPRESS_IMG = require('../../assets/svg/american-logo.svg');
+export const SEARCH_PLACEHOLDER = 'Search products';
