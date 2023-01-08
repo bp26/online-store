@@ -31,14 +31,6 @@ export class Controller {
     return this.model.getCartPageData();
   }
 
-  public handleDetailsPageInit(id: number): IDetailsPageData {
-    return this.model.getDetailsPageData(id);
-  }
-
-  public handleCartPageInit(): ProductsData {
-    return this.model.getCartPageData();
-  }
-
   public handleProductsPageCallbacks(): IProductsPageCallbacks {
     return {
       productsCallback: this.handleProductsCallback.bind(this),
