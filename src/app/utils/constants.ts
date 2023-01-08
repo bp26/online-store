@@ -18,3 +18,6 @@ export const MASTERCARD_IMG = require('../../assets/svg/mastercard-logo.svg');
 export const VISA_IMG = require('../../assets/svg/visa-logo.svg');
 export const AMERICAN_EXPRESS_IMG = require('../../assets/svg/american-logo.svg');
 export const SEARCH_PLACEHOLDER = 'Search products';
+export const MODAL_TIMER_INTERVAL = 1000;
+export const MODAL_CLEAR_INTERVAL_TIMEOUT = 1000;
+export const MODAL_REDIRECT_TIMEOUT = 5000;

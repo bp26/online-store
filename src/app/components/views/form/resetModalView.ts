@@ -1,6 +1,9 @@
 import { Element } from '../../element';
 import { HTMLTag } from '../../../types/enums';
 import { VALUE_TIMER } from '../../../utils/constants';
+import { MODAL_CLEAR_INTERVAL_TIMEOUT } from '../../../utils/constants';
+import { MODAL_REDIRECT_TIMEOUT } from '../../../utils/constants';
+import { MODAL_TIMER_INTERVAL } from '../../../utils/constants';
 
 export class resetModalView extends Element {
   private count: number;
@@ -13,14 +16,14 @@ export class resetModalView extends Element {
     const interval = setInterval(() => {
       this.count -= 1;
       this.text.elem.textContent = `Thanks for your order. Redirect to the store after ${this.count} sec`;
-    }, 1000);
+    }, MODAL_TIMER_INTERVAL);
 
     setTimeout(() => {
       clearInterval(interval);
       setTimeout(() => {
         node.destroy();
         mountProductsPage();
-      }, 1000);
-    }, 5000);
+      }, MODAL_REDIRECT_TIMEOUT);
+    }, MODAL_CLEAR_INTERVAL_TIMEOUT);
   }
 }
