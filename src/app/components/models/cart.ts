@@ -65,7 +65,7 @@ export class Cart {
   }
 
   inputUpdatePaginationHead(): void {
-    this.paginationHead = 0;
+    this.paginationHead = DEFAULT_PAGINATION_HEAD;
     localStorage.setItem(localStorageCart.PAGINATION_HEAD, JSON.stringify(this.paginationHead));
   }
 
@@ -116,6 +116,15 @@ export class Cart {
     flag ? (this.sumProductCart += price) : (this.sumProductCart -= price);
     this.summProdContent.textContent = `${this.sumProductCart}`;
     localStorage.setItem(localStorageCart.SUM_PRODUCT_CART, JSON.stringify(this.sumProductCart));
+  }
+
+  resetSummAndCountProductHeader(): void {
+    this.sumProductCart = 0;
+    this.countProductCart = 0;
+    this.summProdContent.textContent = `${this.sumProductCart}`;
+    this.countProdContent.textContent = `${this.countProductCart}`;
+    localStorage.setItem(localStorageCart.SUM_PRODUCT_CART, JSON.stringify(this.sumProductCart));
+    localStorage.setItem(localStorageCart.COUNT_PRODUCT_CART, JSON.stringify(this.countProductCart));
   }
 
   amountProductCart(flag: boolean): void {
@@ -186,6 +195,15 @@ export class Cart {
     localStorage.setItem(localStorageCart.DISCOUNT_PROCENT, JSON.stringify(this.discountProcent));
   }
 
+  resetDiscount(): void {
+    this.discountProcent = DEFAULT_DISCOUNT_PROCENT;
+    this.discountListItem = DEFAULT_DISCOUNT_LIST_ITEM;
+    this.nameDiscount.clear();
+    localStorage.setItem(localStorageCart.DISCOUNT_PROCENT, JSON.stringify(this.discountProcent));
+    localStorage.setItem(localStorageCart.DISCOUNT_LIST_ITEM, JSON.stringify(this.discountListItem));
+    localStorage.setItem(localStorageCart.DISCOUNT_NAME, JSON.stringify(Array.from(this.nameDiscount.entries())));
+  }
+
   getDiscountListItem(): number {
     return this.discountListItem;
   }
@@ -214,5 +232,23 @@ export class Cart {
     const result = this.sumProductCart - procent;
     localStorage.setItem(localStorageCart.CALCULATE_PROCENT, JSON.stringify(result));
     return result;
+  }
+
+  resetListCart(): void {
+    Object.keys(this.list).forEach((item) => delete this.list[item]);
+    localStorage.setItem(localStorageCart.CART_LIST, JSON.stringify(this.list));
+  }
+
+  resetPaginationPages(): void {
+    this.paginationPagesCount = DEFAULT_PAGINATION_PAGES_COUNT;
+    localStorage.setItem(localStorageCart.PAGINATION_PAGES_COUNT, JSON.stringify(this.paginationPagesCount));
+  }
+
+  clearCart(): void {
+    this.resetListCart();
+    this.resetSummAndCountProductHeader();
+    this.inputUpdatePaginationHead();
+    this.resetDiscount();
+    this.resetPaginationPages();
   }
 }
