@@ -16,7 +16,7 @@ export class DetailsPageView extends Element {
     const container = new Element(this.elem, HTMLTag.DIV, 'details-page__product');
     const title = new Element(container.elem, HTMLTag.DIV, 'details-page__title', product.title);
 
-    const content = new Element(this.elem, HTMLTag.DIV, 'details-page__content');
+    const content = new Element(container.elem, HTMLTag.DIV, 'details-page__content');
     const images = new DetailsImagesView(content.elem, product.images);
     const info = new DetailsInfoView(content.elem, product);
     const cart = new DetailsCartView(content.elem, product.id, product.price, inCart, callback);
