@@ -25,6 +25,7 @@ export enum FiltersType {
 export const enum CardButtonTitles {
   ADD = 'ADD',
   REMOVE = 'REMOVE',
+  BUY = 'BUY NOW',
 }
 
 export const enum localStorageCart {
