@@ -14,7 +14,7 @@ export class BreadcrumbsView extends Element {
 
     BREADCRUMBS_LIST.forEach((item) => {
       const separator = new Element(this.elem, HTMLTag.SPAN, 'breadcrumbs__separator', BreadcrumbsElements.SEPARATOR);
-      const breadcrumb = new Element(this.elem, HTMLTag.SPAN, 'breadcrumbs__item', String(productData[item]));
+      const breadcrumb = new Element(this.elem, HTMLTag.SPAN, 'breadcrumbs__item', String(productData[item]).toUpperCase());
     });
   }
 }
