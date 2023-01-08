@@ -39,10 +39,8 @@ export class InputCardDate extends Element {
   public validation(): void {
     if (this.conditionValidValue.test(this.inputCardNumberElem.value)) {
       this.inputCardNumberElem.classList.remove('invalid');
-      this.inputCardNumberElem.classList.add('valid');
       this.valid = true;
     } else {
-      this.inputCardNumberElem.classList.remove('valid');
       this.inputCardNumberElem.classList.add('invalid');
       this.valid = false;
     }

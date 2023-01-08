@@ -9,7 +9,7 @@ export class InputName extends Element {
     this.valid = false;
     const conditionInvalidValue = new RegExp('\\d', 'g');
 
-    const inputName = new Element(this.elem, HTMLTag.INPUT, 'form__input-name');
+    const inputName = new Element(this.elem, HTMLTag.INPUT, 'form__input');
     this.inputNameElem = <HTMLInputElement>inputName.elem;
     this.inputNameElem.setAttribute('type', 'text');
     this.inputNameElem.setAttribute('placeholder', 'Name');
@@ -28,10 +28,8 @@ export class InputName extends Element {
   public validation(): void {
     if (/\w{3,}\s\w{3,}[\s\w]+/.test(this.inputNameElem.value)) {
       this.inputNameElem.classList.remove('invalid');
-      this.inputNameElem.classList.add('valid');
       this.valid = true;
     } else {
-      this.inputNameElem.classList.remove('valid');
       this.inputNameElem.classList.add('invalid');
       this.valid = false;
     }

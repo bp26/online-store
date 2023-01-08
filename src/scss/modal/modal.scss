@@ -17,10 +17,17 @@
   position: absolute;
   top: calc(50% - ($modal_height / 2));
   left: calc(50% - ($modal_width / 2));
-  padding: 10px;
+  padding: 15px;
   background: $background-modal;
   border-radius: 10px;
-  box-shadow: inset 0px 0px 25px $modal-box-shadow-color;
+  box-shadow: inset 0px 0px 25px 1px $modal-box-shadow-color;
+}
+
+.wrapper-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
 }
 
 .wrapper-reset {
@@ -37,7 +44,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  &__title {
+    color: $color-title-card-block;
+    text-shadow: 1px 1px 1px $border-input-modal;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+  }
+  &__input {
+    text-align: center;
+    background: $background-input-form;
+    color: $border-input-modal;
+    &::placeholder {
+      text-align: center;
+      color: $color-placeholder-form;
+    }
+  }
+  &__label {
+    height: 25px;
+  }
 }
 
 .wrapper-card {
@@ -45,10 +69,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
+  margin-bottom: 25px;
   &__title {
     color: $color-title-card-block;
-    text-shadow: 1px 1px 1px $border-color-base;
+    text-shadow: 1px 1px 1px $border-input-modal;
   }
   &__button {
     width: 130px;
@@ -56,7 +81,7 @@
     border-radius: 8px;
     border: none;
     background: $background-button-modal;
-    box-shadow: inset 0px 0px 6px 2px $border-color-base;
+    box-shadow: inset 0px 0px 6px 2px $border-input-modal;
     transition: all 0.3s linear;
     &:hover {
       cursor: pointer;
@@ -70,7 +95,7 @@
   width: 100px;
   height: 50px;
   background-color: $background-logo-card;
-  box-shadow: 0px 0px 9px 0px $border-color-base;
+  box-shadow: 0px 0px 9px 0px $border-input-modal;
   background-image: none;
   background-position: center;
   background-size: cover;
@@ -87,7 +112,7 @@
   width: 230px;
   height: 100px;
   background: $background-modal-card;
-  box-shadow: 0px 1px 0px 2px $border-color-base;
+  box-shadow: 0px 1px 0px 2px $border-input-modal;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -111,7 +136,6 @@
 .block-date {
   display: flex;
   align-items: center;
-  gap: 5px;
   &__input {
     width: 50px;
     @include input-card;
@@ -140,16 +164,13 @@
   }
 }
 
-.valid {
-  border: 10px solid green;
-}
-
 .invalid {
-  border: 3px solid red;
+  border: 2px solid $color-invalid;
 }
 
 .form__label-card {
   display: flex;
-  gap: 5px;
+  gap: 8px;
+  height: 30px;
   align-items: center;
 }
