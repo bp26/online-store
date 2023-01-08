@@ -34,9 +34,9 @@
 }
 
 .form {
-  text-align: center;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
 }
 
@@ -49,6 +49,20 @@
   &__title {
     color: $color-title-card-block;
     text-shadow: 1px 1px 1px $border-color-base;
+  }
+  &__button {
+    width: 130px;
+    height: 30px;
+    border-radius: 8px;
+    border: none;
+    background: $background-button-modal;
+    box-shadow: inset 0px 0px 6px 2px $border-color-base;
+    transition: all 0.3s linear;
+    &:hover {
+      cursor: pointer;
+      background: $background-button-modal-hover;
+      transition: all 0.3s linear;
+    }
   }
 }
 
