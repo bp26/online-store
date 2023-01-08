@@ -16,7 +16,7 @@ export class DetailsImagesView extends Element {
     });
 
     const mainContainer = new Element(this.elem, HTMLTag.DIV, 'product-images__main-container');
-    this.mainImage = new Element(this.elem, HTMLTag.IMG, 'product-images__image product-images__image_main');
+    this.mainImage = new Element(mainContainer.elem, HTMLTag.IMG, 'product-images__image product-images__image_main');
     this.setMainImage(0, imageLinks);
   }
 
