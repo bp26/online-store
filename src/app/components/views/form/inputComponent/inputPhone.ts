@@ -1,4 +1,4 @@
-import { HTMLTag } from '../../../../types/enums';
+import { HTMLTag, InfoForUser } from '../../../../types/enums';
 import { Element } from '../../../element';
 
 export class InputPhone extends Element {
@@ -12,7 +12,7 @@ export class InputPhone extends Element {
     const inputPhone = new Element(this.elem, HTMLTag.INPUT, 'form__input-phone');
     this.inputPhoneElem = <HTMLInputElement>inputPhone.elem;
     this.inputPhoneElem.setAttribute('type', 'tel');
-    this.inputPhoneElem.setAttribute('title', 'Номер должен содержать не менее 9 цифр и начинаться с "+"');
+    this.inputPhoneElem.setAttribute('title', InfoForUser.INPUT_PHONE);
     this.inputPhoneElem.setAttribute('placeholder', 'Phone number');
 
     this.inputPhoneElem.oninput = () => {

@@ -1,4 +1,4 @@
-import { HTMLTag } from '../../../../types/enums';
+import { HTMLTag, InfoForUser } from '../../../../types/enums';
 import { Element } from '../../../element';
 import { MASTERCARD_IMG, VISA_IMG, AMERICAN_EXPRESS_IMG } from '../../../../utils/constants';
 
@@ -16,7 +16,7 @@ export class InputCardNumber extends Element {
     const inputCardNumber = new Element(node, HTMLTag.INPUT, 'modal-card__number');
     this.inputCardNumberElem = <HTMLInputElement>inputCardNumber.elem;
     this.inputCardNumberElem.setAttribute('type', 'text');
-    this.inputCardNumberElem.setAttribute('title', 'Номер должен состоять из 16 цифр');
+    this.inputCardNumberElem.setAttribute('title', InfoForUser.INPUT_NUMBER);
     this.inputCardNumberElem.setAttribute('placeholder', 'Card number');
     this.inputCardNumberElem.setAttribute('maxlength', '19');
     this.inputCardNumberElem.oninput = () => {

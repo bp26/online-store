@@ -1,4 +1,4 @@
-import { HTMLTag } from '../../../../types/enums';
+import { HTMLTag, InfoForUser } from '../../../../types/enums';
 import { Element } from '../../../element';
 
 export class InputAdress extends Element {
@@ -13,7 +13,7 @@ export class InputAdress extends Element {
     const inputAdress = new Element(this.elem, HTMLTag.INPUT, 'form__input-adress');
     this.inputAdressElem = <HTMLInputElement>inputAdress.elem;
     this.inputAdressElem.setAttribute('type', 'text');
-    this.inputAdressElem.setAttribute('title', 'Адрес должен иметь не меньше 3 слов по 5 символов каждый');
+    this.inputAdressElem.setAttribute('title', InfoForUser.INPUT_ADRESS);
     this.inputAdressElem.setAttribute('placeholder', 'Adress');
 
     this.inputAdressElem.oninput = () => {

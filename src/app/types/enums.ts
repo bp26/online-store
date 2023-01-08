@@ -58,3 +58,13 @@ export const enum DisplayStyle {
   BLOCK = 'block',
   NONE = 'none',
 }
+
+export const enum InfoForUser {
+  INPUT_NAME = 'Имя должно содержать не менее 2-ух слов длиной не менее 3-ёх символов',
+  INPUT_PHONE = 'Номер должен содержать не менее 9 цифр и начинаться с "+"',
+  INPUT_ADRESS = 'Адрес должен иметь не меньше 3 слов по 5 символов каждый',
+  INPUT_MAIL = 'E-mail должен быть корректным',
+  INPUT_NUMBER = 'Номер должен состоять из 16 цифр',
+  INPUT_CVV = 'Код должен состоять из 3 цифр',
+  INPUT_DATE = 'Дата должна быть корректной',
+}

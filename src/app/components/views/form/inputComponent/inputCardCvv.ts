@@ -1,4 +1,4 @@
-import { HTMLTag } from '../../../../types/enums';
+import { HTMLTag, InfoForUser } from '../../../../types/enums';
 import { Element } from '../../../element';
 
 export class InputCardCvv extends Element {
@@ -14,7 +14,7 @@ export class InputCardCvv extends Element {
     const inputCardNumber = new Element(node, HTMLTag.INPUT, 'block-cvv__input');
     this.inputCardNumberElem = <HTMLInputElement>inputCardNumber.elem;
     this.inputCardNumberElem.setAttribute('type', 'text');
-    this.inputCardNumberElem.setAttribute('title', 'Код должен состоять из 3 цифр');
+    this.inputCardNumberElem.setAttribute('title', InfoForUser.INPUT_CVV);
     this.inputCardNumberElem.setAttribute('placeholder', 'Cvv');
     this.inputCardNumberElem.setAttribute('maxlength', '3');
 

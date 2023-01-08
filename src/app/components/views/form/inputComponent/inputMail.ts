@@ -1,4 +1,4 @@
-import { HTMLTag } from '../../../../types/enums';
+import { HTMLTag, InfoForUser } from '../../../../types/enums';
 import { Element } from '../../../element';
 
 export class InputMail extends Element {
@@ -12,7 +12,7 @@ export class InputMail extends Element {
     const inputMail = new Element(this.elem, HTMLTag.INPUT, 'form__input-mail');
     this.inputMailElem = <HTMLInputElement>inputMail.elem;
     this.inputMailElem.setAttribute('type', 'email');
-    this.inputMailElem.setAttribute('title', 'E-mail должен быть корректным');
+    this.inputMailElem.setAttribute('title', InfoForUser.INPUT_MAIL);
     this.inputMailElem.setAttribute('placeholder', 'E-mail');
 
     this.inputMailElem.oninput = () => {

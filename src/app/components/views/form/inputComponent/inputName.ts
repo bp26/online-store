@@ -1,4 +1,4 @@
-import { HTMLTag } from '../../../../types/enums';
+import { HTMLTag, InfoForUser } from '../../../../types/enums';
 import { Element } from '../../../element';
 
 export class InputName extends Element {
@@ -13,7 +13,7 @@ export class InputName extends Element {
     this.inputNameElem = <HTMLInputElement>inputName.elem;
     this.inputNameElem.setAttribute('type', 'text');
     this.inputNameElem.setAttribute('placeholder', 'Name');
-    this.inputNameElem.setAttribute('title', `Имя должно содержать не менее 2-ух слов длиной не менее 3-ёх символов`);
+    this.inputNameElem.setAttribute('title', InfoForUser.INPUT_NAME);
     this.inputNameElem.oninput = () => {
       if (conditionInvalidValue.test(this.inputNameElem.value)) {
         this.inputNameElem.value = this.inputNameElem.value.replace(conditionInvalidValue, '');

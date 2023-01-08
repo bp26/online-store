@@ -1,4 +1,4 @@
-import { HTMLTag } from '../../../../types/enums';
+import { HTMLTag, InfoForUser } from '../../../../types/enums';
 import { Element } from '../../../element';
 
 export class InputCardDate extends Element {
@@ -17,7 +17,7 @@ export class InputCardDate extends Element {
     const inputCardNumber = new Element(node, HTMLTag.INPUT, 'block-date__input');
     this.inputCardNumberElem = <HTMLInputElement>inputCardNumber.elem;
     this.inputCardNumberElem.setAttribute('type', 'text');
-    this.inputCardNumberElem.setAttribute('title', 'Дата должна быть корректной');
+    this.inputCardNumberElem.setAttribute('title', InfoForUser.INPUT_DATE);
     this.inputCardNumberElem.setAttribute('placeholder', 'Date');
     this.inputCardNumberElem.setAttribute('maxlength', '5');
 
