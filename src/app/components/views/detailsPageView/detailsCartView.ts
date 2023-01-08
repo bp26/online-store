@@ -8,7 +8,7 @@ export class DetailsCartView extends Element {
   constructor(parent: HTMLElement, id: number, productPrice: number, private inCart: boolean, callback: DetailsCallback) {
     super(parent, HTMLTag.DIV, 'details-page__details-cart details-cart');
 
-    const price = new Element(this.elem, HTMLTag.SPAN, 'details-cart__price', `€${productPrice}`);
+    const price = new Element(this.elem, HTMLTag.SPAN, 'details-cart__price', `€${productPrice}.00`);
 
     const addButton = new Element(this.elem, HTMLTag.BUTTON, 'details-cart__button');
     addButton.elem.onclick = () => {
