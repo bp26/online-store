@@ -31,6 +31,9 @@
 }
 
 .wrapper-reset {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: $reset_width;
   height: $reset_height;
   position: absolute;
@@ -38,6 +41,14 @@
   left: calc(50% - ($reset_width / 2));
   background: $background-reset;
   text-align: center;
+  border: 1px solid $border-color-modal;
+  box-shadow: inset 0px 0px 25px 1px $modal-box-shadow-color;
+  border-radius: 10px;
+}
+
+.reset-content {
+  color: $color-reset-content;
+  font-size: 24px;
 }
 
 .form {
