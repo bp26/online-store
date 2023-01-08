@@ -1,17 +1,22 @@
 import { Controller } from '../controllers/controller';
 import { ProductsPageView } from './productsPageView/productsPageView';
+import { DetailsPageView } from './detailsPageView/detailsPageView';
 import { CartView } from '../views/cartView';
 import { IProduct } from '../../types/interfaces';
 import { ModalView } from './form/modalView';
+import { Preloader } from '../preloader';
+import { PreloaderView } from './preloaderView';
 
 export class View {
   readonly root: HTMLElement;
   readonly controller: Controller;
-  productsPage?: ProductsPageView;
+  public productsPage?: ProductsPageView;
+  public detailsPage?: DetailsPageView;
+  public cart?: CartView;
+  private preloader: Preloader;
   private buttonCart: HTMLButtonElement;
   private pageMain: HTMLHeadElement;
   private inputValue: number;
-  private cart: CartView | undefined;
   private dataMatrix: IProduct[][] | undefined;
   constructor(root: HTMLElement) {
     this.root = root;
@@ -22,48 +27,64 @@ export class View {
     this.pageMain.onclick = () => this.mountProductsPage();
     this.buttonCart.onclick = () => this.mountCartPage();
     this.controller = new Controller(this);
+    this.preloader = new Preloader();
     this.mountProductsPage();
   }
 
   public mountProductsPage = (): void => {
     this.root.innerHTML = '';
     this.disabledBtnCart(false);
-    this.productsPage = new ProductsPageView(this.root, this.controller.handleProductsPageInit(), this.controller.handleProductsPageCallbacks());
+
+    const pageData = this.controller.handleProductsPageInit();
+    const preloaderView = new PreloaderView();
+
+    this.preloader.preloadProductsData(pageData).then(() => {
+      preloaderView.destroy();
+      this.productsPage = new ProductsPageView(this.root, pageData, this.controller.handleProductsPageCallbacks());
+    });
   };
 
-  public mountCartPage(): void {
+  public mountCartPage(modalActive = false): void {
     this.root.innerHTML = '';
     this.disabledBtnCart(true);
-    const arrSummaryData = this.getSummaryData();
-    this.cart = new CartView(
-      this.root,
-      arrSummaryData,
-      this.btnNeg,
-      this.btnPos,
-      this.destroyProductCart,
-      this.getValueInput,
-      this.getValueContentCart,
-      this.getCartList,
-      this.btnPagination,
-      this.getPaginationHead,
-      this.paginationHeadValue,
-      this.inputUpdatePaginationHead,
-      this.mountDetailsPage,
-      this.getPaginationPagesCount,
-      this.setPaginationPagesCount,
-      this.setPaginationInputValue,
-      this.getPaginationInputValue,
-      this.validationInputSummary,
-      this.setDiscountListItem,
-      this.getDiscountListItem,
-      this.setNameDiscount,
-      this.getNameDiscount,
-      this.deleteNameDiscount,
-      this.calculateProcent,
-      this.setDiscountProcent,
-      this.getValueDiscountData,
-      this.mountModal
-    );
+
+    const pageData = this.controller.handleCartPageInit();
+    const preloaderView = new PreloaderView();
+
+    this.preloader.preloadCartData(pageData).then(() => {
+      preloaderView.destroy();
+      const arrSummaryData = this.getSummaryData();
+      this.cart = new CartView(
+        this.root,
+        arrSummaryData,
+        this.btnNeg,
+        this.btnPos,
+        this.destroyProductCart,
+        this.getValueInput,
+        this.getValueContentCart,
+        this.getCartList,
+        this.btnPagination,
+        this.getPaginationHead,
+        this.paginationHeadValue,
+        this.inputUpdatePaginationHead,
+        this.mountDetailsPage,
+        this.getPaginationPagesCount,
+        this.setPaginationPagesCount,
+        this.setPaginationInputValue,
+        this.getPaginationInputValue,
+        this.validationInputSummary,
+        this.setDiscountListItem,
+        this.getDiscountListItem,
+        this.setNameDiscount,
+        this.getNameDiscount,
+        this.deleteNameDiscount,
+        this.calculateProcent,
+        this.setDiscountProcent,
+        this.getValueDiscountData,
+        this.mountModal,
+        modalActive
+      );
+    });
   }
 
   private mountModal = (): void => {
@@ -73,6 +94,14 @@ export class View {
   public mountDetailsPage = (id: number): void => {
     this.root.innerHTML = '';
     this.disabledBtnCart(false);
+
+    const pageData = this.controller.handleDetailsPageInit(id);
+    const preloaderView = new PreloaderView();
+
+    this.preloader.preloadDetailsData(pageData).then(() => {
+      preloaderView.destroy();
+      this.detailsPage = new DetailsPageView(this.root, pageData, this.controller.handleDetailsCallback.bind(this.controller));
+    });
   };
 
   private getSummaryData(): number[] {

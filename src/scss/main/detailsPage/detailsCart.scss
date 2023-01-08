@@ -1,0 +1,16 @@
+.details-cart {
+  @include flex-position-base;
+  flex-direction: column;
+  gap: 20px;
+
+  &__price {
+    font-size: 50px;
+  }
+
+  &__button {
+    width: 100%;
+    height: 40px;
+
+    border-radius: $border-radius-base;
+  }
+}

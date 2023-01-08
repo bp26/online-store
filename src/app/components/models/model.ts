@@ -9,6 +9,8 @@ import { IProductsPageData } from '../../types/interfaces';
 import { IProductsOptions } from '../../types/interfaces';
 import { IProductsHeaderOptions } from '../../types/interfaces';
 import { ProductDisplay } from '../../types/enums';
+import { IDetailsPageData } from '../../types/interfaces';
+import { binarySearch } from '../../utils/binarySearch';
 
 export class Model {
   readonly data: ProductsData;
@@ -70,6 +72,22 @@ export class Model {
 
   public getProductDisplay(): ProductDisplay {
     return this.productDisplay;
+  }
+
+  public getDetailsPageData(id: number): IDetailsPageData {
+    const data = this.getData();
+    return {
+      product: binarySearch(data, id),
+      inCart: this.checkProductInCart(id),
+    };
+  }
+
+  public getCartPageData(): ProductsData {
+    return this.getData().filter((product) => this.checkProductInCart(product.id));
+  }
+
+  private checkProductInCart(id: number): boolean {
+    return this.cart.getCartArray().includes(id);
   }
 
   getSummaryData(): number[] {

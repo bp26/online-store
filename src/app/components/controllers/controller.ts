@@ -1,14 +1,15 @@
 import { Model } from '../models/model';
-import { IProduct } from '../../types/interfaces';
+import { IDetailsPageData, IProduct } from '../../types/interfaces';
 import { View } from '../views/view';
 import { ProductsAction } from '../../types/enums';
 import { FiltersAction } from '../../types/enums';
-import { FiltersData } from '../../types/types';
+import { FiltersData, ProductsData } from '../../types/types';
 import { IProductsPageData } from '../../types/interfaces';
 import { IProductsPageCallbacks } from '../../types/interfaces';
 import { IProductsHeaderCallbacks } from '../../types/interfaces';
 import { SortType } from '../../types/enums';
 import { ProductDisplay } from '../../types/enums';
+import { DetailsAction } from '../../types/enums';
 
 export class Controller {
   readonly model: Model;
@@ -20,6 +21,14 @@ export class Controller {
 
   public handleProductsPageInit(): IProductsPageData {
     return this.model.getProductsPageData();
+  }
+
+  public handleDetailsPageInit(id: number): IDetailsPageData {
+    return this.model.getDetailsPageData(id);
+  }
+
+  public handleCartPageInit(): ProductsData {
+    return this.model.getCartPageData();
   }
 
   public handleProductsPageCallbacks(): IProductsPageCallbacks {
@@ -77,6 +86,22 @@ export class Controller {
   private handleToggleDisplayCallback(display: ProductDisplay): void {
     this.model.setProductDisplay(display);
     if (this.view.productsPage) this.view.productsPage.updateOnToggleDisplay(this.model.getProductDisplay());
+  }
+
+  public handleDetailsCallback(action: DetailsAction, id?: number, price?: number): void {
+    switch (action) {
+      case DetailsAction.BACK:
+        this.view.mountProductsPage();
+        break;
+      case DetailsAction.ADD:
+        if (id && price) this.model.cart.toggleProduct(id, price);
+        break;
+      case DetailsAction.BUY:
+        if (id && price) {
+          this.model.cart.addProduct(id, price);
+          this.view.mountCartPage(true);
+        }
+    }
   }
 
   getSummaryData(): number[] {
