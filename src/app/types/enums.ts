@@ -110,6 +110,6 @@ export const enum ProductDisplay {
 }
 
 export const enum BreadcrumbsElements {
-  STORE = 'Store',
+  STORE = 'STORE',
   SEPARATOR = '>>',
 }
