@@ -99,6 +99,7 @@ export class Controller {
       case DetailsAction.BUY:
         if (id && price) {
           this.model.cart.addProduct(id, price);
+          this.view.mountCartPage(true);
         }
     }
   }
