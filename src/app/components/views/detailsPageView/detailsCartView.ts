@@ -10,12 +10,13 @@ export class DetailsCartView extends Element {
 
     const price = new Element(this.elem, HTMLTag.SPAN, 'details-cart__price', `€${productPrice}`);
 
-    const addButton = new Element(this.elem, HTMLTag.BUTTON, 'details-cart__button', 'ADD');
+    const addButton = new Element(this.elem, HTMLTag.BUTTON, 'details-cart__button');
     addButton.elem.onclick = () => {
       callback(DetailsAction.ADD, id, productPrice);
       this.inCart = !this.inCart;
       this.setCartDisplay(addButton.elem);
     };
+    this.setCartDisplay(addButton.elem);
 
     const buyButton = new Element(this.elem, HTMLTag.BUTTON, 'details-cart__button', CardButtonTitles.BUY);
     buyButton.elem.onclick = () => callback(DetailsAction.BUY, id, productPrice);
