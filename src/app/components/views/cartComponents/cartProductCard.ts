@@ -54,7 +54,7 @@ export class CartProductCard {
       const countProductIgnor = new Element(li.elem, HTMLTag.P, 'count-product', `${i + 1}`);
       const imageBlockProduct = new Element(li.elem, HTMLTag.DIV, 'image-block');
       const imageProduct = new Element(imageBlockProduct.elem, HTMLTag.IMG, 'images-product');
-      imageProduct.elem.setAttribute('src', `${this.arrayProductCart[head][i].images[0]}`);
+      imageProduct.elem.setAttribute('src', `${this.arrayProductCart[head][i].thumbnail}`);
       imageProduct.elem.setAttribute('alt', `${this.arrayProductCart[head][i].title}`);
       const descriptionBlockProduct = new Element(li.elem, HTMLTag.DIV, 'block-base');
       descriptionBlockProduct.elem.onclick = () => {

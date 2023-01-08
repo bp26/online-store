@@ -3,35 +3,75 @@ import { IProduct } from '../../types/interfaces';
 import { products } from '../../../assets/data/products';
 import { Cart } from './cart';
 import { Filter } from './filter';
+import { Sort } from './sort';
+import { Search } from './search';
 import { IProductsPageData } from '../../types/interfaces';
+import { IProductsOptions } from '../../types/interfaces';
+import { IProductsHeaderOptions } from '../../types/interfaces';
+import { ProductDisplay } from '../../types/enums';
 import { IDetailsPageData } from '../../types/interfaces';
 import { binarySearch } from '../../utils/binarySearch';
 
 export class Model {
   readonly data: ProductsData;
-  readonly cart: Cart;
-  private openCart: boolean;
   readonly filter: Filter;
+  readonly sort: Sort;
+  readonly search: Search;
+  readonly cart: Cart;
+  private openCart = false;
+  private productDisplay: ProductDisplay = ProductDisplay.DETAILED;
 
   constructor() {
     this.data = products;
     this.cart = new Cart();
-    this.openCart = false;
     this.filter = new Filter();
+    this.sort = new Sort();
+    this.search = new Search();
   }
 
   private getData(): ProductsData {
     return this.data;
   }
 
+  private transformData(data: ProductsData): ProductsData {
+    const filteredData = this.filter.filterData(data);
+    const searchedData = this.search.searchData(filteredData);
+    const sortedData = this.sort.sortData(searchedData);
+
+    return sortedData;
+  }
+
   public getProductsPageData(): IProductsPageData {
     const initialData = this.getData();
-    const transData = this.filter.filterData(initialData);
-    const filterOptions = this.filter.setFilterOptions(initialData, transData);
+    const transData = this.transformData(initialData);
     return {
-      data: transData,
-      filterOptions: filterOptions,
+      productsOptions: this.setProductsOptions(transData),
+      filterOptions: this.filter.setFilterOptions(initialData, transData),
+      headerOptions: this.setHeaderOptions(transData),
     };
+  }
+
+  private setProductsOptions(data: ProductsData): IProductsOptions {
+    return {
+      data,
+      cartArray: this.cart.getCartArray(),
+      productDisplay: this.productDisplay,
+    };
+  }
+
+  private setHeaderOptions(data: ProductsData): IProductsHeaderOptions {
+    return {
+      sortType: this.sort.getType(),
+      productsCount: data.length,
+    };
+  }
+
+  public setProductDisplay(display: ProductDisplay): void {
+    this.productDisplay = display;
+  }
+
+  public getProductDisplay(): ProductDisplay {
+    return this.productDisplay;
   }
 
   public getDetailsPageData(id: number): IDetailsPageData {
@@ -139,5 +179,9 @@ export class Model {
 
   setDiscountProcent(flag: boolean, discount: number): void {
     this.cart.setDiscountProcent(flag, discount);
+  }
+
+  clearCart() {
+    this.cart.clearCart();
   }
 }

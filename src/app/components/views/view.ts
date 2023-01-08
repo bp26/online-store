@@ -3,6 +3,7 @@ import { ProductsPageView } from './productsPageView/productsPageView';
 import { DetailsPageView } from './detailsPageView/detailsPageView';
 import { CartView } from '../views/cartView';
 import { IProduct } from '../../types/interfaces';
+import { ModalView } from './form/modalView';
 import { Preloader } from '../preloader';
 import { PreloaderView } from './preloaderView';
 
@@ -30,7 +31,7 @@ export class View {
     this.mountProductsPage();
   }
 
-  public mountProductsPage(): void {
+  public mountProductsPage = (): void => {
     this.root.innerHTML = '';
     this.disabledBtnCart(false);
 
@@ -41,7 +42,7 @@ export class View {
       preloaderView.destroy();
       this.productsPage = new ProductsPageView(this.root, pageData, this.controller.handleProductsPageCallbacks());
     });
-  }
+  };
 
   public mountCartPage(): void {
     this.root.innerHTML = '';
@@ -79,10 +80,15 @@ export class View {
         this.deleteNameDiscount,
         this.calculateProcent,
         this.setDiscountProcent,
-        this.getValueDiscountData
+        this.getValueDiscountData,
+        this.mountModal
       );
     });
   }
+
+  private mountModal = (): void => {
+    new ModalView(this.clearCart, this.mountProductsPage);
+  };
 
   public mountDetailsPage = (id: number): void => {
     this.root.innerHTML = '';
@@ -97,20 +103,20 @@ export class View {
     });
   };
 
-  getSummaryData(): number[] {
+  private getSummaryData(): number[] {
     return this.controller.getSummaryData();
   }
 
-  disabledBtnCart(flag: boolean): void {
+  private disabledBtnCart(flag: boolean): void {
     const openCart = this.controller.toggleBtnCart(flag);
     openCart ? (this.buttonCart.disabled = true) : (this.buttonCart.disabled = false);
   }
 
-  summaryContentCart(arg: number[]) {
+  private summaryContentCart(arg: number[]) {
     this.cart?.summaryContent(arg);
   }
 
-  matrixCart = (): IProduct[][] => {
+  private matrixCart = (): IProduct[][] => {
     const dataMatrix: IProduct[][] = this.controller.getMatrixCart(this.inputValue);
     this.dataMatrix = dataMatrix;
     if (this.dataMatrix) {
@@ -119,7 +125,7 @@ export class View {
     throw new Error('Array dataMatrix is null');
   };
 
-  getValueInput = (value: number): IProduct[][] => {
+  private getValueInput = (value: number): IProduct[][] => {
     this.inputValue = value;
     this.matrixCart();
     if (this.dataMatrix) {
@@ -128,21 +134,21 @@ export class View {
     throw new Error('Array dataMatrix is null');
   };
 
-  getValueContentCart = (): number => {
+  private getValueContentCart = (): number => {
     return this.inputValue;
   };
 
-  getCartList = (id: number): number[] => {
+  private getCartList = (id: number): number[] => {
     return this.controller.getCartList(id);
   };
 
-  destroyProductCart = (price: number, id: number): void => {
+  private destroyProductCart = (price: number, id: number): void => {
     this.controller.toggleCountProductCart(price, id, false);
     this.controller.getMatrixCart(this.inputValue);
     this.summaryContentCart(this.controller.getSummaryData());
   };
 
-  paginationHeadValue = (head: number): number => {
+  private paginationHeadValue = (head: number): number => {
     const toggle = this.controller.paginationHeadValue(head);
     if (!toggle) {
       this.cart?.countHeaderUpdate();
@@ -150,82 +156,88 @@ export class View {
     return this.controller.getPaginationHead();
   };
 
-  btnNeg = (price: number, id: number): void => {
+  private btnNeg = (price: number, id: number): void => {
     this.controller.toggleCountProductCart(price, id, false);
     this.summaryContentCart(this.controller.getSummaryData());
   };
 
-  btnPos = (price: number, id: number): void => {
+  private btnPos = (price: number, id: number): void => {
     this.controller.toggleCountProductCart(price, id, true);
     this.summaryContentCart(this.controller.getSummaryData());
   };
 
-  btnPagination = (flag: boolean): number => {
+  private btnPagination = (flag: boolean): number => {
     this.togglePaginationHead(flag);
     return this.getPaginationHead();
   };
 
-  togglePaginationHead(flag: boolean): void {
+  private togglePaginationHead(flag: boolean): void {
     this.controller.togglePaginationHead(flag);
   }
 
-  getPaginationHead = (): number => {
+  private getPaginationHead = (): number => {
     return this.controller.getPaginationHead();
   };
 
-  inputUpdatePaginationHead = (): void => {
+  private inputUpdatePaginationHead = (): void => {
     this.controller.inputUpdatePaginationHead();
   };
 
-  getPaginationPagesCount = (): number => {
+  private getPaginationPagesCount = (): number => {
     return this.controller.getPaginationPagesCount();
   };
 
-  setPaginationPagesCount = (count: number): void => {
+  private setPaginationPagesCount = (count: number): void => {
     this.controller.setPaginationPagesCount(count);
   };
 
-  setPaginationInputValue = (count: number): void => {
+  private setPaginationInputValue = (count: number): void => {
     this.controller.setPaginationInputValue(count);
   };
 
-  getPaginationInputValue = (): number => {
+  private getPaginationInputValue = (): number => {
     return this.controller.getPaginationInputValue();
   };
 
-  validationInputSummary = (value: string): string[] | false => {
+  private validationInputSummary = (value: string): string[] | false => {
     return this.controller.validationInputSummary(value);
   };
 
-  setDiscountListItem = (flag: boolean): void => {
+  private setDiscountListItem = (flag: boolean): void => {
     this.controller.setDiscountListItem(flag);
   };
 
-  getDiscountListItem = (): number => {
+  private getDiscountListItem = (): number => {
     return this.controller.getDiscountListItem();
   };
 
-  setNameDiscount = (name: string, discount: string): void => {
+  private setNameDiscount = (name: string, discount: string): void => {
     this.controller.setNameDiscount(name, discount);
   };
 
-  getNameDiscount = (name: string): boolean => {
+  private getNameDiscount = (name: string): boolean => {
     return this.controller.getNameDiscount(name);
   };
 
-  deleteNameDiscount = (name: string): void => {
+  private deleteNameDiscount = (name: string): void => {
     this.controller.deleteNameDiscount(name);
   };
 
-  calculateProcent = (): number => {
+  private calculateProcent = (): number => {
     return this.controller.calculateProcent();
   };
 
-  setDiscountProcent = (flag: boolean, discount: number): void => {
+  private setDiscountProcent = (flag: boolean, discount: number): void => {
     this.controller.setDiscountProcent(flag, discount);
   };
 
-  getValueDiscountData = (): Map<string, string> => {
+  private getValueDiscountData = (): Map<string, string> => {
     return this.controller.getValueDiscountData();
+  };
+
+  private clearCart = (): void => {
+    this.controller.clearCart();
+    this.cart?.countHeaderUpdate();
+    this.cart?.drawEmptyCart();
   };
 }

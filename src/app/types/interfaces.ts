@@ -4,6 +4,11 @@ import { CountFilter } from './types';
 import { ProductsData } from './types';
 import { ProductsCallback } from './types';
 import { FiltersCallback } from './types';
+import { SortType } from './enums';
+import { SearchCallback } from './types';
+import { SortCallback } from './types';
+import { ToggleDisplayCallback } from './types';
+import { ProductDisplay } from './enums';
 import { DetailsCallback } from './types';
 
 export interface IProduct {
@@ -53,13 +58,37 @@ export interface IFilters {
 }
 
 export interface IProductsPageData {
-  data: ProductsData;
+  productsOptions: IProductsOptions;
   filterOptions: IFilterOptions;
+  headerOptions: IProductsHeaderOptions;
+}
+
+export interface IProductsOptions {
+  data: ProductsData;
+  cartArray: number[];
+  productDisplay: ProductDisplay;
+}
+
+export interface IProductsHeaderOptions {
+  sortType: SortType;
+  productsCount: number;
 }
 
 export interface IProductsPageCallbacks {
   productsCallback: ProductsCallback;
   filtersCallback: FiltersCallback;
+  headerCallback: IProductsHeaderCallbacks;
+}
+
+export interface IProductsHeaderCallbacks {
+  sortCallback: SortCallback;
+  searchCallback: SearchCallback;
+  toggleDisplayCallback: ToggleDisplayCallback;
+}
+
+export interface IDetailsPageData {
+  product: IProduct;
+  inCart: boolean;
 }
 
 export interface IDetailsPageData {

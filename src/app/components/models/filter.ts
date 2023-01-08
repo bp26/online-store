@@ -9,10 +9,7 @@ import { FiltersData } from '../../types/types';
 import { FiltersType } from '../../types/enums';
 
 export class Filter {
-  private filters: IFilters;
-  constructor() {
-    this.filters = this.initFilters();
-  }
+  private filters: IFilters = this.initFilters();
 
   private initFilters(): IFilters {
     return {
