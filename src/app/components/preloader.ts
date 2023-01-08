@@ -1,12 +1,13 @@
 import { ProductsData } from '../types/types';
 import { IDetailsPageData, IProductsPageData } from '../types/interfaces';
+import { PreloadTimeout } from '../types/enums';
 
 export class Preloader {
   public async preloadProductsData(pageData: IProductsPageData): Promise<void> {
     const data = pageData.productsOptions.data;
     await Promise.allSettled(
       data.map(async (product) => {
-        await this.preloadImage(product.thumbnail, 4000);
+        await this.preloadImage(product.thumbnail, +PreloadTimeout.HIGH);
       })
     );
   }
@@ -14,7 +15,7 @@ export class Preloader {
   public async preloadCartData(pageData: ProductsData): Promise<void> {
     await Promise.allSettled(
       pageData.map(async (product) => {
-        await this.preloadImage(product.thumbnail, 4000);
+        await this.preloadImage(product.thumbnail, +PreloadTimeout.LOW);
       })
     );
   }
@@ -23,7 +24,7 @@ export class Preloader {
     const { product } = pageData;
     await Promise.allSettled(
       product.images.map(async (image) => {
-        await this.preloadImage(image, 2000);
+        await this.preloadImage(image, +PreloadTimeout.LOW);
       })
     );
   }
