@@ -113,3 +113,8 @@ export const enum BreadcrumbsElements {
   STORE = 'STORE',
   SEPARATOR = '>>',
 }
+
+export const enum PreloadTimeout {
+  LOW = '2000',
+  HIGH = '5000',
+}
