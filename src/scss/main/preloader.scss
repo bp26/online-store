@@ -1,0 +1,32 @@
+.preloader {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  @include flex-position-base;
+
+  background: $main-color;
+
+  &__circle {
+    margin: auto auto;
+    width: 200px;
+    height: 200px;
+
+    border-radius: 50%;
+    border: 40px solid green;
+    border-top: 40px solid greenyellow;
+    animation: circle 3s linear infinite;
+  }
+}
+
+@keyframes circle {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
