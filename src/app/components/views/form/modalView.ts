@@ -7,24 +7,25 @@ import { InputMail } from './inputComponent/inputMail';
 import { InputCardNumber } from './inputComponent/inputCardNumber';
 import { InputCardDate } from './inputComponent/inputCardDate';
 import { InputCardCvv } from './inputComponent/inputCardCvv';
+import { resetModalView } from './resetModalView';
 
 export class ModalView extends Element {
-  private inputName: InputName
-  private inputPhone: InputPhone
-  private inputAdress: InputAdress
-  private inputMail: InputMail
-  private inputCardNum: InputCardNumber
-  private inputCardDate: InputCardDate
-  private inputCardCvv: InputCardCvv
-  constructor(clearCart: () => void) {
+  private inputName: InputName;
+  private inputPhone: InputPhone;
+  private inputAdress: InputAdress;
+  private inputMail: InputMail;
+  private inputCardNum: InputCardNumber;
+  private inputCardDate: InputCardDate;
+  private inputCardCvv: InputCardCvv;
+  constructor(clearCart: () => void, mountProductsPage: () => void) {
     super(document.body, HTMLTag.DIV, 'wrapper-modal');
     const modal = new Element(this.elem, HTMLTag.DIV, 'modal-form');
     this.elem.onclick = () => {
-      this.destroy()
-    }
+      this.destroy();
+    };
     modal.elem.onclick = (e) => {
-      e.stopImmediatePropagation()
-    }
+      e.stopImmediatePropagation();
+    };
     const form = new Element(modal.elem, HTMLTag.FORM, 'form');
     const titleFormIgnor = new Element(form.elem, HTMLTag.H2, 'form__title', 'Personal details');
     this.inputName = new InputName(form.elem);
@@ -43,26 +44,28 @@ export class ModalView extends Element {
 
     const buttonCard = new Element(form.elem, HTMLTag.BUTTON, 'wrapper-card__button');
     buttonCard.elem.onclick = (e) => {
-      e.preventDefault()
-      const result = this.checkValidation()
+      e.preventDefault();
+      const result = this.checkValidation();
       if (!result) {
-        clearCart()
-        this.destroy()
+        clearCart();
+        modal.destroy();
+        this.elem.onclick = null;
+        new resetModalView(this, mountProductsPage);
       }
-    }
+    };
     const buttonSpanCardIgnor = new Element(buttonCard.elem, HTMLTag.SPAN, 'wrapper-card__button-span', 'Confirm');
   }
 
   checkValidation(): boolean {
-    const arrInput = [this.inputName, this.inputPhone, this.inputAdress, this.inputMail, this.inputCardNum, this.inputCardDate, this.inputCardCvv]
+    const arrInput = [this.inputName, this.inputPhone, this.inputAdress, this.inputMail, this.inputCardNum, this.inputCardDate, this.inputCardCvv];
     const arrValidation = arrInput.map((item) => {
       if (item.valid) {
-        return item.valid
+        return item.valid;
       }
-      item.validation()
-      return item.valid
-    })
-    const result = arrValidation.includes(false)
-    return result
+      item.validation();
+      return item.valid;
+    });
+    const result = arrValidation.includes(false);
+    return result;
   }
 }

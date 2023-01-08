@@ -3,10 +3,10 @@ import { Element } from '../../../element';
 
 export class InputPhone extends Element {
   public valid: boolean;
-  private inputPhoneElem: HTMLInputElement
+  private inputPhoneElem: HTMLInputElement;
   constructor(node: HTMLElement) {
     super(node, HTMLTag.LABEL, 'form__label');
-    this.valid = false
+    this.valid = false;
     const conditionInvalidValue = new RegExp('[a-zа-ё[\\]{\\}(\\)\\\\!?.,_;<>:|/`\'"#№$%^&*@=-]', 'gi');
 
     const inputPhone = new Element(this.elem, HTMLTag.INPUT, 'form__input-phone');
@@ -22,7 +22,7 @@ export class InputPhone extends Element {
     };
 
     this.inputPhoneElem.onchange = () => {
-      this.validation()
+      this.validation();
     };
   }
 
@@ -30,11 +30,11 @@ export class InputPhone extends Element {
     if (/^[+](\d(\s+)?){9,}$/.test(this.inputPhoneElem.value)) {
       this.inputPhoneElem.classList.remove('invalid');
       this.inputPhoneElem.classList.add('valid');
-      this.valid = true
+      this.valid = true;
     } else {
       this.inputPhoneElem.classList.remove('valid');
       this.inputPhoneElem.classList.add('invalid');
-      this.valid = false
+      this.valid = false;
     }
   }
 }

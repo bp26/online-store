@@ -3,12 +3,12 @@ import { Element } from '../../../element';
 import { MASTERCARD_IMG, VISA_IMG, AMERICAN_EXPRESS_IMG } from '../../../../utils/constants';
 
 export class InputCardNumber extends Element {
-  public valid: boolean
-  private inputCardNumberElem: HTMLInputElement
-  private conditionValidValue: RegExp
+  public valid: boolean;
+  private inputCardNumberElem: HTMLInputElement;
+  private conditionValidValue: RegExp;
   constructor(node: HTMLElement, logo: HTMLElement) {
     super(node, HTMLTag.LABEL, 'form__label');
-    this.valid = false
+    this.valid = false;
     const conditionInvalidValue = new RegExp('[a-zа-ё[\\]{\\}(\\)\\\\!?.,_;:|/`\'"#№$%^&*@=+-]', 'gi');
     this.conditionValidValue = new RegExp('^\\d{4}\\s\\d{4}\\s\\d{4}\\s\\d{4}$', 'g');
     const conditionValid = new RegExp('\\d{4}$', 'g');
@@ -45,7 +45,7 @@ export class InputCardNumber extends Element {
     };
 
     this.inputCardNumberElem.onchange = () => {
-      this.validation()
+      this.validation();
     };
   }
 
@@ -53,11 +53,11 @@ export class InputCardNumber extends Element {
     if (this.conditionValidValue.test(this.inputCardNumberElem.value)) {
       this.inputCardNumberElem.classList.remove('invalid');
       this.inputCardNumberElem.classList.add('valid');
-      this.valid = true
+      this.valid = true;
     } else {
       this.inputCardNumberElem.classList.remove('valid');
       this.inputCardNumberElem.classList.add('invalid');
-      this.valid = false
+      this.valid = false;
     }
   }
 }

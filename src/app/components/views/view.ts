@@ -25,12 +25,11 @@ export class View {
     this.mountProductsPage();
   }
 
-  public mountProductsPage(): void {
+  public mountProductsPage = (): void => {
     this.root.innerHTML = '';
     this.disabledBtnCart(false);
     this.productsPage = new ProductsPageView(this.root, this.controller.handleProductsPageInit(), this.controller.handleProductsPageCallbacks());
-    this.mountModal();
-  }
+  };
 
   public mountCartPage(): void {
     this.root.innerHTML = '';
@@ -67,8 +66,8 @@ export class View {
     );
   }
 
-  private mountModal = () => {
-    new ModalView(this.clearCart);
+  private mountModal = (): void => {
+    new ModalView(this.clearCart, this.mountProductsPage);
   };
 
   public mountDetailsPage = (id: number): void => {
@@ -209,8 +208,8 @@ export class View {
   };
 
   private clearCart = (): void => {
-    this.controller.clearCart()
-    this.cart?.countHeaderUpdate()
-    this.cart?.drawEmptyCart()
-  }
+    this.controller.clearCart();
+    this.cart?.countHeaderUpdate();
+    this.cart?.drawEmptyCart();
+  };
 }

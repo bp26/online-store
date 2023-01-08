@@ -2,11 +2,11 @@ import { HTMLTag } from '../../../../types/enums';
 import { Element } from '../../../element';
 
 export class InputName extends Element {
-  public valid: boolean
-  private inputNameElem: HTMLInputElement
+  public valid: boolean;
+  private inputNameElem: HTMLInputElement;
   constructor(node: HTMLElement) {
     super(node, HTMLTag.LABEL, 'form__label');
-    this.valid = false
+    this.valid = false;
     const conditionInvalidValue = new RegExp('\\d', 'g');
 
     const inputName = new Element(this.elem, HTMLTag.INPUT, 'form__input-name');
@@ -21,7 +21,7 @@ export class InputName extends Element {
     };
 
     this.inputNameElem.onchange = () => {
-      this.validation()
+      this.validation();
     };
   }
 
@@ -29,11 +29,11 @@ export class InputName extends Element {
     if (/\w{3,}\s\w{3,}[\s\w]+/.test(this.inputNameElem.value)) {
       this.inputNameElem.classList.remove('invalid');
       this.inputNameElem.classList.add('valid');
-      this.valid = true
+      this.valid = true;
     } else {
       this.inputNameElem.classList.remove('valid');
       this.inputNameElem.classList.add('invalid');
-      this.valid = false
+      this.valid = false;
     }
   }
 }

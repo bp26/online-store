@@ -1,5 +1,4 @@
 import { Model } from '../models/model';
-import { ProductsData } from '../../types/types';
 import { IProduct } from '../../types/interfaces';
 import { View } from '../views/view';
 import { ProductsAction } from '../../types/enums';
@@ -141,6 +140,6 @@ export class Controller {
   }
 
   clearCart(): void {
-   this.model.clearCart()
+    this.model.clearCart();
   }
 }

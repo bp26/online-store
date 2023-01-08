@@ -2,11 +2,11 @@ import { HTMLTag } from '../../../../types/enums';
 import { Element } from '../../../element';
 
 export class InputAdress extends Element {
-  public valid: boolean
-  private inputAdressElem: HTMLInputElement
+  public valid: boolean;
+  private inputAdressElem: HTMLInputElement;
   constructor(node: HTMLElement) {
     super(node, HTMLTag.LABEL, 'form__label');
-    this.valid = false
+    this.valid = false;
 
     const conditionInvalidValue = new RegExp('[-=+_?!,.;:\'"`[\\]{\\}(\\)]', 'g');
 
@@ -23,7 +23,7 @@ export class InputAdress extends Element {
     };
 
     this.inputAdressElem.onchange = () => {
-      this.validation()
+      this.validation();
     };
   }
 
@@ -31,11 +31,11 @@ export class InputAdress extends Element {
     if (/^(\w{5,}(\s+)?){3,}$/.test(this.inputAdressElem.value)) {
       this.inputAdressElem.classList.remove('invalid');
       this.inputAdressElem.classList.add('valid');
-      this.valid = true
+      this.valid = true;
     } else {
       this.inputAdressElem.classList.remove('valid');
       this.inputAdressElem.classList.add('invalid');
-      this.valid = false
+      this.valid = false;
     }
   }
 }

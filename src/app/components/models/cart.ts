@@ -119,8 +119,8 @@ export class Cart {
   }
 
   resetSummAndCountProductHeader(): void {
-    this.sumProductCart = 0
-    this.countProductCart = 0
+    this.sumProductCart = 0;
+    this.countProductCart = 0;
     this.summProdContent.textContent = `${this.sumProductCart}`;
     this.countProdContent.textContent = `${this.countProductCart}`;
     localStorage.setItem(localStorageCart.SUM_PRODUCT_CART, JSON.stringify(this.sumProductCart));
@@ -195,10 +195,10 @@ export class Cart {
     localStorage.setItem(localStorageCart.DISCOUNT_PROCENT, JSON.stringify(this.discountProcent));
   }
 
-  resetDiscount() : void {
-    this.discountProcent = DEFAULT_DISCOUNT_PROCENT
-    this.discountListItem = DEFAULT_DISCOUNT_LIST_ITEM
-    this.nameDiscount.clear()
+  resetDiscount(): void {
+    this.discountProcent = DEFAULT_DISCOUNT_PROCENT;
+    this.discountListItem = DEFAULT_DISCOUNT_LIST_ITEM;
+    this.nameDiscount.clear();
     localStorage.setItem(localStorageCart.DISCOUNT_PROCENT, JSON.stringify(this.discountProcent));
     localStorage.setItem(localStorageCart.DISCOUNT_LIST_ITEM, JSON.stringify(this.discountListItem));
     localStorage.setItem(localStorageCart.DISCOUNT_NAME, JSON.stringify(Array.from(this.nameDiscount.entries())));
@@ -235,7 +235,7 @@ export class Cart {
   }
 
   resetListCart(): void {
-    Object.keys(this.list).forEach((item) => delete this.list[item])
+    Object.keys(this.list).forEach((item) => delete this.list[item]);
     localStorage.setItem(localStorageCart.CART_LIST, JSON.stringify(this.list));
   }
 
@@ -245,10 +245,10 @@ export class Cart {
   }
 
   clearCart(): void {
-    this.resetListCart()
-    this.resetSummAndCountProductHeader()
-    this.inputUpdatePaginationHead()
-    this.resetDiscount()
-    this.resetPaginationPages()
+    this.resetListCart();
+    this.resetSummAndCountProductHeader();
+    this.inputUpdatePaginationHead();
+    this.resetDiscount();
+    this.resetPaginationPages();
   }
 }

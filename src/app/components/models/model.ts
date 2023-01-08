@@ -128,6 +128,6 @@ export class Model {
   }
 
   clearCart() {
-    this.cart.clearCart()
+    this.cart.clearCart();
   }
 }

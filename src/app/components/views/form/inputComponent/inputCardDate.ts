@@ -2,12 +2,12 @@ import { HTMLTag } from '../../../../types/enums';
 import { Element } from '../../../element';
 
 export class InputCardDate extends Element {
-  public valid: boolean
-  private inputCardNumberElem: HTMLInputElement
-  private conditionValidValue: RegExp
+  public valid: boolean;
+  private inputCardNumberElem: HTMLInputElement;
+  private conditionValidValue: RegExp;
   constructor(node: HTMLElement) {
     super(node, HTMLTag.LABEL, 'form__label');
-    this.valid = false
+    this.valid = false;
     const titleBlockDateIgnor = new Element(node, HTMLTag.P, 'block-date__title', 'Date');
 
     const conditionInvalidValue = new RegExp('[a-zа-ё[\\]{\\}(\\)\\s\\\\!?.,_;:|`\'"#№$%^&*@=+-]', 'gi');
@@ -32,7 +32,7 @@ export class InputCardDate extends Element {
     };
 
     this.inputCardNumberElem.onchange = () => {
-      this.validation()
+      this.validation();
     };
   }
 
@@ -40,11 +40,11 @@ export class InputCardDate extends Element {
     if (this.conditionValidValue.test(this.inputCardNumberElem.value)) {
       this.inputCardNumberElem.classList.remove('invalid');
       this.inputCardNumberElem.classList.add('valid');
-      this.valid = true
+      this.valid = true;
     } else {
       this.inputCardNumberElem.classList.remove('valid');
       this.inputCardNumberElem.classList.add('invalid');
-      this.valid = false
+      this.valid = false;
     }
   }
 }

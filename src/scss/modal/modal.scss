@@ -18,6 +18,16 @@
   background: $background-modal;
 }
 
+.wrapper-reset {
+  width: $reset_width;
+  height: $reset_height;
+  position: absolute;
+  top: calc(50% - ($reset_height / 2));
+  left: calc(50% - ($reset_width / 2));
+  background: $background-reset;
+  text-align: center;
+}
+
 .form {
   text-align: center;
   display: flex;

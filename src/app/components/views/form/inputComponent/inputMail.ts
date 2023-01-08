@@ -2,11 +2,11 @@ import { HTMLTag } from '../../../../types/enums';
 import { Element } from '../../../element';
 
 export class InputMail extends Element {
-  public valid: boolean
-  private inputMailElem: HTMLInputElement
+  public valid: boolean;
+  private inputMailElem: HTMLInputElement;
   constructor(node: HTMLElement) {
     super(node, HTMLTag.LABEL, 'form__label');
-    this.valid = false
+    this.valid = false;
     const conditionInvalidValue = new RegExp('[а-ё[\\]{\\}(\\)\\\\!?,_;<>:|/`\'"#№$%^&*+=-]', 'g');
 
     const inputMail = new Element(this.elem, HTMLTag.INPUT, 'form__input-mail');
@@ -22,7 +22,7 @@ export class InputMail extends Element {
     };
 
     this.inputMailElem.onchange = () => {
-      this.validation()
+      this.validation();
     };
   }
 
@@ -30,11 +30,11 @@ export class InputMail extends Element {
     if (/^(\w+[.]?\w+)+[@]\w+[.]\D{0,5}$/.test(this.inputMailElem.value)) {
       this.inputMailElem.classList.remove('invalid');
       this.inputMailElem.classList.add('valid');
-      this.valid = true
+      this.valid = true;
     } else {
       this.inputMailElem.classList.remove('valid');
       this.inputMailElem.classList.add('invalid');
-      this.valid = false
+      this.valid = false;
     }
   }
 }
