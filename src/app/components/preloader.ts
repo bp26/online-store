@@ -3,7 +3,7 @@ import { IDetailsPageData, IProductsPageData } from '../types/interfaces';
 
 export class Preloader {
   public async preloadProductsData(pageData: IProductsPageData): Promise<void> {
-    const { data } = pageData;
+    const data = pageData.productsOptions.data;
     await Promise.allSettled(
       data.map(async (product) => {
         await this.preloadImage(product.thumbnail, 4000);
