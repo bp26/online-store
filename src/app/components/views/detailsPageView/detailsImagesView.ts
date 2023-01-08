@@ -12,6 +12,7 @@ export class DetailsImagesView extends Element {
     imageLinks.forEach((link, index) => {
       const img = new Element(imagesContainer.elem, HTMLTag.IMG, 'product-images__image product-images__image_side');
       this.setSideImage(img, link);
+      img.elem.onclick = () => this.setMainImage(index, imageLinks);
     });
 
     const mainContainer = new Element(this.elem, HTMLTag.DIV, 'product-images__main-container');
