@@ -112,6 +112,18 @@ export class Cart {
     localStorage.setItem(localStorageCart.CART_LIST, JSON.stringify(this.list));
   }
 
+  public addProduct(id: number, price: number): void {
+    if (!this.list[id]) {
+      this.amountProductCart(true);
+      this.summaProductCart(true, price);
+      this.list[id] = {
+        count: 1,
+        price: price,
+      };
+      localStorage.setItem(localStorageCart.CART_LIST, JSON.stringify(this.list));
+    }
+  }
+
   summaProductCart(flag: boolean, price: number): void {
     flag ? (this.sumProductCart += price) : (this.sumProductCart -= price);
     this.summProdContent.textContent = `${this.sumProductCart}`;

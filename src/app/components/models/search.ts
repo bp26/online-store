@@ -3,7 +3,7 @@ import { IProduct } from '../../types/interfaces';
 import { SEARCH_CATEGORIES } from '../../utils/constants';
 
 export class Search {
-  private line: string = '';
+  private line = '';
 
   public setSearchLine(line: string): void {
     this.line = line;

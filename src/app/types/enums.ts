@@ -9,6 +9,12 @@ export const enum FiltersAction {
   COPY,
 }
 
+export enum DetailsAction {
+  BACK,
+  ADD,
+  BUY,
+}
+
 export enum FiltersType {
   category = 'category',
   brand = 'brand',
@@ -19,6 +25,7 @@ export enum FiltersType {
 export const enum CardButtonTitles {
   ADD = 'ADD',
   REMOVE = 'REMOVE',
+  BUY = 'BUY NOW',
 }
 
 export const enum localStorageCart {
@@ -100,4 +107,14 @@ export const enum SortCategory {
 export const enum ProductDisplay {
   SIMPLE = 'Simple',
   DETAILED = 'Detailed',
+}
+
+export const enum BreadcrumbsElements {
+  STORE = 'STORE',
+  SEPARATOR = '>>',
+}
+
+export const enum PreloadTimeout {
+  LOW = '2000',
+  HIGH = '5000',
 }
