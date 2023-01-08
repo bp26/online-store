@@ -44,7 +44,7 @@ export class View {
     });
   };
 
-  public mountCartPage(): void {
+  public mountCartPage(modalActive = false): void {
     this.root.innerHTML = '';
     this.disabledBtnCart(true);
 
@@ -81,7 +81,8 @@ export class View {
         this.calculateProcent,
         this.setDiscountProcent,
         this.getValueDiscountData,
-        this.mountModal
+        this.mountModal,
+        modalActive
       );
     });
   }
