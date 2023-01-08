@@ -42,6 +42,10 @@ export class Model {
     };
   }
 
+  public getCartPageData(): ProductsData {
+    return this.getData().filter((product) => this.cart.getCartArray().includes(product.id));
+  }
+
   getSummaryData(): number[] {
     return this.cart.getSummaryData();
   }
