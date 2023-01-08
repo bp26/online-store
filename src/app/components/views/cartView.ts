@@ -62,7 +62,8 @@ export class CartView extends Element {
     calculateProcent: () => number,
     setDiscountProcent: (flag: boolean, discount: number) => void,
     getValueDiscountData: () => Map<string, string>,
-    mountModal: () => void
+    mountModal: () => void,
+    modalActive: boolean
   ) {
     super(parent, HTMLTag.DIV, 'cart-page');
     this.arraySummaryData = arraySummaryData;
@@ -96,6 +97,9 @@ export class CartView extends Element {
       this.drawEmptyCart();
     } else {
       this.drawCart();
+    }
+    if (modalActive) {
+      this.mountModal();
     }
   }
 
