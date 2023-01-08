@@ -14,7 +14,7 @@ export class ProductsView extends Element {
 
   public renderProducts({ data, cartArray }: IProductsOptions, callback: ProductsCallback): void {
     this.elem.innerHTML = '';
-    if (!data.length) {
+    if (data.length) {
       data.forEach((product) => {
         const productView = new Product(this.elem, product, cartArray.includes(product.id), callback);
       });
