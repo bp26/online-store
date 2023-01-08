@@ -6,15 +6,15 @@ export class InputCardDate extends Element {
   private inputCardNumberElem: HTMLInputElement;
   private conditionValidValue: RegExp;
   constructor(node: HTMLElement) {
-    super(node, HTMLTag.LABEL, 'form__label');
+    super(node, HTMLTag.LABEL, 'form__label-card');
     this.valid = false;
-    const titleBlockDateIgnor = new Element(node, HTMLTag.P, 'block-date__title', 'Date');
+    const titleBlockDateIgnor = new Element(this.elem, HTMLTag.P, 'block-date__title', 'Date');
 
     const conditionInvalidValue = new RegExp('[a-zа-ё[\\]{\\}(\\)\\s\\\\!?.,_;:|`\'"#№$%^&*@=+-]', 'gi');
     this.conditionValidValue = new RegExp('^((([1-2][0-9])|([3][0-1]))/(([0][0-9])|([1][0-2])))$', 'g');
     const conditionValid = new RegExp('\\d{2}$', 'g');
 
-    const inputCardNumber = new Element(node, HTMLTag.INPUT, 'block-date__input');
+    const inputCardNumber = new Element(this.elem, HTMLTag.INPUT, 'block-date__input');
     this.inputCardNumberElem = <HTMLInputElement>inputCardNumber.elem;
     this.inputCardNumberElem.setAttribute('type', 'text');
     this.inputCardNumberElem.setAttribute('title', InfoForUser.INPUT_DATE);

@@ -5,13 +5,13 @@ export class InputCardCvv extends Element {
   public valid: boolean;
   private inputCardNumberElem: HTMLInputElement;
   constructor(node: HTMLElement) {
-    super(node, HTMLTag.LABEL, 'form__label');
+    super(node, HTMLTag.LABEL, 'form__label-card');
     this.valid = false;
-    const titleBlockCvvIgnor = new Element(node, HTMLTag.P, 'block-cvv__title', 'CVV');
+    const titleBlockCvvIgnor = new Element(this.elem, HTMLTag.P, 'block-cvv__title', 'CVV');
 
     const conditionInvalidValue = new RegExp('[a-zа-ё[\\]{\\}(\\)\\s\\\\/!?.,_;:|`\'"#№$%^&*@=+-]', 'gi');
 
-    const inputCardNumber = new Element(node, HTMLTag.INPUT, 'block-cvv__input');
+    const inputCardNumber = new Element(this.elem, HTMLTag.INPUT, 'block-cvv__input');
     this.inputCardNumberElem = <HTMLInputElement>inputCardNumber.elem;
     this.inputCardNumberElem.setAttribute('type', 'text');
     this.inputCardNumberElem.setAttribute('title', InfoForUser.INPUT_CVV);

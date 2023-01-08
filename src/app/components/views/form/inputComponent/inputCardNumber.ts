@@ -7,13 +7,13 @@ export class InputCardNumber extends Element {
   private inputCardNumberElem: HTMLInputElement;
   private conditionValidValue: RegExp;
   constructor(node: HTMLElement, logo: HTMLElement) {
-    super(node, HTMLTag.LABEL, 'form__label');
+    super(node, HTMLTag.LABEL, 'form__label-card');
     this.valid = false;
     const conditionInvalidValue = new RegExp('[a-zа-ё[\\]{\\}(\\)\\\\!?.,_;:|/`\'"#№$%^&*@=+-]', 'gi');
     this.conditionValidValue = new RegExp('^\\d{4}\\s\\d{4}\\s\\d{4}\\s\\d{4}$', 'g');
     const conditionValid = new RegExp('\\d{4}$', 'g');
 
-    const inputCardNumber = new Element(node, HTMLTag.INPUT, 'modal-card__number');
+    const inputCardNumber = new Element(this.elem, HTMLTag.INPUT, 'modal-card__number');
     this.inputCardNumberElem = <HTMLInputElement>inputCardNumber.elem;
     this.inputCardNumberElem.setAttribute('type', 'text');
     this.inputCardNumberElem.setAttribute('title', InfoForUser.INPUT_NUMBER);
