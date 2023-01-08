@@ -16,7 +16,7 @@ export class Model {
   readonly sort: Sort;
   readonly search: Search;
   readonly cart: Cart;
-  private openCart: boolean = false;
+  private openCart = false;
   private productDisplay: ProductDisplay = ProductDisplay.DETAILED;
 
   constructor() {
@@ -165,5 +165,9 @@ export class Model {
 
   setDiscountProcent(flag: boolean, discount: number): void {
     this.cart.setDiscountProcent(flag, discount);
+  }
+
+  clearCart() {
+    this.cart.clearCart();
   }
 }

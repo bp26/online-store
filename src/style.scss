@@ -6,6 +6,7 @@
 @import './scss/footer/footer';
 @import './scss/main/productsPage/productsPage';
 @import './scss/main/cartPage/cart';
+@import './scss/modal/modal';
 
 * {
   box-sizing: border-box;
@@ -13,8 +14,14 @@
   margin: 0;
 }
 
+html {
+  height: 100%;
+}
+
 body {
+  height: 100%;
   background-color: $main-color;
+  position: relative;
 }
 
 .wrapper {

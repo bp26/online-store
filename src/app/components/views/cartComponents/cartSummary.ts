@@ -34,7 +34,8 @@ export class CartSummaryContent {
     deleteNameDiscount: (name: string) => void,
     calculateProcent: () => number,
     setDiscountProcent: (flag: boolean, discount: number) => void,
-    getValueDiscountData: () => Map<string, string>
+    getValueDiscountData: () => Map<string, string>,
+    mountModal: () => void
   ) {
     this.arrayData = arrayData;
     this.rootTableDiscount = null;
@@ -70,6 +71,9 @@ export class CartSummaryContent {
     const discountDescrSummaryIgnor = new Element(this.discountBlockPrice.elem, HTMLTag.P, 'summary-disc-description', "Promo for test: 'RS', 'EPM'");
     const buttonSummary = new Element(node, HTMLTag.BUTTON, 'summary-button');
     const buttonSpanSummaryIgnor = new Element(buttonSummary.elem, HTMLTag.SPAN, 'summary-button__span', 'BUY NOW');
+    buttonSummary.elem.onclick = () => {
+      mountModal();
+    };
     const amountList = this.getDiscountListItem();
     if (amountList) {
       let count = 0;
