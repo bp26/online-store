@@ -1,5 +1,4 @@
 import { View } from './app/components/views/view';
-import './assets/png/mastercard.webp';
 import './style.scss';
 
 const root = document.querySelector('.main__root');
