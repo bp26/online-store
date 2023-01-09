@@ -8,7 +8,7 @@
 
   @include flex-position-base;
 
-  background: $main-color;
+  background-image: url('../../assets/images/bg.jpg');
 
   &__circle {
     margin: auto auto;
@@ -16,8 +16,8 @@
     height: 200px;
 
     border-radius: 50%;
-    border: 40px solid green;
-    border-top: 40px solid greenyellow;
+    border: 40px solid $block-dark-color;
+    border-top: 40px solid $border-color-base;
     animation: circle 3s linear infinite;
   }
 }
