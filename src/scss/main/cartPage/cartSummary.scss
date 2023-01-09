@@ -9,6 +9,8 @@
   border-radius: 15px;
   padding-bottom: 20px;
   color: wheat;
+  background-color: #1e1b1b80;
+  gap: 5px;
 }
 
 .summary-head {
@@ -77,8 +79,11 @@
   color: wheat;
   border: 2px solid orange;
   margin-top: 20px;
+  transition: all 0.3 ease;
   &:hover {
     cursor: pointer;
+    background-color: #b53737;
+    transition: all 0.3 ease;
   }
 }
 
@@ -100,8 +105,11 @@
     background-color: #181a1c;
     border: 1px solid orange;
     font-size: 14px;
+    transition: all 0.3 ease;
     &:hover {
       cursor: pointer;
+      background-color: #373636;
+      transition: all 0.3 ease;
     }
   }
 }
@@ -137,8 +145,11 @@
     background-color: #181a1c;
     border: 1px solid orange;
     font-size: 14px;
+    transition: all 0.3 ease;
     &:hover {
       cursor: pointer;
+      background-color: #373636;
+      transition: all 0.3 ease;
     }
   }
 }

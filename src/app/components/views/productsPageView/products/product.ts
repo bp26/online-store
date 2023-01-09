@@ -48,7 +48,7 @@ export class Product extends Element {
     }
 
     INFO_LIST.forEach((item) => {
-      const li = new Element(info, HTMLTag.LI, `product-card__${item}`, `${item}: ${product[item as keyof IProduct]}`);
+      const li = new Element(info, HTMLTag.LI, `product-card__${item}`, `${item[0].toUpperCase() + item.slice(1)}: ${product[item as keyof IProduct]}`);
     });
 
     const addButton = clone.querySelector('.product-card__button');

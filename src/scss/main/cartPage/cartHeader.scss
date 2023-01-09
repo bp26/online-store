@@ -51,8 +51,11 @@
     background-color: #373636;
     color: orange;
     border: 1px solid orange;
+    transition: ease 0.3s all;
     &:hover {
       cursor: pointer;
+      background-color: #181a1c;
+      transition: ease 0.3s all;
     }
   }
 
