@@ -1,30 +1,77 @@
 .cart-header {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  height: 42px;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #181a1c;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
   &__title {
+    color: orange;
   }
 }
 
 .block-item {
   display: flex;
+  align-items: center;
+  gap: 5px;
+  color: wheat;
   &__item {
+    font-size: 18px;
   }
 
   &__count {
+  }
+  &__input {
+    width: 40px;
+    height: 28px;
+    text-align: center;
+    font-size: 24px;
+    background-color: #373636;
+    color: orange;
+    border: 1px solid orange;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
   }
 }
 
 .block-pagination {
   display: flex;
+  align-items: center;
+  gap: 5px;
+  color: wheat;
   &__page {
+    font-size: 18px;
   }
 
-  &__btn-left {
+  &__btn {
+    width: 20px;
+    height: 31px;
+    background-color: #373636;
+    color: orange;
+    border: 1px solid orange;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   &__number {
+    font-size: 22px;
+    color: orange;
   }
 
-  &__btn-right {
+  &__amount {
+    display: flex;
+    align-items: center;
+    gap: 5px;
   }
+}
+
+.block-content {
+  display: flex;
+  width: 250px;
+  justify-content: space-between;
 }

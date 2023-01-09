@@ -28,7 +28,8 @@ export class View {
     this.buttonCart.onclick = () => this.mountCartPage();
     this.controller = new Controller(this);
     this.preloader = new Preloader();
-    this.mountProductsPage();
+    // this.mountProductsPage();
+    this.mountCartPage();
   }
 
   public mountProductsPage = (): void => {

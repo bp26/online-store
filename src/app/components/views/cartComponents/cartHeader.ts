@@ -23,20 +23,22 @@ export class CartHeaderContent {
     this.paginationHead = getPaginationHead();
     this.count = getPaginationPagesCount();
     const headerCart = new Element(node, HTMLTag.DIV, 'cart-header');
-    const titleContentiIgnor = new Element(headerCart.elem, HTMLTag.P, 'cart-header__title', 'Products in Cart');
-    const blockItemProduct = new Element(headerCart.elem, HTMLTag.DIV, 'block-item');
-    const itemProductIgnor = new Element(blockItemProduct.elem, HTMLTag.P, 'block-item__item', 'ITEMS:');
+    const titleContentiIgnor = new Element(headerCart.elem, HTMLTag.H2, 'cart-header__title', 'Products in Cart');
+    const blockContent = new Element(headerCart.elem, HTMLTag.DIV, 'block-content');
+    const blockItemProduct = new Element(blockContent.elem, HTMLTag.DIV, 'block-item');
+    const itemProductIgnor = new Element(blockItemProduct.elem, HTMLTag.P, 'block-item__item', 'LIMIT:');
     const inputCountProduct = new Element(blockItemProduct.elem, HTMLTag.INPUT, 'block-item__input');
     inputCountProduct.elem.setAttribute('type', 'number');
     inputCountProduct.elem.setAttribute('value', `${getPaginationInputValue()}`);
     const inputElem = <HTMLInputElement>inputCountProduct.elem;
     const inputValue = Number(inputElem.value);
     this.dataMatrix = getValueInput(inputValue);
-    const blockPagination = new Element(headerCart.elem, HTMLTag.DIV, 'block-pagination');
-    const pagePaginationIgnor = new Element(blockPagination.elem, HTMLTag.P, 'block-pagination__page', 'Page:');
-    const pageBtnLeft = new Element(blockPagination.elem, HTMLTag.BUTTON, 'block-pagination__btn-left', '<');
-    this.pageNumber = new Element(blockPagination.elem, HTMLTag.P, 'block-pagination__number', `${this.count}`);
-    const pageBtnRight = new Element(blockPagination.elem, HTMLTag.BUTTON, 'block-pagination__btn-right', '>');
+    const blockPagination = new Element(blockContent.elem, HTMLTag.DIV, 'block-pagination');
+    const pagePaginationIgnor = new Element(blockPagination.elem, HTMLTag.P, 'block-pagination__page', 'PAGE:');
+    const blockAmount = new Element(blockPagination.elem, HTMLTag.DIV, 'block-pagination__amount');
+    const pageBtnLeft = new Element(blockAmount.elem, HTMLTag.BUTTON, 'block-pagination__btn', '<');
+    this.pageNumber = new Element(blockAmount.elem, HTMLTag.P, 'block-pagination__number', `${this.count}`);
+    const pageBtnRight = new Element(blockAmount.elem, HTMLTag.BUTTON, 'block-pagination__btn', '>');
 
     inputCountProduct.elem.onkeydown = (event) => {
       return !/^[Ee - +-]$/.test(event.key);

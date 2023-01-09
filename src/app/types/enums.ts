@@ -50,6 +50,7 @@ export const enum HTMLTag {
   DIV = 'div',
   P = 'p',
   H2 = 'h2',
+  H3 = 'h3',
   FORM = 'form',
   SPAN = 'span',
   INPUT = 'input',

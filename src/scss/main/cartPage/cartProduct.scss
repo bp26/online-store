@@ -1,15 +1,10 @@
-.item-product {
-  padding: 10px;
-}
-
 .list-product {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
-  border: 1px solid $border-color-base;
-}
-
-.count-product {
+  border-top: 1px solid orange;
+  height: 100px;
+  padding: 0 10px;
 }
 
 .image-block {
@@ -18,21 +13,45 @@
 }
 
 .images-product {
-  width: inherit;
-  height: inherit;
-  object-fit: contain;
+  width: 130px;
+  height: 85px;
+  border: 1px solid #000;
+  border-radius: 10px;
+}
+
+.block-count {
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  border: 1px solid orange;
+  background-color: #181a1c;
+  color: orange;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .block-base {
   text-align: center;
-}
-
-.product-title {
+  display: flex;
+  justify-content: space-around;
+  max-width: 840px;
+  width: 100%;
+  &__content {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    color: wheat;
+    justify-content: space-between;
+  }
 }
 
 .block-description {
   padding-top: 5px;
-  border-top: 1px solid $border-color-base;
+  border-top: 1px solid wheat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .product-description {
@@ -42,33 +61,51 @@
 .block-data {
   display: flex;
   justify-content: space-between;
-}
-
-.product-rating {
-}
-
-.product-discount {
+  max-width: 400px;
+  width: 100%;
+  color: #d2b06f;
 }
 
 .block-amount {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.stock {
+  justify-content: space-between;
+  height: inherit;
+  padding: 5px 0;
+  font-size: 18px;
+  color: #d2b06f;
+  width: 100px;
 }
 
 .block-counter {
   display: flex;
   gap: 5px;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .button-count {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  font-size: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid orange;
+  background-color: #181a1c;
+  color: orange;
+  &:hover {
+    cursor: pointer;
+  }
+  &_neg {
+    padding-bottom: 6px;
+  }
 }
 
 .count-prod {
-}
-
-.price {
+  font-size: 24px;
+  color: orange;
 }
