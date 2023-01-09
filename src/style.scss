@@ -22,8 +22,13 @@ html {
 
 body {
   height: 100%;
-  background-color: $main-color;
+  background-image: url('./assets/images/bg.jpg');
+  background-size:cover;
   position: relative;
+}
+
+button {
+  cursor: pointer;
 }
 
 .wrapper {
@@ -34,4 +39,21 @@ body {
   display: flex;
   flex-direction: column;
   padding: 0 15px;
+}
+
+.active-button {
+  border-radius: $border-radius-base;
+  border: 1px solid $border-color-base;
+  background-color: $button-dark-color;
+  color: $font-color;
+  transition: 0.1s;
+
+  &:hover {
+    background-color: $button-red-color;
+    color: $font-secondary-color;
+  }
+
+  &:active {
+    background-color: $button-brown-color;
+  }
 }
