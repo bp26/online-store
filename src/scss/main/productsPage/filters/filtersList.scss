@@ -18,6 +18,7 @@
 .filters-list__name {
   @include flex-position-base;
   color: $font-color;
+  font-size: 20px;
 }
 
 .filters-list__bottom-wrapper {
