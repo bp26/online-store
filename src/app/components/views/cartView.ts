@@ -152,7 +152,8 @@ export class CartView extends Element {
 
   public drawEmptyCart = (): void => {
     this.elem.innerHTML = '';
-    const mainContentCartIgnor = new Element(this.elem, HTMLTag.P, 'cart-empty', 'Cart is empty');
+    const mainContentBlock = new Element(this.elem, HTMLTag.DIV, 'cart-empty');
+    const mainContentCartIgnor = new Element(mainContentBlock.elem, HTMLTag.P, 'cart-empty__content', 'Cart is empty');
   };
 
   public summaryContent(arg: number[]): void {

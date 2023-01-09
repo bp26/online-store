@@ -26,7 +26,7 @@ export class InputName extends Element {
   }
 
   public validation(): void {
-    if (/\w{3,}\s\w{3,}[\s\w]+/.test(this.inputNameElem.value)) {
+    if (/\w{2,}\s\w{2,}[\s\w]+/.test(this.inputNameElem.value)) {
       this.inputNameElem.classList.remove('invalid');
       this.valid = true;
     } else {

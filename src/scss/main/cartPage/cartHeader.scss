@@ -4,11 +4,11 @@
   height: 42px;
   align-items: center;
   padding: 0 20px;
-  background-color: #181a1c;
+  background-color: $button-dark-color;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   &__title {
-    color: orange;
+    color: $font-color;
   }
 }
 
@@ -16,7 +16,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  color: wheat;
+  color: $font-secondary-color;
   &__item {
     font-size: 18px;
   }
@@ -26,9 +26,9 @@
     height: 28px;
     text-align: center;
     font-size: 24px;
-    background-color: #373636;
-    color: orange;
-    border: 1px solid orange;
+    background-color: $button-dark-hover;
+    color: $font-color;
+    border: 1px solid $border-color-base;
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
       -webkit-appearance: none;
@@ -40,7 +40,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  color: wheat;
+  color: $font-secondary-color;
   &__page {
     font-size: 18px;
   }
@@ -48,20 +48,20 @@
   &__btn {
     width: 20px;
     height: 31px;
-    background-color: #373636;
-    color: orange;
-    border: 1px solid orange;
+    background-color: $button-dark-hover;
+    color: $font-color;
+    border: 1px solid $border-color-base;
     transition: ease 0.3s all;
     &:hover {
       cursor: pointer;
-      background-color: #181a1c;
+      background-color: $button-dark-color;
       transition: ease 0.3s all;
     }
   }
 
   &__number {
     font-size: 22px;
-    color: orange;
+    color: $font-color;
   }
 
   &__amount {

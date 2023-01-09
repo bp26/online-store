@@ -5,11 +5,11 @@
   max-width: 350px;
   width: 100%;
   height: auto;
-  border: 1px solid orange;
+  border: 1px solid $font-color;
   border-radius: 15px;
   padding-bottom: 20px;
-  color: wheat;
-  background-color: #1e1b1b80;
+  color: $font-secondary-color;
+  background-color: $block-gray-transparent-color;
   gap: 5px;
 }
 
@@ -17,13 +17,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #181a1c;
+  background-color: $button-dark-color;
   width: 100%;
   height: 42px;
-  border-bottom: 1px solid orange;
+  border-bottom: 1px solid $font-color;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
-  color: orange;
+  color: $font-color;
 }
 
 .summary-product {
@@ -62,9 +62,9 @@
 }
 
 .summary-input {
-  background-color: #181a1c;
-  border: 1px solid orange;
-  color: orange;
+  background-color: $button-dark-color;
+  border: 1px solid $font-color;
+  color: $font-color;
   height: 35px;
   border-radius: 15px;
   text-align: center;
@@ -75,14 +75,14 @@
   margin-top: auto;
   width: 120px;
   height: 35px;
-  background: #9a3535;
-  color: wheat;
-  border: 2px solid orange;
+  background: $button-red-color;
+  color: $font-secondary-color;
+  border: 2px solid $font-color;
   margin-top: 20px;
   transition: all 0.3 ease;
   &:hover {
     cursor: pointer;
-    background-color: #b53737;
+    background-color: $button-red-hover;
     transition: all 0.3 ease;
   }
 }
@@ -91,7 +91,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  color: wheat;
+  color: $font-secondary-color;
   font-size: 18px;
   &__content {
     margin-top: 10px;
@@ -101,21 +101,21 @@
   &__button {
     width: 40px;
     height: 26px;
-    color: wheat;
-    background-color: #181a1c;
-    border: 1px solid orange;
+    color: $font-secondary-color;
+    background-color: $button-dark-color;
+    border: 1px solid $font-color;
     font-size: 14px;
     transition: all 0.3 ease;
     &:hover {
       cursor: pointer;
-      background-color: #373636;
+      background-color: $button-dark-hover;
       transition: all 0.3 ease;
     }
   }
 }
 
 .block-table {
-  border: solid 1px orange;
+  border: solid 1px $font-color;
   border-radius: 5px;
   max-width: 280px;
   width: 100%;
@@ -123,8 +123,8 @@
   &__title {
     text-align: center;
     height: 24px;
-    background-color: #181a1c;
-    color: orange;
+    background-color: $button-dark-color;
+    color: $font-color;
     font-size: 18px;
   }
 }
@@ -135,20 +135,20 @@
   align-items: center;
   gap: 10px;
   height: 36px;
-  color: wheat;
+  color: $font-secondary-color;
   font-size: 18px;
-  border-top: 1px solid orange;
+  border-top: 1px solid $font-color;
   &__button {
     width: 50px;
     height: 28px;
-    color: wheat;
-    background-color: #181a1c;
-    border: 1px solid orange;
+    color: $font-secondary-color;
+    background-color: $button-dark-color;
+    border: 1px solid $font-color;
     font-size: 14px;
     transition: all 0.3 ease;
     &:hover {
       cursor: pointer;
-      background-color: #373636;
+      background-color: $button-dark-hover;
       transition: all 0.3 ease;
     }
   }
@@ -160,7 +160,7 @@
   align-items: center;
   min-height: 27px;
   font-size: 14px;
-  color: #e38383;
+  color: $color-summary;
 }
 
 .summary-block-input {
