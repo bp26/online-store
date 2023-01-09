@@ -9,7 +9,7 @@ export class InputMail extends Element {
     this.valid = false;
     const conditionInvalidValue = new RegExp('[а-ё[\\]{\\}(\\)\\\\!?,_;<>:|/`\'"#№$%^&*+=-]', 'g');
 
-    const inputMail = new Element(this.elem, HTMLTag.INPUT, 'form__input-mail');
+    const inputMail = new Element(this.elem, HTMLTag.INPUT, 'form__input');
     this.inputMailElem = <HTMLInputElement>inputMail.elem;
     this.inputMailElem.setAttribute('type', 'email');
     this.inputMailElem.setAttribute('title', InfoForUser.INPUT_MAIL);
@@ -28,11 +28,9 @@ export class InputMail extends Element {
 
   public validation(): void {
     if (/^(\w+[.]?\w+)+[@]\w+[.]\D{0,5}$/.test(this.inputMailElem.value)) {
-      this.inputMailElem.classList.remove('invalid');
       this.inputMailElem.classList.add('valid');
       this.valid = true;
     } else {
-      this.inputMailElem.classList.remove('valid');
       this.inputMailElem.classList.add('invalid');
       this.valid = false;
     }

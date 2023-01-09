@@ -11,7 +11,7 @@ export class CartSummaryContent {
   private rootTableDiscount: Element | null;
   private ulDiscount: Element | null;
   private valueInput: HTMLInputElement;
-  private blockTotalSummary: Element;
+  private blockTotalorDiscont: Element;
   private arrayData: number[];
   private setDiscountListItem: (flag: boolean) => void;
   private getDiscountListItem: () => number;
@@ -53,12 +53,11 @@ export class CartSummaryContent {
     this.getValueDiscountData = getValueDiscountData;
 
     const headerSummary = new Element(node, HTMLTag.DIV, 'summary-head');
-    const titleSummaryIgnor = new Element(headerSummary.elem, HTMLTag.P, 'summary-head__title', 'Summary');
+    const titleSummaryIgnor = new Element(headerSummary.elem, HTMLTag.H2, 'summary-head__title', 'Summary');
     const blockProductSummary = new Element(node, HTMLTag.DIV, 'summary-product');
     this.countProduct = new Element(blockProductSummary.elem, HTMLTag.P, 'summary-product__count', `Products: ${arrayData[0]}`);
-    const blockTotalorDiscont = new Element(node, HTMLTag.DIV, 'summary-total-block');
-    this.blockTotalSummary = new Element(blockTotalorDiscont.elem, HTMLTag.DIV, 'summary-total');
-    this.countTotal = new Element(this.blockTotalSummary.elem, HTMLTag.P, 'summary-total__count', `Total: ${arrayData[1]}`);
+    this.blockTotalorDiscont = new Element(node, HTMLTag.DIV, 'summary-total-block');
+    this.countTotal = new Element(this.blockTotalorDiscont.elem, HTMLTag.P, 'summary-total__count', `Total: $${arrayData[1]}`);
     this.blockInputorTable = new Element(node, HTMLTag.DIV, 'summary-block-input');
     const inputSummary = new Element(this.blockInputorTable.elem, HTMLTag.INPUT, 'summary-input');
     this.valueInput = <HTMLInputElement>inputSummary.elem;
@@ -91,11 +90,11 @@ export class CartSummaryContent {
 
   toggleContent(arrayData: number[]): void {
     this.arrayData = arrayData;
-    this.countTotal.elem.textContent = `Total: ${arrayData[1]}`;
+    this.countTotal.elem.textContent = `Total: $${arrayData[1]}`;
     this.countProduct.elem.textContent = `Products: ${arrayData[0]}`;
     if (this.countDiscountTotal) {
       const result = this.calculateProcent();
-      this.countDiscountTotal.elem.textContent = `Total: ${result}`;
+      this.countDiscountTotal.elem.textContent = `Total: $${result}`;
     }
   }
 
@@ -130,7 +129,7 @@ export class CartSummaryContent {
       this.drawItemTableBlock(name, discount);
       if (this.countDiscountTotal) {
         const result = this.calculateProcent();
-        this.countDiscountTotal.elem.textContent = `Total: ${result}`;
+        this.countDiscountTotal.elem.textContent = `Total: $${result}`;
       }
     }
   }
@@ -147,7 +146,7 @@ export class CartSummaryContent {
       this.deleteNameDiscount(name);
       if (this.countDiscountTotal) {
         const result = this.calculateProcent();
-        this.countDiscountTotal.elem.textContent = `Total: ${result}`;
+        this.countDiscountTotal.elem.textContent = `Total: $${result}`;
       }
       if (this.stringDiscount) {
         this.stringDiscount.destroy();
@@ -166,7 +165,7 @@ export class CartSummaryContent {
 
   drawDiscountPrice(): void {
     const result = this.calculateProcent();
-    this.countDiscountTotal = new Element(this.blockTotalSummary.elem, HTMLTag.P, 'summary-total-discount__count', `Total: ${result}`);
+    this.countDiscountTotal = new Element(this.blockTotalorDiscont.elem, HTMLTag.P, 'summary-total-discount__count', `Total: $${result}`);
   }
 
   examinationInput(value: string): void {

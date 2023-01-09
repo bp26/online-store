@@ -5,20 +5,35 @@
   width: 100%;
   height: 100%;
   background: $background-modal-wrapper;
+  z-index: 12;
 }
 
 .modal-form {
   width: $modal_width;
   height: $modal_height;
-  border: 5px solid $border-color-modal;
+  display: flex;
+  justify-content: center;
+  border: 3px solid $border-color-modal;
   position: absolute;
   top: calc(50% - ($modal_height / 2));
   left: calc(50% - ($modal_width / 2));
-  padding: 10px;
+  padding: 15px;
   background: $background-modal;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 25px 1px $modal-box-shadow-color;
+}
+
+.wrapper-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
 }
 
 .wrapper-reset {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: $reset_width;
   height: $reset_height;
   position: absolute;
@@ -26,13 +41,38 @@
   left: calc(50% - ($reset_width / 2));
   background: $background-reset;
   text-align: center;
+  border: 1px solid $border-color-modal;
+  box-shadow: inset 0px 0px 25px 1px $modal-box-shadow-color;
+  border-radius: 10px;
+}
+
+.reset-content {
+  color: $color-reset-content;
+  font-size: 24px;
 }
 
 .form {
-  text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: center;
+  &__title {
+    color: $color-title-card-block;
+    text-shadow: 1px 1px 1px $border-input-modal;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+  }
+  &__input {
+    text-align: center;
+    background: $background-input-form;
+    color: $border-input-modal;
+    &::placeholder {
+      text-align: center;
+      color: $color-placeholder-form;
+    }
+  }
+  &__label {
+    height: 25px;
+  }
 }
 
 .wrapper-card {
@@ -41,12 +81,32 @@
   justify-content: center;
   align-items: center;
   gap: 20px;
+  margin-bottom: 25px;
+  &__title {
+    color: $color-title-card-block;
+    text-shadow: 1px 1px 1px $border-input-modal;
+  }
+  &__button {
+    width: 130px;
+    height: 30px;
+    border-radius: 8px;
+    border: none;
+    background: $background-button-modal;
+    box-shadow: inset 0px 0px 6px 2px $border-input-modal;
+    transition: all 0.3s linear;
+    &:hover {
+      cursor: pointer;
+      background: $background-button-modal-hover;
+      transition: all 0.3s linear;
+    }
+  }
 }
 
 .card-logo {
   width: 100px;
   height: 50px;
-  background-color: aqua;
+  background-color: $background-logo-card;
+  box-shadow: 0px 0px 9px 0px $border-input-modal;
   background-image: none;
   background-position: center;
   background-size: cover;
@@ -59,36 +119,43 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 300px;
+  border-radius: 10px;
+  width: 230px;
   height: 100px;
-  background: darkseagreen;
-  // background-image: url('../../assets/png/mastercard.webp');
+  background: $background-modal-card;
+  box-shadow: 0px 1px 0px 2px $border-input-modal;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  gap: 20px;
+  gap: 10px;
   &__number {
-    width: 200px;
+    width: 180px;
+    @include input-card;
+    padding-top: 1px;
     &::placeholder {
-      text-align: center;
+      @include placeholder-card-input;
     }
   }
 }
 
 .block-date-or-cvv {
   display: flex;
+  align-items: center;
   gap: 10px;
 }
 
 .block-date {
   display: flex;
   align-items: center;
-  gap: 5px;
   &__input {
     width: 50px;
+    @include input-card;
     &::placeholder {
-      text-align: center;
+      @include placeholder-card-input;
     }
+  }
+  &__title {
+    @include cvv-or-date;
   }
 }
 
@@ -98,16 +165,23 @@
   gap: 5px;
   &__input {
     width: 50px;
+    @include input-card;
     &::placeholder {
-      text-align: center;
+      @include placeholder-card-input;
     }
+  }
+  &__title {
+    @include cvv-or-date;
   }
 }
 
-.valid {
-  border: 10px solid green;
+.invalid {
+  border: 2px solid $color-invalid;
 }
 
-.invalid {
-  border: 3px solid red;
+.form__label-card {
+  display: flex;
+  gap: 8px;
+  height: 30px;
+  align-items: center;
 }

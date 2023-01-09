@@ -16,3 +16,19 @@
   justify-content: space-between;
   align-items: center;
 }
+
+@mixin placeholder-card-input {
+  text-align: center;
+  color: $placeholder-card-color;
+}
+
+@mixin input-card {
+  background: none;
+  color: $color-text-input-card;
+  text-align: center;
+}
+
+@mixin cvv-or-date {
+  text-shadow: 1px -2px 0px $color-date-or-cvv;
+  font-size: 18px;
+}

@@ -10,7 +10,7 @@ export class InputAdress extends Element {
 
     const conditionInvalidValue = new RegExp('[-=+_?!,.;:\'"`[\\]{\\}(\\)]', 'g');
 
-    const inputAdress = new Element(this.elem, HTMLTag.INPUT, 'form__input-adress');
+    const inputAdress = new Element(this.elem, HTMLTag.INPUT, 'form__input');
     this.inputAdressElem = <HTMLInputElement>inputAdress.elem;
     this.inputAdressElem.setAttribute('type', 'text');
     this.inputAdressElem.setAttribute('title', InfoForUser.INPUT_ADRESS);
@@ -30,10 +30,8 @@ export class InputAdress extends Element {
   public validation(): void {
     if (/^(\w{5,}(\s+)?){3,}$/.test(this.inputAdressElem.value)) {
       this.inputAdressElem.classList.remove('invalid');
-      this.inputAdressElem.classList.add('valid');
       this.valid = true;
     } else {
-      this.inputAdressElem.classList.remove('valid');
       this.inputAdressElem.classList.add('invalid');
       this.valid = false;
     }

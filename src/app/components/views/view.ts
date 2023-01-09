@@ -22,7 +22,7 @@ export class View {
     this.root = root;
     this.dataMatrix;
     this.inputValue = 0;
-    this.buttonCart = <HTMLButtonElement>document.querySelector('.cart');
+    this.buttonCart = <HTMLButtonElement>document.querySelector('.cart-button');
     this.pageMain = <HTMLHeadElement>document.querySelector('.shop-name');
     this.pageMain.onclick = () => this.mountProductsPage();
     this.buttonCart.onclick = () => this.mountCartPage();

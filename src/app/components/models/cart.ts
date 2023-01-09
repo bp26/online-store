@@ -51,7 +51,7 @@ export class Cart {
     this.discountListItem = typeof DiscountListItem === 'number' ? DiscountListItem : DEFAULT_DISCOUNT_LIST_ITEM;
     this.discountProcent = typeof DiscountProcent === 'number' ? DiscountProcent : DEFAULT_DISCOUNT_PROCENT;
     this.nameDiscount = localStorageGuardMapDiscount(localStorageCart.DISCOUNT_NAME);
-    this.summProdContent.textContent = `${this.sumProductCart}`;
+    this.summProdContent.textContent = `$${this.sumProductCart}`;
     this.countProdContent.textContent = `${this.countProductCart}`;
   }
 
@@ -126,14 +126,14 @@ export class Cart {
 
   summaProductCart(flag: boolean, price: number): void {
     flag ? (this.sumProductCart += price) : (this.sumProductCart -= price);
-    this.summProdContent.textContent = `${this.sumProductCart}`;
+    this.summProdContent.textContent = `$${this.sumProductCart}`;
     localStorage.setItem(localStorageCart.SUM_PRODUCT_CART, JSON.stringify(this.sumProductCart));
   }
 
   resetSummAndCountProductHeader(): void {
     this.sumProductCart = 0;
     this.countProductCart = 0;
-    this.summProdContent.textContent = `${this.sumProductCart}`;
+    this.summProdContent.textContent = `$${this.sumProductCart}`;
     this.countProdContent.textContent = `${this.countProductCart}`;
     localStorage.setItem(localStorageCart.SUM_PRODUCT_CART, JSON.stringify(this.sumProductCart));
     localStorage.setItem(localStorageCart.COUNT_PRODUCT_CART, JSON.stringify(this.countProductCart));

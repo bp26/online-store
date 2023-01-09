@@ -28,10 +28,13 @@ export class ModalView extends Element {
     };
     const form = new Element(modal.elem, HTMLTag.FORM, 'form');
     const titleFormIgnor = new Element(form.elem, HTMLTag.H2, 'form__title', 'Personal details');
-    this.inputName = new InputName(form.elem);
-    this.inputPhone = new InputPhone(form.elem);
-    this.inputAdress = new InputAdress(form.elem);
-    this.inputMail = new InputMail(form.elem);
+    const wrapperInputForm = new Element(form.elem, HTMLTag.DIV, 'wrapper-form');
+
+    this.inputName = new InputName(wrapperInputForm.elem);
+    this.inputPhone = new InputPhone(wrapperInputForm.elem);
+    this.inputAdress = new InputAdress(wrapperInputForm.elem);
+    this.inputMail = new InputMail(wrapperInputForm.elem);
+
     const wrapperCard = new Element(form.elem, HTMLTag.DIV, 'wrapper-card');
     const titleCardIgnor = new Element(wrapperCard.elem, HTMLTag.H2, 'wrapper-card__title', 'Credit card details');
     const logoCard = new Element(wrapperCard.elem, HTMLTag.DIV, 'card-logo');

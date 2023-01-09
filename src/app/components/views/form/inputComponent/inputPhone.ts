@@ -9,7 +9,7 @@ export class InputPhone extends Element {
     this.valid = false;
     const conditionInvalidValue = new RegExp('[a-zа-ё[\\]{\\}(\\)\\\\!?.,_;<>:|/`\'"#№$%^&*@=-]', 'gi');
 
-    const inputPhone = new Element(this.elem, HTMLTag.INPUT, 'form__input-phone');
+    const inputPhone = new Element(this.elem, HTMLTag.INPUT, 'form__input');
     this.inputPhoneElem = <HTMLInputElement>inputPhone.elem;
     this.inputPhoneElem.setAttribute('type', 'tel');
     this.inputPhoneElem.setAttribute('title', InfoForUser.INPUT_PHONE);
@@ -29,10 +29,8 @@ export class InputPhone extends Element {
   public validation(): void {
     if (/^[+](\d(\s+)?){9,}$/.test(this.inputPhoneElem.value)) {
       this.inputPhoneElem.classList.remove('invalid');
-      this.inputPhoneElem.classList.add('valid');
       this.valid = true;
     } else {
-      this.inputPhoneElem.classList.remove('valid');
       this.inputPhoneElem.classList.add('invalid');
       this.valid = false;
     }
