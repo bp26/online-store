@@ -73,14 +73,18 @@
 }
 
 .product-card__header {
-  @include flex-position-base;
+  display: flex;
+  align-items: center;
+
   height: 10%;
+  padding-left: 5px;
   border-bottom: 1px solid $border-color-base;
   border-radius: 10px 10px 0 0;
 
   overflow: hidden;
   white-space: nowrap;
   word-wrap: break-word;
+  text-align: center;
 
   background-color: $block-dark-semitransparent-color;
 
