@@ -1,10 +1,28 @@
-$main-color: #afbfab;
-$border-color-base: #000;
+$block-dark-color: #181a1c;
+$block-dark-semitransparent-color: rgba(24, 26, 28, 0.8);
+$block-dark-transparent-color: rgba(24, 26, 28, 0.5);
+$block-yellowgray-color: rgba(76, 74, 65, 0.4);
+$block-gray-transparent-color: #1e1b1b80;
+$block-brown-color: #4d2f14f2;
+
+$button-dark-color: #181a1c;
+$button-red-color: #9a3535;
+$button-brown-color: #9f581af2;
+
+$font-color: orange;
+$font-secondary-color: wheat;
+$font-additional-color: #bb954e;
+
+$border-color-base: orange;
+$border-color-selected: rgb(235, 68, 68);
+
 $border-radius-base: 10px;
 $border-color-modal: red;
+
 $background-modal: cadetblue;
 $background-modal-wrapper: rgba(0, 0, 0, 0.7);
 $background-reset: rgb(187, 202, 202);
+
 $modal_width: 600px;
 $modal_height: 500px;
 $reset_width: 400px;

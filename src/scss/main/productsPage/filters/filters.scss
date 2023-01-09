@@ -13,10 +13,16 @@
   padding-top: 10px;
   border: 1px solid $border-color-base;
   border-radius: $border-radius-base;
+
+  background-color: $block-dark-transparent-color;
+
+  margin-bottom: 20px;
 }
 
 .filters__button {
   width: 40%;
+  padding: 2px;
   margin-bottom: 5px;
   border-radius: $border-radius-base;
+  font-size: 20px;
 }

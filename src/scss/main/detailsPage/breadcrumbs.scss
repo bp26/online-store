@@ -1,12 +1,18 @@
 .breadcrumbs {
   margin: 3% auto;
   @include flex-position-base-justify-beetwen;
+  color: $font-secondary-color;
 
   &__item {
     font-size: 22px;
   }
 
+  &__item:first-of-type {
+    cursor: pointer;
+  }
+
   &__separator {
     font-size: 26px;
+    color: $font-color;
   }
 }

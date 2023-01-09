@@ -5,6 +5,7 @@
 
   &__container {
     width: 100%;
+    overflow: hidden;
     border: 1px solid $border-color-base;
     border-radius: $border-radius-base;
   }
@@ -13,13 +14,18 @@
     @include flex-position-base;
     text-align: center;
     border-bottom: 1px solid $border-color-base;
-    font-size: 20px;
+    font-size: 22px;
+
+    color: $font-color;
+    background-color: $block-dark-color;
+
   }
 
   &__info {
     @include flex-position-base;
     text-align: center;
     padding: 3px 5px 3px 5px;
-    font-size: 18px;
+    font-size: 20px;
+    color: $font-secondary-color;
   }
 }
