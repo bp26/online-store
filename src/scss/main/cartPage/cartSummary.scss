@@ -2,30 +2,40 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 350px;
+  width: 100%;
+  height: auto;
+  border: 1px solid orange;
+  border-radius: 15px;
+  padding-bottom: 20px;
+  color: wheat;
 }
 
 .summary-head {
-  &__title {
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #181a1c;
+  width: 100%;
+  height: 42px;
+  border-bottom: 1px solid orange;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  color: orange;
 }
 
 .summary-product {
   display: flex;
-
-  &__title {
-  }
-
-  &__count {
-  }
+  height: 32px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
 }
 
 .summary-total {
   display: flex;
   flex-direction: column;
-
-  &__title {
-  }
-
   &__count {
     &_cross-out {
       text-decoration: line-through;
@@ -35,27 +45,117 @@
   &-discount {
     display: flex;
   }
+
+  &-block {
+    display: flex;
+    min-height: 32px;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 24px;
+    font-size: 24px;
+    gap: 5px;
+  }
 }
 
 .summary-input {
+  background-color: #181a1c;
+  border: 1px solid orange;
+  color: orange;
+  height: 35px;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 18px;
 }
 
 .summary-button {
-  &__span {
+  margin-top: auto;
+  width: 120px;
+  height: 35px;
+  background: #9a3535;
+  color: wheat;
+  border: 2px solid orange;
+  margin-top: 20px;
+  &:hover {
+    cursor: pointer;
   }
 }
 
 .block-discount {
   display: flex;
+  align-items: center;
+  gap: 10px;
+  color: wheat;
+  font-size: 18px;
+  &__content {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  &__button {
+    width: 40px;
+    height: 26px;
+    color: wheat;
+    background-color: #181a1c;
+    border: 1px solid orange;
+    font-size: 14px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
 
 .block-table {
-  border: solid 1px $border-color-base;
+  border: solid 1px orange;
+  border-radius: 5px;
+  max-width: 280px;
+  width: 100%;
+  margin-top: 5px;
   &__title {
     text-align: center;
+    height: 24px;
+    background-color: #181a1c;
+    color: orange;
+    font-size: 18px;
   }
 }
 
 .discount-item {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: 36px;
+  color: wheat;
+  font-size: 18px;
+  border-top: 1px solid orange;
+  &__button {
+    width: 50px;
+    height: 28px;
+    color: wheat;
+    background-color: #181a1c;
+    border: 1px solid orange;
+    font-size: 14px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.summary-block-disc-description {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  min-height: 27px;
+  font-size: 14px;
+  color: #e38383;
+}
+
+.summary-block-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
 }
