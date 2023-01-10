@@ -51,7 +51,7 @@ export class InputCardNumber extends Element {
 
   public validation(): void {
     if (this.conditionValidValue.test(this.inputCardNumberElem.value)) {
-      this.inputCardNumberElem.classList.add('valid');
+      this.inputCardNumberElem.classList.remove('invalid');
       this.valid = true;
     } else {
       this.inputCardNumberElem.classList.add('invalid');

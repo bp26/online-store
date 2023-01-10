@@ -28,7 +28,7 @@ export class InputMail extends Element {
 
   public validation(): void {
     if (/^(\w+[.]?\w+)+[@]\w+[.]\D{0,5}$/.test(this.inputMailElem.value)) {
-      this.inputMailElem.classList.add('valid');
+      this.inputMailElem.classList.remove('invalid');
       this.valid = true;
     } else {
       this.inputMailElem.classList.add('invalid');
