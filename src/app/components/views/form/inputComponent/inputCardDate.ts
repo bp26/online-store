@@ -37,7 +37,7 @@ export class InputCardDate extends Element {
   }
 
   public validation(): void {
-    if (this.conditionValidValue.test(this.inputCardNumberElem.value)) {
+    if (/^((([1-2][0-9])|([3][0-1]))\/(([0][0-9])|([1][0-2])))$/.test(this.inputCardNumberElem.value)) {
       this.inputCardNumberElem.classList.remove('invalid');
       this.valid = true;
     } else {
