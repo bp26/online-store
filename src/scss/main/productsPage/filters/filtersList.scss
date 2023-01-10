@@ -1,0 +1,103 @@
+.filters-list {
+  width: 90%;
+
+  margin-bottom: 20px;
+
+  border: 1px solid $border-color-base;
+  border-radius: $border-radius-base;
+
+  overflow: hidden;
+  background-color: $block-yellowgray-color;
+}
+
+.filters-list__upper-wrapper {
+  border-bottom: 1px solid $border-color-base;
+  background-color: $block-dark-color;
+}
+
+.filters-list__name {
+  @include flex-position-base;
+  color: $font-color;
+  font-size: 20px;
+}
+
+.filters-list__bottom-wrapper {
+  height: 240px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 5px;
+
+  &::-webkit-scrollbar-track {
+    border-radius: $border-radius-base;
+  }
+
+  &::-webkit-scrollbar {
+    width: 5px;
+
+    background-color: $border-color-base;
+    border-radius: $border-radius-base;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $block-dark-color;
+    border-radius: $border-radius-base;
+  }
+}
+
+.filters-list__list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.filters-list__option {
+  position: relative;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+
+  color: $font-secondary-color;
+
+  &_checked {
+    color: $font-color;
+  }
+
+  &_empty {
+    color: lightgray;
+  }
+}
+
+.filters-list__checkbox {
+  position: absolute;
+  opacity: 0;
+}
+
+.filters-list__label {
+  cursor: grab;
+}
+
+.filters-list__checkbox + label {
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+
+  &::before {
+    content: '';
+    width: 15px;
+    height: 15px;
+
+    border: 1px solid $border-color-base;
+    border-radius: 3px;
+    margin-right: 5px;
+
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+  }
+}
+
+.filters-list__checkbox:checked + label::before {
+  background-size: cover;
+  background-position: 0% 0%;
+  background-image: url('../../../../assets/svg/checkmark.svg');
+}

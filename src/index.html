@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online-store</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <div class="header__wrapper">
+          <div class="shop">
+            <h1 class="shop-name">Online-store</h1>
+          </div>
+          <div class="cart-block">
+            <button class="cart-button"></button>
+            <div class="cart__description">
+              <p class="cart-description-count">0</p>
+              <p class="cart-description-summ">0</p>
+            </div>
+          </div>
+        </div>
+      </header>
+      <main class="main">
+        <div class="main__root"></div>
+      </main>
+      <footer class="footer">
+        <div class="footer__wrapper">
+          <div class="info">
+            <a href="https://github.com/Arterixs" class="link">
+              <div class="link-git__image-one"></div>
+            </a>
+            <p class="year">2022</p>
+            <a href="https://github.com/bp26" class="link">
+              <div class="link-git__image"></div>
+            </a>
+          </div>
+          <a href="https://rs.school/" class="link-rs">
+            <div class="rs-school-logo"></div>
+          </a>
+        </div>
+      </footer>
+    </div>
+
+    <template id="temp-product-card">
+      <div class="product-card__container">
+        <div class="product-card__header">
+          <span class="product-card__name"></span>
+        </div>
+        <div class="product-card__content">
+          <div class="product-card__info">
+            <ul class="product-card__info-list">
+            </ul>
+          </div>
+          <button class="product-card__button active-button">ADD TO CART</button>
+        </div>
+      </div>
+    </template>
+
+  </body>
+</html>

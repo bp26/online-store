@@ -1,0 +1,17 @@
+@import './products';
+@import './filters/filters';
+@import './productsHeader';
+
+.products-page {
+  display: flex;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.products-page__wrapper {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 20px;
+}

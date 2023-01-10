@@ -1,0 +1,58 @@
+@import 'normalize.css';
+@import './scss/utils/mixins';
+@import './scss/utils/variables';
+@import './scss/header/header';
+@import './scss/main/main';
+@import './scss/footer/footer';
+@import './scss/main/productsPage/productsPage';
+@import './scss/main/cartPage/cart';
+@import './scss/main/detailsPage/detailsPage';
+@import './scss/modal/modal';
+@import './scss/main/preloader';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+
+  background-image: url('./assets/images/bg.jpg');
+  background-size: cover;
+  position: relative;
+
+  padding-bottom: 70px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.wrapper {
+  height: 100%;
+  margin: 0 auto;
+  max-width: 1600px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 15px;
+}
+
+.active-button {
+  border-radius: $border-radius-base;
+  border: 1px solid $border-color-base;
+  background-color: $button-dark-color;
+  color: $font-color;
+  transition: 0.1s;
+
+  &:hover {
+    background-color: $button-red-color;
+    color: $font-secondary-color;
+  }
+
+  &:active {
+    background-color: $button-brown-color;
+  }
+}
