@@ -20,8 +20,8 @@ export class InputCardNumber extends Element {
     this.inputCardNumberElem.setAttribute('placeholder', 'Card number');
     this.inputCardNumberElem.setAttribute('maxlength', '19');
     this.inputCardNumberElem.oninput = () => {
-      if (this.inputCardNumberElem.value.length === 1 || !this.inputCardNumberElem.value.length) {
-        switch (this.inputCardNumberElem.value) {
+      if (this.inputCardNumberElem.value.length) {
+        switch (this.inputCardNumberElem.value[0]) {
           case '5':
             logo.style.backgroundImage = `url(${MASTERCARD_IMG})`;
             break;
@@ -50,8 +50,9 @@ export class InputCardNumber extends Element {
   }
 
   public validation(): void {
-    if (this.conditionValidValue.test(this.inputCardNumberElem.value)) {
-      this.inputCardNumberElem.classList.add('valid');
+    if (/^(\d{4}\s){3}\d{4}$/.test(this.inputCardNumberElem.value)) {
+      console.log('valid')
+      this.inputCardNumberElem.classList.remove('invalid');
       this.valid = true;
     } else {
       this.inputCardNumberElem.classList.add('invalid');
